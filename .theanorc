@@ -1,0 +1,10 @@
+[global]
+device = cuda0
+floatX = float32
+
+[cuda]
+root = /usr/local/cuda
+
+[dnn]
+library_path = /usr/local/cuda/lib64
+include_path = /usr/local/cuda/include
