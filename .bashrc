@@ -116,20 +116,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# virtualenv and virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
-source /opt/ros/kinetic/setup.bash
-source ~/catkin_ws/devel/setup.bash
-
-
-export OpenCV_DIR=/home/kastan/workspace/ThirdParty/opencv/build
 
 function mygrep { grep -rni $1; }
 
-# added by Miniconda2 4.3.21 installer
-export PATH="/home/kastan/miniconda2/bin:$PATH"
-
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64"
 export CUDA_HOME=/usr/local/cuda
-
