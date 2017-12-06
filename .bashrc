@@ -120,4 +120,5 @@ fi
 function mygrep { grep -rni $1; }
 
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64"
-export CUDA_HOME=/usr/local/cuda
+export CUDA_HOME=/usr/local/cudaexport DISPLAY=localhost:0.0
+export DISPLAY=localhost:0.0
