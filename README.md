@@ -1,3 +1,15 @@
+## Current .zshrc file requres this setup:
+Emulator: Hyper Terminal www.hyper.is
+	Config is in default location (rn at …../kasta/)
+	/.hyper.js
+Use ZSH and Oh-My-Zsh
+Use PowerLevel9k  - https://github.com/bhilburn/powerlevel9k/wiki/Install-Instructions#step-2-install-a-powerline-font
+Use NerdFonts - http://nerdfonts.com/ 
+	Must add font to .hyper.js config file. Make sure use name listed on install file.
+	Use Windows compatible fonts
+All fonts downloaded from here have the full nerdfont icon packs.
+
+
 Notes:
 Be careful with the .bashrc and .zshrc files - THEY MAY CONTAIN WEIRD THINGS AT THE BOTTOM. The branches are an effort to isolate weirdness.
 
