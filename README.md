@@ -8,6 +8,9 @@ Use NerdFonts - http://nerdfonts.com/
 	Must add font to .hyper.js config file. Make sure use name listed on install file.
 	Use Windows compatible fonts
 All fonts downloaded from here have the full nerdfont icon packs.
+Source Code Pro font:
+On Windows & WSL it's called: "SauceCodePro NF"
+On Ubuntu it's called: "SauceCodePro Nerd Font"
 
 
 Notes:
