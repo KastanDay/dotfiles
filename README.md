@@ -2,6 +2,7 @@
 Emulator: Hyper Terminal www.hyper.is
 	Config is in default location (rn at …../kasta/)
 	/.hyper.js
+    Hyper keyboard shortcuts here: https://hyper.is/#keymaps and https://github.com/zeit/hyper/blob/master/app/keymaps/linux.json
 Use ZSH and Oh-My-Zsh
 Use PowerLevel9k  - https://github.com/bhilburn/powerlevel9k/wiki/Install-Instructions#step-2-install-a-powerline-font
 Use NerdFonts - http://nerdfonts.com/ 
