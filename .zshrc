@@ -97,10 +97,19 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
 # Example aliases
 alias zshconfig="vi ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+function mygrep { grep -rni (; }
+alias wut=google
+alias fg="find . | grep "
+alias f/g="find / | grep "
+
+function kms { echo "It's going to be okay, today is only one day"}
+
+# Info on changing colors: https://askubuntu.com/questions/466198/how-do-i-change-the-color-for-directories-with-ls-in-the-console#comment1113625_466203
+# di= just changes directories. Change other files too. (ln, ex, or *.gz changes all .gz files)
+#                      bold/underlined/ect;color
+LS_COLORS=$LS_COLORS:'di=1;34:' ; export LS_COLORS
 
 #zgen oh-my-zsh
 #zgen load carloscuesta/materialshell materialshell
