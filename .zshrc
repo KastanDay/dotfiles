@@ -7,26 +7,19 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_MODE="awesome-fontconfig"
+# ZSH_THEME="robbyrussell" #this is the default one
+#ZSH_THEME="agnoster"
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
-# Font mode for powerlevel9k
-POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=true
+# ZSH_THEME="random" # gives you a random theme each terminal
 
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
-HYPHEN_INSENSITIVE="true"
+# HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -41,15 +34,15 @@ HYPHEN_INSENSITIVE="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+# COMPLETION_WAITING_DOTS="tru#
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -63,17 +56,12 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  #git
-  web-search
-  sudo
-  vi-mode
-  pip
-)
+plugins=(git pip vi-mode web-search sudo wd)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+export DEFAULT_USER="kastan"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -97,33 +85,66 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
+#
 # Example aliases
-alias zshconfig="vi ~/.zshrc"
-function mygrep { grep -rni (; }
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+source ~/catkin_ws/devel/setup.zsh
+
+function mygrep { grep -rni $1; }
 alias wut=google
 alias fg="find . | grep "
 alias f/g="find / | grep "
+alias c=code
+alias o=xdg-open
+alias e=exit
+
 
 function kms { echo "It's going to be okay, today is only one day"}
 
-# Info on changing colors: https://askubuntu.com/questions/466198/how-do-i-change-the-color-for-directories-with-ls-in-the-console#comment1113625_466203
-# di= just changes directories. Change other files too. (ln, ex, or *.gz changes all .gz files)
-#                      bold/underlined/ect;color
 LS_COLORS=$LS_COLORS:'di=1;34:' ; export LS_COLORS
 
-#zgen oh-my-zsh
-#zgen load carloscuesta/materialshell materialshell
-
-
-# Battery
-POWERLEVEL9K_BATTERY_LOW_FOREGROUND='red'
-POWERLEVEL9K_BATTERY_CHARGING_FOREGROUND='yellow'
-POWERLEVEL9K_BATTERY_CHARGED_FOREGROUND='green'
-POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND='blue'
 
 # Prompt elements
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir) #vcs -- adds git stuff, but slows down term lots
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time battery)
+# Look here for more ideas : https://github.com/tonylambiris/dotfiles/blob/master/dot.zshrc
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir_writable dir vcs ) #vcs -- adds git, but slow. # icons_test to see all icons
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status time battery)
+
+POWERLEVEL9K_MODE='awesome-patched'
+
+# Advanced `vi_mode` color customization
+POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='teal'
+POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='red'
+
+#POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND="$DEFAULT_BACKGROUND"
+POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND="black"
+POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND="blue"
+POWERLEVEL9K_EXECUTION_TIME_ICON="\uf253"  # nf-fa-hourglass_half = f253 .. stopwatch = 23F1
+# elim checkmark, and exit codes
+POWERLEVEL9K_STATUS_VERBOSE=false
+
+# ICONS
+# Discovery ship = f197
+# dollar sign f155
+# folder = e5fe
+# home   = f015
+# sqrt   = fc82
+# heart  = f004
+# user   = f007
+# hex-zoid = F20E
+# snapchat = f2ac
+# slack  = f198
+
+# Prompt icons
+POWERLEVEL9K_HOME_ICON='\uf197'
+#POWERLEVEL9K_DIR_HOME_FOREGROUND="white" # home dir colors
+#POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="red" # root dir colors
+POWERLEVEL9K_FOLDER_ICON='\ufc82'   # root folder icon
+POWERLEVEL9K_HOME_SUB_ICON="\ue5fe" # folder icon
+# POWERLEVEL9K_ROOT_ICON=$'\uf004'  # unknown icon
+# POWERLEVEL9K_USER_ICON="\uf007"   # unknown icon
+# POWERLEVEL9K_SUB_ICON='\uf004'    # unknown icon
 
 # VCS icons
 POWERLEVEL9K_VCS_GIT_ICON=$''
@@ -137,7 +158,7 @@ POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON=$'\uf0aa '
 # Prompt settings
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%K{white}%k"
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%K{white}%k" # add whatever to front of first line
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%K{black}%F{green} \uf155%f%F{black} %k\ue0b0%f "
 
 # Command execution time stamp shown in the history command output.
@@ -146,3 +167,26 @@ HIST_STAMPS="mm/dd/yyyy"
 # Time
 POWERLEVEL9K_TIME_FORMAT="%F{black}\uf017 %D{%I:%M}%f"  # %F{black}\uf017 had to take this out bc no font!!
 POWERLEVEL9K_TIME_BACKGROUND='green'
+
+
+
+#if [ $PWD = '/home/kastan' ]
+#then
+#    echo "THIS WORKD"
+#    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir_writable vcs )
+#    POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='\uf197'
+#fi
+
+
+#export ROS_MASTER_URI=http://192.168.15.60:11311
+
+export CUDA_HOME=/usr/local/cuda
+export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+#export PATH=/usr/local/cuda-9.2/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-9.2/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+#export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64"
+
+export PYTHONPATH=$PYTHONPATH:/usr/lib/python2.7/dist-packages
+# Syntax highlighting from https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
+source /home/kastan/Downloads/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
