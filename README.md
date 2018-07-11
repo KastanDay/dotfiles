@@ -13,6 +13,8 @@
 	- Source Code Pro font:
 		- On Windows & WSL it's called: "SauceCodePro NF"
 		- On Ubuntu it's called: "SauceCodePro Nerd Font"
+- Terminal syntax highlighting
+    - Syntax highlighting from https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
 
 ## Visual Studeio Code config
 
