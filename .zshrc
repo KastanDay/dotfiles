@@ -90,9 +90,7 @@ export DEFAULT_USER="kastan"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source ~/catkin_ws/devel/setup.zsh
-
-function mygrep { grep -rni $1; }
+# My Aliases
 alias wut=google
 alias fg="find . | grep "
 alias f/g="find / | grep "
@@ -100,10 +98,17 @@ alias c=code
 alias o=xdg-open
 alias e=exit
 
-
+# My Functions
+function mygrep { grep -rni $1; }
 function kms { echo "It's going to be okay, today is only one day"}
 
+
+# Info on changing colors: https://askubuntu.com/questions/466198/how-do-i-change-the-color-for-
+#      directories-with-ls-in-the-console#comment1113625_466203
+# di= just changes directories. Change other files too. (ln, ex, or *.gz changes all .gz files)
+#       bold/underlined/ect;color
 LS_COLORS=$LS_COLORS:'di=1;34:' ; export LS_COLORS
+LS_COLORS=$LS_COLORS:"ow=34;33" ; export LS_COLORS
 
 
 # Prompt elements
@@ -113,18 +118,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status time battery)
 
 POWERLEVEL9K_MODE='awesome-patched'
 
-# Advanced `vi_mode` color customization
-POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='teal'
-POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='red'
-
-#POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND="black"
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND="blue"
-POWERLEVEL9K_EXECUTION_TIME_ICON="\uf253"  # nf-fa-hourglass_half = f253 .. stopwatch = 23F1
-# elim checkmark, and exit codes
-POWERLEVEL9K_STATUS_VERBOSE=false
-
-# ICONS
+# ICONS (full list at NerdFont.com)
 # Discovery ship = f197
 # dollar sign f155
 # folder = e5fe
@@ -134,6 +128,7 @@ POWERLEVEL9K_STATUS_VERBOSE=false
 # user   = f007
 # hex-zoid = F20E
 # snapchat = f2ac
+# stopwatch = 23F1
 # slack  = f198
 
 # Prompt icons
@@ -164,21 +159,29 @@ POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%K{black}%F{green} \uf155%f%F{black} 
 # Command execution time stamp shown in the history command output.
 HIST_STAMPS="mm/dd/yyyy"
 
+# RIGHT prompt settings
+#POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND="$DEFAULT_BACKGROUND"
+POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND="black"
+POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND="blue"
+POWERLEVEL9K_EXECUTION_TIME_ICON="\uf253"  # nf-fa-hourglass_half = f253 .. stopwatch = 23F1
+# elim checkmark, and exit codes
+POWERLEVEL9K_STATUS_VERBOSE=false
 # Time
 POWERLEVEL9K_TIME_FORMAT="%F{black}\uf017 %D{%I:%M}%f"  # %F{black}\uf017 had to take this out bc no font!!
 POWERLEVEL9K_TIME_BACKGROUND='green'
 
+# in dev, custom home-folder (~/) prompt 
 
+# start in the right place
+# cd ~/
 
-#if [ $PWD = '/home/kastan' ]
-#then
-#    echo "THIS WORKD"
-#    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir_writable vcs )
-#    POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='\uf197'
-#fi
-
-
-#export ROS_MASTER_URI=http://192.168.15.60:11311
+# echo $PWD
+# if [ $PWD = '/home/kastan' ] # probably a better way to do this
+# then
+#     echo "THIS WORKD"
+#     POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir_writable vcs )
+#     POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
+# fi
 
 export CUDA_HOME=/usr/local/cuda
 export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
@@ -189,4 +192,4 @@ export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PAT
 
 export PYTHONPATH=$PYTHONPATH:/usr/lib/python2.7/dist-packages
 # Syntax highlighting from https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
-source /home/kastan/Downloads/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /home/kastan/Downloads/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
