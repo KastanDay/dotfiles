@@ -13,16 +13,19 @@
 	- Source Code Pro font:
 		- On Windows & WSL it's called: "SauceCodePro NF"
 		- On Ubuntu it's called: "SauceCodePro Nerd Font"
-<<<<<<< HEAD
 - Use [ZHS-Autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 	- Make sure to do the `Oh My Zsh` setup (not defautl)!
 	- `ctrl + space` to accept and execute suggestion
 	- `ctrl + j` to accept suggestion, and edit.
-=======
 - Terminal syntax highlighting
     - Syntax highlighting from https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
->>>>>>> 8a40e13a2161abc93e70499aa1c5e1d4c4b4e099
 
+## Useful terminal applications
+- Beyond `grep`: `ag`
+	- `sudo apt-get install silversearcher-ag`
+	- Usage: `ag foo` searches inside files for 'foo'. `ag -g file` serches for filename 'file'.
+- [In-terminal markdown viewer](https://github.com/axiros/terminal_markdown_viewer) `mdv`
+    - This is the best of several I considered: 
 ## Visual Studeio Code config
 
 - `settings.json` - This is the only settings file for VS Code

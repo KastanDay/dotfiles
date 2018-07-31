@@ -99,6 +99,7 @@ alias f/g="find / | grep "
 alias c=code 
 alias o=xdg-open 
 alias e=exit
+alias ls=colorls
 
 
 function kms { echo "It's going to be okay, today is only one day"}
@@ -192,3 +193,8 @@ export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PAT
 export PYTHONPATH=$PYTHONPATH:/usr/lib/python2.7/dist-packages
 # Syntax highlighting from https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
 source /home/kastan/Downloads/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(dirname $(gem which colorls))/tab_complete.sh
+
+# mdv (in-terminal markdown viewer) themeing
+export MDV_THEME=884.0134
+export MDV_THEME_CODE=528.9419
