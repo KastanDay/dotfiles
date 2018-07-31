@@ -37,7 +37,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="tru#
+# COMPLETION_WAITING_DOTS="tru# 
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -170,14 +170,14 @@ POWERLEVEL9K_TIME_BACKGROUND='green'
 
 # ctrl + shift to auto-execute the current ZSH suggestion
 bindkey '^ ' autosuggest-execute
-bindkey '^J' autosuggest-accept
+bindkey '^j' autosuggest-accept
 
 #if [ $PWD = '/home/kastan' ]
 #then
 #    echo "THIS WORKD"
-#    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir_writable vcs )
+#    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir_writable vcs ) 
 #    POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='\uf197'
-#fi
+#fi 
 
 
 #export ROS_MASTER_URI=http://192.168.15.60:11311
