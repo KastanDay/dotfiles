@@ -13,6 +13,10 @@
 	- Source Code Pro font:
 		- On Windows & WSL it's called: "SauceCodePro NF"
 		- On Ubuntu it's called: "SauceCodePro Nerd Font"
+- Use [ZHS-Autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+	- Make sure to do the `Oh My Zsh` setup (not defautl)!
+	- `ctrl + space` to accept and execute suggestion
+	- `ctrl + j` to accept suggestion, and edit.
 
 ## Visual Studeio Code config
 
