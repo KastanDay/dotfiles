@@ -19,6 +19,12 @@
 	- `ctrl + j` to accept suggestion, and edit.
 - Terminal syntax highlighting
     - Syntax highlighting from https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
+- [color-ls](https://github.com/athityakumar/colorls) makes your ls call beautiful
+	- in `.zshrc` add: `alias ls=colorls`
+
+
+## Awesome _____
+- https://terminalsare.sexy/
 
 ## Useful terminal applications
 - Beyond `grep`: `ag`
@@ -26,6 +32,8 @@
 	- Usage: `ag foo` searches inside files for 'foo'. `ag -g file` serches for filename 'file'.
 - [In-terminal markdown viewer](https://github.com/axiros/terminal_markdown_viewer) `mdv`
     - This is the best of several I considered: 
+- [bro man pages](http://bropages.org/)
+	- tldr is another option
 ## Visual Studeio Code config
 
 - `settings.json` - This is the only settings file for VS Code
