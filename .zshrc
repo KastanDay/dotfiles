@@ -49,9 +49,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -93,6 +90,7 @@ export DEFAULT_USER="kastan"
 source ~/catkin_ws/devel/setup.zsh
 
 function mygrep { grep -rni $1; }
+function kms { echo "It's going to be okay, today is only one day"}
 alias wut=google
 alias fg="find . | grep "
 alias f/g="find / | grep "
@@ -101,8 +99,6 @@ alias o=xdg-open
 alias e=exit
 alias ls=colorls
 
-
-function kms { echo "It's going to be okay, today is only one day"}
 
 LS_COLORS=$LS_COLORS:'di=1;34:' ; export LS_COLORS
 
@@ -198,3 +194,14 @@ source $(dirname $(gem which colorls))/tab_complete.sh
 # mdv (in-terminal markdown viewer) themeing
 export MDV_THEME=884.0134
 export MDV_THEME_CODE=528.9419
+
+# fasd (terminal movement) - https://github.com/clvv/fasd
+eval "$(fasd --init auto)" 
+alias a='fasd -a'        # any
+alias s='fasd -si'       # show / search / select
+alias d='fasd -d'        # directory
+alias f='fasd -f'        # file
+alias sd='fasd -sid'     # interactive directory selection
+alias sf='fasd -sif'     # interactive file selection
+alias z='fasd_cd -d'     # cd, same functionality as j in autojump
+alias zz='fasd_cd -d -i' # cd with interactive selection
