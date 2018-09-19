@@ -51,3 +51,10 @@ Be careful with the `.bashrc` and `.zshrc` files - **THEY MAY CONTAIN WEIRD THIN
 
 Great tutorial on setting up WSL (to be good - with X server and good fonts)
 https://joshpeng.github.io/post/wsl/#1-optional-install-cmder
+
+
+# New Ideas
+
+This is a AI python co-piolot for coding. Looks really cool, should try it.
+
+https://kite.com/
