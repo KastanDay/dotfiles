@@ -17,10 +17,12 @@
 		- On Ubuntu it's called: "SauceCodePro Nerd Font"
 - Use [ZHS-Autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 	- Make sure to do the `Oh My Zsh` setup (not defautl)!
+	- Only install step: `git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions`
 	- `ctrl + space` to accept and execute suggestion
 	- `ctrl + j` to accept suggestion, and edit.
 - Terminal syntax highlighting
     - Syntax highlighting from https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
+    - Only install step: `git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting`
 - [color-ls](https://github.com/athityakumar/colorls) makes your ls call beautiful
 	- in `.zshrc` add: `alias ls=colorls`
 
