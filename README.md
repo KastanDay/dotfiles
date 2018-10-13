@@ -28,7 +28,13 @@
 	- Must install Ruby, I followed [this guide](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-and-set-up-a-local-programming-environment-on-ubuntu-16-04)
     - After ruby installed: `gem install colorls`
 - [fasd](https://github.com/clvv/fasd) fuzy jump and open
-    - In .zshrc for Oh-My-Zsh plugins: `plugins=(fasd)`
+    - In .zshrc for Oh-My-Zsh plugins: plugins=(fasd)
+    - Then install: 
+``` 
+$ sudo add-apt-repository ppa:aacebedo/fasd
+$ sudo apt-get update
+$ sudo apt-get install fasd
+```
 
 ## Awesome _____
 - https://terminalsare.sexy/
