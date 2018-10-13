@@ -5,7 +5,9 @@
 	- `~/.hyper.js`
     	- Hyper keyboard shortcuts here: https://hyper.is/#keymaps and https://github.com/zeit/hyper/blob/master/app/keymaps/linux.json
 - Use ZSH and Oh-My-Zsh
+	- Only install step: `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
 - Use PowerLevel9k  - https://github.com/bhilburn/powerlevel9k/wiki/Install-Instructions#step-2-install-a-powerline-font
+	- Only install step: `$ git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k`
 - Use NerdFonts - http://nerdfonts.com/ 
 	- All fonts downloaded from here have the full nerdfont icon packs.
 	- Must add font to `~/.hyper.js` config file. Make sure use name listed on install file.
