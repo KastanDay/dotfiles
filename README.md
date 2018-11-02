@@ -28,6 +28,7 @@
 	- in `.zshrc` add: `alias ls=colorls`
 	- Must install Ruby, I followed [this guide](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-and-set-up-a-local-programming-environment-on-ubuntu-16-04)
     - After ruby installed: `gem install colorls`
+    - Ensure in .zshrc: `[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"`
 - [fasd](https://github.com/clvv/fasd) fuzy jump and open
     - In .zshrc for Oh-My-Zsh plugins: plugins=(fasd)
     - Then install: 
@@ -39,8 +40,9 @@ $ sudo apt-get install fasd
 
 ## Ubuntu Beautification - Unity Tweak Tool
 
-Theme: Arc-dark
-Icons: Papirus-dark
+* Theme: Arc-dark
+* Icons: Papirus-dark
+
 Just google em..
 
 ## Awesome _____
