@@ -38,12 +38,16 @@ $ sudo apt-get update
 $ sudo apt-get install fasd
 ```
 
-## Ubuntu Beautification - Unity Tweak Tool
+## Ubuntu Beautification
+
+* Unity Tweak Tool - Ubuntu Store
 
 * Theme: Arc-dark
-* Icons: Papirus-dark
+* Icons: Papirus-dark - Just google em..
+* https://itsfoss.com/best-indicator-applets-ubuntu/
+  * CopyQ - clipboard manager
+  * System Load: System monitor indicator
 
-Just google em..
 
 ## Awesome _____
 - https://terminalsare.sexy/
