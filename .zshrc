@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/kastan/.oh-my-zsh
+  export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -10,9 +10,6 @@
 # ZSH_THEME="robbyrussell" #this is the default one
 #ZSH_THEME="agnoster"
 ZSH_THEME="powerlevel9k/powerlevel9k"
-
-# ZSH_THEME="random" # gives you a random theme each terminal
-
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -44,15 +41,6 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(git pip vi-mode web-search sudo wd zsh-autosuggestions )
 
 source $ZSH/oh-my-zsh.sh
@@ -60,34 +48,6 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 export DEFAULT_USER="kastan"
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-source ~/catkin_ws/devel/setup.zsh
 
 function mygrep { grep -rni $1; }
 function kms { echo "It's going to be okay, today is only one day"}
@@ -97,7 +57,7 @@ alias f/g="find / | grep "
 alias c=code 
 alias o=xdg-open 
 alias e=exit
-alias ls=colorls
+# alias ls=colorls
 
 
 LS_COLORS=$LS_COLORS:'di=1;34:' ; export LS_COLORS
@@ -166,8 +126,8 @@ POWERLEVEL9K_TIME_FORMAT="%F{black}\uf017 %D{%I:%M}%f"  # %F{black}\uf017 had to
 POWERLEVEL9K_TIME_BACKGROUND='green'
 
 # ctrl + shift to auto-execute the current ZSH suggestion
-bindkey '^ ' autosuggest-execute
-bindkey '^j' autosuggest-accept
+# bindkey '^ ' autosuggest-execute
+# bindkey '^j' autosuggest-accept
 
 #if [ $PWD = '/home/kastan' ]
 #then
@@ -187,9 +147,13 @@ export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PAT
 #export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64"
 
 export PYTHONPATH=$PYTHONPATH:/usr/lib/python2.7/dist-packages
+
+# Add RVM to PATH for scripting. 
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
+
 # Syntax highlighting from https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
-source /home/kastan/Downloads/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $(dirname $(gem which colorls))/tab_complete.sh
+source $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 
 # mdv (in-terminal markdown viewer) themeing
 export MDV_THEME=884.0134
@@ -205,3 +169,7 @@ alias sd='fasd -sid'     # interactive directory selection
 alias sf='fasd -sif'     # interactive file selection
 alias z='fasd_cd -d'     # cd, same functionality as j in autojump
 alias zz='fasd_cd -d -i' # cd with interactive selection
+
+# source $(dirname $(gem which colorls))/tab_complete.sh
+# sourcing colorls 
+# source /home/memento/.rvm/gems/ruby-2.5.1/gems/colorls-1.1.1/lib/tab_complete.sh
