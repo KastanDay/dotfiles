@@ -37,6 +37,12 @@ $ sudo apt-get update
 $ sudo apt-get install fasd
 ```
 
+## Ubuntu Beautification - Unity Tweak Tool
+
+Theme: Arc-dark
+Icons: Papirus-dark
+Just google em..
+
 ## Awesome _____
 - https://terminalsare.sexy/
 
