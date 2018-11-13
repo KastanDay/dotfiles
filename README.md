@@ -43,7 +43,14 @@ $ sudo apt-get install fasd
 * Unity Tweak Tool - Ubuntu Store
 
 * Theme: Arc-dark
-* Icons: Papirus-dark - Just google em..
+    `sudo add-apt-repository ppa:noobslab/themes`
+    `sudo apt-get update && sudo apt-get install arc-theme`
+* Arc Icon Pack 
+    `sudo add-apt-repository ppa:noobslab/icons`
+    `sudo apt-get update && sudo apt-get install arc-icons`
+* Icons: Papirus-dark - My favorite
+    `sudo add-apt-repository ppa:papirus/papirus`
+    `sudo apt update && sudo apt install papirus-icon-theme`
 * https://itsfoss.com/best-indicator-applets-ubuntu/
   * CopyQ - clipboard manager
   * System Load: System monitor indicator
