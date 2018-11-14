@@ -60,6 +60,8 @@ Just google em..
 
 - `settings.json` - This is the only settings file for VS Code
 	 - It is stored in `~/.config/Code/User/`
+	 - Easymotion bindings: s + char_to_search
+	 - Todo-tree extension, makes todos easy to track
 
 **Extensions** 
 - Vim, Relative Line Numbers (by extr0py), C/C++

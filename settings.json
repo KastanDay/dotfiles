@@ -1,6 +1,5 @@
 {
-    "vim.disableAnnoyingNeovimMessage": true,
-    "files.autoSave": "afterDelay",
+    "files.autoSave": "onFocusChange",
     "editor.lineNumbers": "on",
     "editor.wordWrap": "off",
     "editor.rulers": [
@@ -9,11 +8,9 @@
     "editor.minimap.showSlider": "always",
     "editor.mouseWheelZoom": true,
     "debug.inlineValues": true,
-    "markdown.preview.scrollPreviewWithEditorSelection": false,
     "terminal.integrated.fontFamily": "SauceCodePro Nerd Font",
     "vim.useSystemClipboard": true,
     "vim.hlsearch": true,
-    "vim.cmdLineInitialColon": true,
     "vim.insertModeKeyBindings": [
         {
             "before": ["j", "k"],
@@ -22,7 +19,17 @@
     ],
     "vim.easymotion": true,
     "vim.leader": "e",
-    "vim.otherModesKeyBindings": [
+    "vim.easymotionMarkerFontWeight": "bold",
+    "vim.easymotionKeys": "hklyuiopnmqwertzxcvbasdgjf",
+    "vim.easymotionMarkerFontFamily": "SauceCodePro Nerd Font",
+    "vim.easymotionMarkerYOffset": 0,
+    "vim.easymotionMarkerBackgroundColor": "Black",
+    "vim.easymotionMarkerForegroundColorOneChar": "Yellow",
+    "vim.easymotionMarkerForegroundColorTwoChar": "Yellow",
+    "vim.easymotionMarkerWidthPerChar": 10,
+    "vim.easymotionMarkerHeight": 18,
+    "window.zoomLevel": -1,
+    "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": ["s"],
             "after": ["e", "e", "s"]
@@ -32,13 +39,21 @@
             "after": ["/"]
         }
     ],
-    "vim.easymotionMarkerFontWeight": "bold",
-    "vim.easymotionKeys": "hklyuiopnmqwertzxcvbasdgjf",
-    "vim.easymotionMarkerFontFamily": "SauceCodePro Nerd Font",
-    "vim.easymotionMarkerYOffset": 0,
-    "vim.easymotionMarkerBackgroundColor": "Black",
-    "vim.easymotionMarkerForegroundColorOneChar": "Yellow",
-    "vim.easymotionMarkerForegroundColorTwoChar": "Yellow",
-    "vim.easymotionMarkerWidthPerChar": 10,
-    "vim.easymotionMarkerHeight": 18
+    "todo-tree.defaultHighlight": {
+        "icon": "alert",
+        "type": "line",
+        "foreground": "yellow",
+        "background": "white",
+        "iconColour": "blue"
+    },
+    "todo-tree.customHighlight": {
+        "TODO": {
+            "icon": "check",
+            "type": "line"
+        },
+        "FIXME": {
+            "foreground": "red",
+            "iconColour": "yellow"
+        }
+    }
 }
