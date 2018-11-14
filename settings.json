@@ -37,23 +37,62 @@
         {
             "before": [" "],
             "after": ["/"]
-        }
+        },
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        },
     ],
+    // "vim.statusBarColorControl": true,
+    // "vim.statusBarColors.normal": ["#8FBCBB", "#434C5E"],
+    // "vim.statusBarColors.insert": "#BF616A",
+    // "vim.statusBarColors.visual": "#B48EAD",
+    // "vim.statusBarColors.visualline": "#B48EAD",
+    // "vim.statusBarColors.visualblock": "#A3BE8C",
+    // "vim.statusBarColors.replace": "#D08770",
     "todo-tree.defaultHighlight": {
         "icon": "alert",
         "type": "line",
         "foreground": "yellow",
         "background": "white",
-        "iconColour": "blue"
+        "iconColour": "yellow"
     },
     "todo-tree.customHighlight": {
         "TODO": {
             "icon": "check",
-            "type": "line"
+            "type": "text",
         },
         "FIXME": {
             "foreground": "red",
-            "iconColour": "yellow"
-        }
-    }
+            "iconColour": "yellow",
+            "type": "text",
+        },
+        "QUESTION": {
+            "icon": "pin",
+            "type": "text",
+            "iconColour": "red"
+        },
+    },
+    "todo-tree.tags": [
+        "TODO",
+        "FIXME",
+        "QUESTION",
+    ],
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#005f5f",
+        "statusBar.noFolderBackground": "#005f5f",
+        "statusBar.debuggingBackground": "#005f5f"
+    },
 }
