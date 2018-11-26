@@ -54,7 +54,11 @@ $ sudo apt-get install fasd
 * https://itsfoss.com/best-indicator-applets-ubuntu/
   * CopyQ - clipboard manager
   * System Load: System monitor indicator
+* Disable caps lock, (pushing both SHIFT keys at once will toggle it)
+    * `sudo apt-get install dconf-tools`
+    * `setxkbmap -option "caps:none"` && `setxkbmap -option "shift:both_capslock"`
 
+http://blog.manugarri.com/note-to-self-disable-caps-lock-in-ubuntu-16-04/
 
 ## Awesome _____
 - https://terminalsare.sexy/
@@ -73,6 +77,8 @@ $ sudo apt-get install fasd
 	 - It is stored in `~/.config/Code/User/`
 	 - Easymotion bindings: s + char_to_search
 	 - Todo-tree extension, makes todos easy to track
+	 - [Code snippits generator -- SO LIT](https://snippet-generator.app/?description=Try+Catch+Sentry+Log&tabtrigger=TrySentryCatch&snippet=try+%7B%0A%7D+catch+%28error%29+%7B%0A++++Sentry.captureException%28error%29%0A%7D&mode=vscode)
+	    - `ctr+shift+p` 'configure user snippits' —> 'create global snippit'
 
 **Extensions** 
 - Vim, Relative Line Numbers (by extr0py), C/C++
