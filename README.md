@@ -99,3 +99,13 @@ https://joshpeng.github.io/post/wsl/#1-optional-install-cmder
 This is a AI python co-piolot for coding. Looks really cool, should try it.
 
 https://kite.com/
+
+# Keylogging 
+
+* [Logkeys is the best one to use for Linux](https://github.com/kernc/logkeys/blob/master/docs/Documentation.md)
+  * Need to clone repo and install it. 
+  * Put this in /etc/rc.local the startup run file: `logkeys -s -o /home/memento/env/keylogging/keylog.log -m /home/memento/env/keylogging/logkeys/keymaps/en_US_ubuntu_1204.map`
+  * Need to set keyboard to special one (default is busted) "en_US_ubuntu1204.map`
+* ConnectorDB is works on Windows, but DOESN'T LOG SPECIFIC KEYS, only keypress occurances. Major flaw, not okay. 
+
+
