@@ -1,4 +1,4 @@
-## Current `.zshrc` file requres this setup:
+l ruby## Current `.zshrc` file requres this setup:
 - Emulator: Hyper Terminal www.hyper.is
 	
 	- Config is in default location (rn at …../kasta/)
@@ -26,8 +26,9 @@
     - Only install step: `git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting`
 - [color-ls](https://github.com/athityakumar/colorls#installation) makes your ls call beautiful
 	- in `.zshrc` add: `alias ls=colorls`
-	- Must install Ruby, I followed [this guide](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-and-set-up-a-local-programming-environment-on-ubuntu-16-04)
-    - After ruby installed: `gem install colorls`
+	- `sudo apt-get install ruby-full`
+	- After ruby installed: `gem install colorls`
+	- [or here's a guide for more detail](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-and-set-up-a-local-programming-environment-on-ubuntu-16-04)
     - Ensure in .zshrc: `[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"`
 - [fasd](https://github.com/clvv/fasd) fuzy jump and open
     - In .zshrc for Oh-My-Zsh plugins: plugins=(fasd)
