@@ -44,6 +44,8 @@ $ sudo apt-get install fasd
 	* Add the following to a **single line** in the `preferences` -> `indicator items`
 
 	`CPU $(percent(cpu.inuse))     Net $(speed(net.down)) down    $(speed(net.up)) up     Mem $(size(mem.user)) / $(size(mem.total))  =  $(percent(size(mem.user)/size(mem.total))) usage`
+* clipboard manager (more info here if repo isn't found https://itsfoss.com/best-indicator-applets-ubunt): 
+	`sudo apt install copyq`
 
 * Unity Tweak Tool - Ubuntu Store
 
@@ -56,9 +58,6 @@ $ sudo apt-get install fasd
 * Icons: Papirus-dark - My favorite
     `sudo add-apt-repository ppa:papirus/papirus`
     `sudo apt update && sudo apt install papirus-icon-theme`
-* https://itsfoss.com/best-indicator-applets-ubuntu/
-  * CopyQ - clipboard manager
-  * System Load: System monitor indicator
 * Disable caps lock, (pushing both SHIFT keys at once will toggle it)
     * `sudo apt-get install dconf-tools`
     * `setxkbmap -option "caps:none"` && `setxkbmap -option "shift:both_capslock"`
