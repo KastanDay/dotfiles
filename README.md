@@ -40,6 +40,11 @@ $ sudo apt-get install fasd
 
 ## Ubuntu Beautification
 
+* indicator-multiload (for taskbar system resources stats)
+	* Add the following to a **single line** in the `preferences` -> `indicator items`
+
+	`CPU $(percent(cpu.inuse))     Net $(speed(net.down)) down    $(speed(net.up)) up     Mem $(size(mem.user)) / $(size(mem.total))  =  $(percent(size(mem.user)/size(mem.total))) usage`
+
 * Unity Tweak Tool - Ubuntu Store
 
 * Theme: Arc-dark
