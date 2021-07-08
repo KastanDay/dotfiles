@@ -38,6 +38,15 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 ```
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
+- [lsd (LSDeluxe)](https://github.com/Peltoche/lsd/releases/)
+
+Download the release file (for proper architecture): https://github.com/Peltoche/lsd/releases/
+
+I like it cuz it uses icons! Faster scan-reading speed.
+```
+sudo dpkg -i lsd_xxx.deb
+
+```
 - [exa ls](https://github.com/ogham/exa) - a better ls, and super fast cuz RUST!
 ```
 sudo apt install exa
