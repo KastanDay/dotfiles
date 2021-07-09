@@ -60,6 +60,11 @@ $ sudo add-apt-repository ppa:aacebedo/fasd
 $ sudo apt-get update
 $ sudo apt-get install fasd
 ```
+- `ncdu` for deleting big files. Amazing interface for seeing how big files are, and cleaning up quickly.
+```
+sudo apt install ncdu
+sudo ncdu /      # usage
+```
 - THIS IS TOO SLOW. FUCK RUBY. [color-ls](https://github.com/athityakumar/colorls#installation) makes your ls call beautiful
 	- in `.zshrc` add: `alias ls=colorls`
 	- `sudo apt-get install ruby-full`
