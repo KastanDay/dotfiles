@@ -103,17 +103,19 @@ If that doesn't work, try installing from source (easy, trust me). Then `alias l
 * clipboard manager (more info here if repo isn't found https://itsfoss.com/best-indicator-applets-ubunt): 
 	`sudo apt install copyq`
 
-* Unity Tweak Tool - Ubuntu Store
+* Ubuntu store: Gnome Tweaks, Unity Tweak Tool, Gnome Characters, Emoji Picker
 
+* Icons: Papirus-dark - My favorite
+```
+sudo add-apt-repository ppa:papirus/papirus -y && sudo apt update && sudo apt install papirus-icon-theme
+```
 * Theme: Arc-dark
     `sudo add-apt-repository ppa:noobslab/themes`
     `sudo apt-get update && sudo apt-get install arc-theme`
 * Arc Icon Pack 
     `sudo add-apt-repository ppa:noobslab/icons`
     `sudo apt-get update && sudo apt-get install arc-icons`
-* Icons: Papirus-dark - My favorite
-    `sudo add-apt-repository ppa:papirus/papirus`
-    `sudo apt update && sudo apt install papirus-icon-theme`
+
 * Disable caps lock, (pushing both SHIFT keys at once will toggle it)
     * `sudo apt-get install dconf-tools`
     * `setxkbmap -option "caps:none"` && `setxkbmap -option "shift:both_capslock"`
