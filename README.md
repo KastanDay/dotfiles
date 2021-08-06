@@ -47,25 +47,46 @@ I like it cuz it uses icons! Faster scan-reading speed.
 sudo dpkg -i lsd_xxx.deb
 
 ```
-- [exa ls](https://github.com/ogham/exa) - a better ls, and super fast cuz RUST!
-```
-sudo apt install exa
-```
-If that doesn't work, try installing from source (easy, trust me). Then `alias ls=path/to/binary/executable` in `.zshrc`
+
 - [fasd](https://github.com/clvv/fasd) fuzy jump and open
     - In .zshrc for Oh-My-Zsh plugins: plugins=(fasd)
     - Then install: 
 ``` 
-$ sudo add-apt-repository ppa:aacebedo/fasd
-$ sudo apt-get update
-$ sudo apt-get install fasd
+sudo add-apt-repository ppa:aacebedo/fasd && sudo apt-get update && sudo apt-get install fasd -y
 ```
+
+
+### Install all these utilities
+
+```
+sudo apt install ncdu indicator-multiload copyq silversearcher-ag
+```
+
 - `ncdu` for deleting big files. Amazing interface for seeing how big files are, and cleaning up quickly.
 ```
 sudo apt install ncdu
 sudo ncdu /      # usage
 ```
-- THIS IS TOO SLOW. FUCK RUBY. [color-ls](https://github.com/athityakumar/colorls#installation) makes your ls call beautiful
+
+* indicator-multiload (for taskbar system resources stats)
+	* Add the following to a **single line** in the `preferences` -> `indicator items`
+```
+sudo apt install indicator-multiload
+```
+
+	`CPU $(percent(cpu.inuse))     Net $(speed(net.down)) down    $(speed(net.up)) up     Mem $(size(mem.user)) / $(size(mem.total))  =  $(percent(size(mem.user)/size(mem.total))) usage`
+* clipboard manager (more info here if repo isn't found https://itsfoss.com/best-indicator-applets-ubunt): 
+
+```
+sudo apt install copyq
+```
+
+DONE!!! 
+
+- SKIP. USE LSD INSTEAD :) [exa ls](https://github.com/ogham/exa). Better ls, fast cuz it's rust! `sudo apt install exa` 
+If that doesn't work, try installing from source (easy, trust me). Then `alias ls=path/to/binary/executable` in `.zshrc`
+
+- SKIP. TOO SLOW. FUCK RUBY. [color-ls](https://github.com/athityakumar/colorls#installation) makes your ls call beautiful
 	- in `.zshrc` add: `alias ls=colorls`
 	- `sudo apt-get install ruby-full`
 	- After ruby installed: `gem install colorls`
@@ -104,7 +125,7 @@ http://blog.manugarri.com/note-to-self-disable-caps-lock-in-ubuntu-16-04/
 
 ## Useful terminal applications
 - Beyond `grep`: `ag`
-	- `sudo apt-get install silversearcher-ag`
+	- `sudo apt install silversearcher-ag`
 	- Usage: `ag foo` searches inside files for 'foo'. `ag -g file` serches for filename 'file'.
 - [In-terminal markdown viewer](https://github.com/axiros/terminal_markdown_viewer) `mdv`
     - This is the best of several I considered: 
