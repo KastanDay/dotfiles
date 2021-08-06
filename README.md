@@ -69,12 +69,13 @@ sudo ncdu /      # usage
 ```
 
 * indicator-multiload (for taskbar system resources stats)
-	* Add the following to a **single line** in the `preferences` -> `indicator items`
 ```
 sudo apt install indicator-multiload
+# config: (check all the boxes except one)
+# Add the following to a **single line** in the `preferences` -> `indicator items`
+CPU $(percent(cpu.inuse))     Net $(speed(net.down)) down    $(speed(net.up)) up     Mem $(size(mem.user)) + $(size(mem.cached)) / $(size(mem.total))  =  $(percent(    (size(mem.user) + size(mem.cached) )  /size(mem.total))) usage
 ```
 
-	`CPU $(percent(cpu.inuse))     Net $(speed(net.down)) down    $(speed(net.up)) up     Mem $(size(mem.user)) / $(size(mem.total))  =  $(percent(size(mem.user)/size(mem.total))) usage`
 * clipboard manager (more info here if repo isn't found https://itsfoss.com/best-indicator-applets-ubunt): 
 
 ```
