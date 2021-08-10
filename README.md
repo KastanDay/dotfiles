@@ -69,6 +69,8 @@ curl https://pyenv.run | bash
 
 **And you're done!! Congrats.**
 
+### Details on utilities... 
+
 
 - `ncdu` for deleting big files. Amazing interface for seeing how big files are, and cleaning up quickly.
 ```
@@ -90,8 +92,6 @@ CPU $(percent(cpu.inuse))     Net $(speed(net.down)) down    $(speed(net.up)) up
 sudo apt install copyq
 ```
 
-DONE!!! 
-
 - SKIP. USE LSD INSTEAD :) [exa ls](https://github.com/ogham/exa). Better ls, fast cuz it's rust! `sudo apt install exa` 
 If that doesn't work, try installing from source (easy, trust me). Then `alias ls=path/to/binary/executable` in `.zshrc`
 
@@ -108,9 +108,7 @@ If that doesn't work, try installing from source (easy, trust me). Then `alias l
 * indicator-multiload (for taskbar system resources stats)
 	* Add the following to a **single line** in the `preferences` -> `indicator items`
 
-	`CPU $(percent(cpu.inuse))     Net $(speed(net.down)) down    $(speed(net.up)) up     Mem $(size(mem.user)) / $(size(mem.total))  =  $(percent(size(mem.user)/size(mem.total))) usage`
-* clipboard manager (more info here if repo isn't found https://itsfoss.com/best-indicator-applets-ubunt): 
-	`sudo apt install copyq`
+`CPU $(percent(cpu.inuse))     Net $(speed(net.down)) down    $(speed(net.up)) up     Mem $(size(mem.user)) / $(size(mem.total))  =  $(percent(size(mem.user)/size(mem.total))) usage`
 
 * Ubuntu store: Gnome Tweaks, Unity Tweak Tool, Gnome Characters, Emoji Picker
 
@@ -118,6 +116,8 @@ If that doesn't work, try installing from source (easy, trust me). Then `alias l
 ```
 sudo add-apt-repository ppa:papirus/papirus -y && sudo apt update && sudo apt install papirus-icon-theme
 ```
+
+#### Old themes, lame.
 * Theme: Arc-dark
     `sudo add-apt-repository ppa:noobslab/themes`
     `sudo apt-get update && sudo apt-get install arc-theme`
