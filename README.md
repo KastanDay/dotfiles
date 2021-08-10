@@ -61,6 +61,14 @@ sudo add-apt-repository ppa:aacebedo/fasd && sudo apt-get update && sudo apt-get
 ```
 sudo apt install ncdu indicator-multiload copyq silversearcher-ag
 ```
+```
+# Install pyenv - best env manager (auto enabled/disabled based on pwd)
+# settings are already in .zshrc
+curl https://pyenv.run | bash
+```
+
+**And you're done!! Congrats.**
+
 
 - `ncdu` for deleting big files. Amazing interface for seeing how big files are, and cleaning up quickly.
 ```
