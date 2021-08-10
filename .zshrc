@@ -41,7 +41,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git pip vi-mode web-search sudo wd zsh-autosuggestions )
+plugins=(git pip vi-mode web-search sudo wd zsh-autosuggestions virtualenv )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -64,8 +64,10 @@ alias code=code-insiders
 alias o=xdg-open 
 alias e=exit
 alias size="ls -lh"
+alias p=python3
 
 alias file="nautilus" # open in file explorer. eg "file ."
+alias files="nautilus" # open in file explorer. eg "file ."
 
 
 LS_COLORS=$LS_COLORS:'di=1;34:' ; export LS_COLORS
@@ -74,7 +76,7 @@ LS_COLORS=$LS_COLORS:'di=1;34:' ; export LS_COLORS
 # Prompt elements
 # Look here for more ideas : https://github.com/tonylambiris/dotfiles/blob/master/dot.zshrc
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir_writable dir vcs) #vcs -- adds git, but slow. # icons_test to see all icons
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time time battery)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time virtualenv time battery)
 
 POWERLEVEL9K_MODE='awesome-patched'
 
@@ -200,3 +202,11 @@ alias zz='fasd_cd -d -i' # cd with interactive selection
 # mplayer `f bar` # run mplayer on the most frecent file matching bar
 # z foo           # cd into the most frecent directory matching foo
 # open `sf pdf`   # interactively select a file matching pdf and launch `open`
+
+
+# Pyenv -- better virtual environments
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+# Load pyenv-virtualenv automatically by adding the following to ~/.bashrc:
+eval "$(pyenv virtualenv-init -)"
