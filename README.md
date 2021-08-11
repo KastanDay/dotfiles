@@ -7,7 +7,7 @@
     	- Hyper keyboard shortcuts here: https://hyper.is/#keymaps and https://github.com/zeit/hyper/blob/master/app/keymaps/linux.json
 - Use ZSH and Oh-My-Zsh
 ```
-sudo apt-get install zsh
+sudo apt install zsh
 # install oh my zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
@@ -64,6 +64,11 @@ sudo apt install ncdu indicator-multiload copyq silversearcher-ag
 ```
 # Install pyenv - best env manager (auto enabled/disabled based on pwd)
 # settings are already in .zshrc
+
+# Dependencies
+sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl
+
+# Install pyenv
 curl https://pyenv.run | bash
 ```
 
