@@ -72,6 +72,11 @@ sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev librea
 curl https://pyenv.run | bash
 ```
 
+```
+# make sure copyq actually worked
+sudo apt install software-properties-common python-software-properties -y && sudo add-apt-repository ppa:hluk/copyq -y && sudo apt update && sudo apt install copyq -y
+```
+
 **And you're done!! Congrats.**
 
 ### Details on utilities... 
