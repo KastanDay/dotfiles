@@ -44,7 +44,9 @@ Download the release file (for proper architecture): https://github.com/Peltoche
 
 I like it cuz it uses icons! Faster scan-reading speed.
 ```
-sudo dpkg -i lsd_xxx.deb
+# for amd64
+wget https://github.com/Peltoche/lsd/releases/download/latest/lsd_0.21.0_amd64.deb
+sudo dpkg -i lsd_0.21.0_amd64.deb
 
 ```
 
