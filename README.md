@@ -61,7 +61,7 @@ sudo add-apt-repository ppa:aacebedo/fasd && sudo apt-get update && sudo apt-get
 ### Install all these utilities
 
 ```
-sudo apt install ncdu indicator-multiload copyq silversearcher-ag
+sudo apt install ncdu indicator-multiload copyq silversearcher-ag bat fzf
 ```
 ```
 # Install pyenv - best env manager (auto enabled/disabled based on pwd)
