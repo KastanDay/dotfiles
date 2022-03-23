@@ -68,6 +68,8 @@ alias p=python3
 
 alias file="nautilus" # open in file explorer. eg "file ."
 alias files="nautilus" # open in file explorer. eg "file ."
+alias cat=batcat # for ubuntu
+alias cat=bat # for non-ubuntu
 alias file="open" # for mac
 
 #####
