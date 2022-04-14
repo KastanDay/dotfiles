@@ -81,6 +81,32 @@ sudo apt install software-properties-common python-software-properties -y && sud
 
 **And you're done!! Congrats.**
 
+### Setup a remote terminal (no root access)
+
+Download zsh with:
+
+```
+wget -O zsh.tar.xz https://sourceforge.net/projects/zsh/files/latest/download
+mkdir zsh && unxz zsh.tar.xz && tar -xvf zsh.tar -C zsh --strip-components 1
+cd zsh
+
+./configure --prefix=$HOME
+make
+make install
+```
+Start a new terminal (new ssh)
+```
+# install oh my zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# install powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+Set ZSH_THEME="powerlevel10k/powerlevel10k" in ~/.zshrc.
+```
+Off to a great start.
+
+
 ### Details on utilities... 
 
 
