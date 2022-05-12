@@ -81,7 +81,7 @@ sudo apt install software-properties-common python-software-properties -y && sud
 
 **And you're done!! Congrats.**
 
-### Setup a remote terminal (no root access)
+# Setup a remote terminal (no root access)
 
 Download zsh with:
 
@@ -104,6 +104,43 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 
 Set ZSH_THEME="powerlevel10k/powerlevel10k" in ~/.zshrc.
 ```
+
+```
+# fasd
+wget https://github.com/clvv/fasd/tarball/1.0.1
+todo
+
+# Rust & Cargo (for LSD)
+curl https://sh.rustup.rs -sSf | sh
+cargo install lsd
+```
+
+Use my 
+```
+git clone https://gitlab.com/kastan/dot-files.git
+cd 
+mv .zshrc .zshrc_old
+cp dot-files/.zshrc . 
+```
+
+```
+# autoconda 
+
+todo: write install process 
+
+# Auto-conda https://github.com/Tarrasch/zsh-autoenv
+source ~/code/dot-files/lib/zsh-autoenv/autoenv.zsh
+# Usage: `condalocal <name_of_env>`
+condalocal() {
+    echo 'ACTIVATING '$1;
+    conda activate $1;
+    echo "echo ACTIVATING $1; conda activate $1" > .autoenv.zsh
+    echo "echo DEACTIVATING $1; conda deactivate" > .autoenv_leave.zsh
+}
+```
+
+todo: pyenv, miniconda3 install process
+
 Off to a great start.
 
 
