@@ -1,0 +1,29 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.vim_runtime: .vim_runtime
+    ~/.vimrc: .vimrc
+    ~/.bashrc: .bashrc
+    ~/.zshrc: .zshrc
+    # ~/.cargo/bin: .cargo/bin
+
+- create:
+    - ~/downloads
+    - ~/.vim/undo-history
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+  - [brew install zsh, Brew installing zsh]
+  - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)", Installing OhMyZsh]
+  - [brew install ncdu, Brew installing ncdu]
+  - [brew install glances, Brew installing glances]
+  - [brew install rustup, Brew installing rustup]
+  # - [curl https://sh.rustup.rs -sSf | sh, Installing Rust & Cargo]
+  # - [source $HOME/.cargo/env, Activating cargo]
+  # - [cargo install lsd, Installing LSD]
+  - [git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k, Installing Powerlevel 10k]
+  - [git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions, Installing zsh auto-suggestions]
