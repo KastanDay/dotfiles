@@ -2,14 +2,19 @@
     link:
       relink: true
 
-- clean: ['~']
+- shell:
+  - [mv ~/.config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json_OLD, delete old karabiner file]
+  # - [mv ~/.config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json_OLD, delete old karabiner file]
+
+- clean: ['~', ~/.config/karabiner/karabiner.json]
 
 - link:
     ~/.vim_runtime: .vim_runtime
     ~/.vimrc: .vimrc
     ~/.bashrc: .bashrc
     ~/.zshrc: .zshrc
-    # ~/.cargo/bin: .cargo/bin
+    ~/.p10k.zsh: .p10k.zsh
+    ~/.config/karabiner/karabiner.json: /Users/kastanday/code/githubs/dot-files/karabiner.json
 
 - create:
     - ~/downloads
@@ -17,13 +22,24 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
-  - [brew install zsh, Brew installing zsh]
-  - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)", Installing OhMyZsh]
-  - [brew install ncdu, Brew installing ncdu]
-  - [brew install glances, Brew installing glances]
-  - [brew install rustup, Brew installing rustup]
-  # - [curl https://sh.rustup.rs -sSf | sh, Installing Rust & Cargo]
-  # - [source $HOME/.cargo/env, Activating cargo]
-  # - [cargo install lsd, Installing LSD]
-  - [git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k, Installing Powerlevel 10k]
-  - [git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions, Installing zsh auto-suggestions]
+  - [brew install ncdu, ncdu - a better du]
+  - [brew install fzf, fzf - a better grep (sorta different -- awk good too)]
+  - [brew install glances, glances - a better top]
+  - [brew install the_silver_searcher, ag - a better find]
+  - [brew install bat, bat - a better cat]
+  - [brew install lsd, lsd - a better ls]
+  - [brew install tldr, tldr - better man pages]
+  - [brew install howdoi, howdoi - another better man pages]
+  - [brew cask install iterm2, iterm2 - a better terminal]
+  - [brew install pyenv, pyenv - a better virtualenv]
+  - [brew install rsync, rsync - a better sftp/scp]
+  - [brew install brew install --cask visual-studio-code, vscode stable]
+  - [brew install brew install --cask visual-studio-code-insiders, vscode insiders]
+  - [echo "use GITHUB ACCOUNT for VS Code settings sync", Github account for vscode settings]
+  - [brew install --cask typinator, typinator - a better text-expander. See README_FIRST for manual tasks.]
+  - [brew install brew install --cask karabiner-elements, karabiner -- keybaord remapping. Details here https://github.com/Vonng/Capslock]
+  - [echo "You need to open this link in safari, accept all permissions including kernel extension karabiner://karabiner/assets/complex_modifications/import?url=https://raw.githubusercontent.com/Vonng/Capslock/master/mac_v3/capslock.json", OPEN THIS LINK IN SAFARI!!!!]
+
+  - [brew install zsh, ---- START ZSH SECTION --]
+  - [brew install zsh-autosuggestions, Installing zsh auto-suggestions]
+  - [echo "README in MANUAL_TASKS for ACTUALLY IMPORTANT final things to do.", LAST STEPS...]
