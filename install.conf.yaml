@@ -33,6 +33,7 @@
   - [brew cask install iterm2, iterm2 - a better terminal]
   - [brew install pyenv, pyenv - a better virtualenv]
   - [brew install rsync, rsync - a better sftp/scp]
+  - [brew install --cask miniconda, miniconda - an efficient Anaconda]
   - [brew install brew install --cask visual-studio-code, vscode stable]
   - [brew install brew install --cask visual-studio-code-insiders, vscode insiders]
   - [echo "use GITHUB ACCOUNT for VS Code settings sync", Github account for vscode settings]
