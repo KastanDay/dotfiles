@@ -40,9 +40,11 @@ mv ~/.config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json_OLD
 ## Manual ZSH settings
 
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)", Installing OhMyZsh]
+# Installing OhMyZsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k, Installing Powerlevel 10k]
+# Installing Powerlevel10k (wayy better than 9k)
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
 
 Nice to remember:
@@ -68,7 +70,7 @@ Import via in "Presets" in top right, not settings. All of mine are for TRACKPAD
 
 - Use ZSH and Oh-My-Zsh
 
-```
+```bash
 sudo apt install zsh
 # install oh my zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -76,7 +78,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 - Use PowerLevel10k
 
-```
+```bash
 # install powerlevel10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
@@ -110,8 +112,9 @@ Download the release file (for proper architecture): https://github.com/Peltoche
 
 I like it cuz it uses icons! Faster scan-reading speed.
 
-```
+```bash
 # for amd64
+# on mac us brew
 wget https://github.com/Peltoche/lsd/releases/download/latest/lsd_0.21.0_amd64.deb
 sudo dpkg -i lsd_0.21.0_amd64.deb
 
@@ -127,11 +130,11 @@ sudo add-apt-repository ppa:aacebedo/fasd && sudo apt-get update && sudo apt-get
 
 ### Install all these utilities
 
-```
+```bash
 sudo apt install ncdu indicator-multiload copyq silversearcher-ag bat fzf
 ```
 
-```
+```bash
 # Install pyenv - best env manager (auto enabled/disabled based on pwd)
 # settings are already in .zshrc
 
@@ -142,7 +145,7 @@ sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev librea
 curl https://pyenv.run | bash
 ```
 
-```
+```bash
 # make sure copyq actually worked
 sudo apt install software-properties-common python-software-properties -y && sudo add-apt-repository ppa:hluk/copyq -y && sudo apt update && sudo apt install copyq -y
 ```
@@ -153,7 +156,7 @@ sudo apt install software-properties-common python-software-properties -y && sud
 
 Download zsh with:
 
-```
+```bash
 wget -O zsh.tar.xz https://sourceforge.net/projects/zsh/files/latest/download
 mkdir zsh && unxz zsh.tar.xz && tar -xvf zsh.tar -C zsh --strip-components 1
 cd zsh
@@ -165,7 +168,7 @@ make install
 
 Start a new terminal (new ssh)
 
-```
+```bash
 # install oh my zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
@@ -176,7 +179,7 @@ Set in ~/.zshrc
 ZSH_THEME="powerlevel10k/powerlevel10k"
 ```
 
-```
+```bash
 # fasd
 wget https://github.com/clvv/fasd/tarball/1.0.1
 todo
@@ -186,17 +189,19 @@ curl https://sh.rustup.rs -sSf | sh
 cargo install lsd
 ```
 
-Use my
+Use my dot-files
 
-```
+```bash
 git clone https://gitlab.com/kastan/dot-files.git
 cd
 mv .zshrc .zshrc_old
-cp dot-files/.zshrc .
+mv .bashrc .bashrc_old
+# move dotfiles
+mv <dotfiles>/.* ~
 ```
 
-```
-# autoconda
+```bash
+# autoconda -- already included in zshrc.
 
 todo: write install process
 
