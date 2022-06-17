@@ -1,12 +1,17 @@
 # Welcome to my Dotfiles
 
-I have install scripts for **macos** and **ubuntu**. They're close to perfect, but not quite.
+I have install scripts for **macos** and **ubuntu**. They're close to perfect, but not quite only minor tweeks recommended.
+
+* [MacOS install (Intel & Apple Silicon M1)](https://gitlab.com/kastan/dot-files#macos-dotfiles)
+* [Ubuntu install](https://gitlab.com/kastan/dot-files#ubuntu-dotfiles)  
+* [Remote server install (**no** sudo required)](https://gitlab.com/kastan/dot-files#setup-a-remote-terminal-no-root-access)
+* [Manual Ubuntu install (Legacy, but solid)](https://gitlab.com/kastan/dot-files#manual-version-ubuntu-dotfiles)
 
 # MacOS dotfiles
 
 THIS IS FOR MAC ONLY! Tested on Intel and Apple Silicon.
 
-## MUST DO FIRST
+## DO FIRST (optional)
 
 Some things go first, others go last... Follow this document flow.
 
@@ -29,8 +34,10 @@ mv ~/.config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json_OLD
 
 # Main Install
 
+The install is nearly perfect. Check the `*.config.yaml` file to customize. 
+
 ```bash
-# WATCH OUT FOR ALL errors like: ~/.config/karabiner/karabiner.json already exists but is a regular file or directory
+# WATCH OUT FOR errors like: ~/.config/karabiner/karabiner.json already exists but is a regular file or directory
 # YOU MUST DELETE/MOVE those files for the symblinks to work.
 
 # send it! This uses dotinstall
