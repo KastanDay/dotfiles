@@ -1,10 +1,17 @@
 # Welcome to my Dotfiles
 
+I have install scripts for **macos** and **ubuntu**. They're close to perfect, but not quite only minor tweeks recommended.
+
+* [MacOS install (Intel & Apple Silicon M1)](https://gitlab.com/kastan/dot-files#macos-dotfiles)
+* [Ubuntu install](https://gitlab.com/kastan/dot-files#ubuntu-dotfiles)  
+* [Remote server install (**no** sudo required)](https://gitlab.com/kastan/dot-files#setup-a-remote-terminal-no-root-access)
+* [Manual Ubuntu install (Legacy, but solid)](https://gitlab.com/kastan/dot-files#manual-version-ubuntu-dotfiles)
+
+# MacOS dotfiles
+
 THIS IS FOR MAC ONLY! Tested on Intel and Apple Silicon.
 
-For Ubuntu, see legacy instructions below (they're still very good and I use them frequently).
-
-## MUST DO FIRST
+## DO FIRST (optional)
 
 Some things go first, others go last... Follow this document flow.
 
@@ -27,8 +34,10 @@ mv ~/.config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json_OLD
 
 # Main Install
 
+The install is nearly perfect. Check the `*.config.yaml` file to customize. 
+
 ```bash
-# WATCH OUT FOR ALL errors like: ~/.config/karabiner/karabiner.json already exists but is a regular file or directory
+# WATCH OUT FOR errors like: ~/.config/karabiner/karabiner.json already exists but is a regular file or directory
 # YOU MUST DELETE/MOVE those files for the symblinks to work.
 
 # send it! This uses dotinstall
@@ -66,7 +75,98 @@ Just drag and drop those configs. You can also highlight them in finder and do c
 
 Import via in "Presets" in top right, not settings. All of mine are for TRACKPAD (top dropdown menu).
 
-# Legacy instructions
+# Ubuntu dotfiles
+
+```
+cd dot-fies
+# edit install_ubuntu.conf.yaml to your liking!
+chmod +x install_ubuntu
+sudo ./install_ubuntu
+```
+
+Then install git repos:
+
+```
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+
+And you're done! Good luck, I'm still working out the tiny details between machines.
+
+# Setup a remote terminal (no root access)
+
+Download zsh with:
+
+```bash
+wget -O zsh.tar.xz https://sourceforge.net/projects/zsh/files/latest/download
+mkdir zsh && unxz zsh.tar.xz && tar -xvf zsh.tar -C zsh --strip-components 1
+cd zsh
+
+./configure --prefix=$HOME
+make
+make install
+```
+
+Start a new terminal (new ssh)
+
+```bash
+# install oh my zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# install powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+Set in ~/.zshrc
+ZSH_THEME="powerlevel10k/powerlevel10k"
+```
+
+```bash
+# fasd
+wget https://github.com/clvv/fasd/tarball/1.0.1
+todo
+
+# Rust & Cargo (for LSD)
+curl https://sh.rustup.rs -sSf | sh
+cargo install lsd
+```
+
+Use my dot-files
+
+```bash
+git clone https://gitlab.com/kastan/dot-files.git
+cd
+mv .zshrc .zshrc_old
+mv .bashrc .bashrc_old
+# move dotfiles
+mv <dotfiles>/.* ~
+```
+
+```bash
+# autoconda -- already included in zshrc.
+
+todo: write install process
+
+# Auto-conda https://github.com/Tarrasch/zsh-autoenv
+source ~/code/dot-files/lib/zsh-autoenv/autoenv.zsh
+# Usage: `condalocal <name_of_env>`
+condalocal() {
+    echo 'ACTIVATING '$1;
+    conda activate $1;
+    echo "echo ACTIVATING $1; conda activate $1" > .autoenv.zsh
+    echo "echo DEACTIVATING $1; conda deactivate" > .autoenv_leave.zsh
+}
+```
+
+todo: pyenv, miniconda3 install process
+
+Off to a great start.
+
+# Manual-version Ubuntu dotfiles
 
 - Use ZSH and Oh-My-Zsh
 
@@ -151,74 +251,6 @@ sudo apt install software-properties-common python-software-properties -y && sud
 ```
 
 **And you're done!! Congrats.**
-
-# Setup a remote terminal (no root access)
-
-Download zsh with:
-
-```bash
-wget -O zsh.tar.xz https://sourceforge.net/projects/zsh/files/latest/download
-mkdir zsh && unxz zsh.tar.xz && tar -xvf zsh.tar -C zsh --strip-components 1
-cd zsh
-
-./configure --prefix=$HOME
-make
-make install
-```
-
-Start a new terminal (new ssh)
-
-```bash
-# install oh my zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-# install powerlevel10k
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-
-Set in ~/.zshrc
-ZSH_THEME="powerlevel10k/powerlevel10k"
-```
-
-```bash
-# fasd
-wget https://github.com/clvv/fasd/tarball/1.0.1
-todo
-
-# Rust & Cargo (for LSD)
-curl https://sh.rustup.rs -sSf | sh
-cargo install lsd
-```
-
-Use my dot-files
-
-```bash
-git clone https://gitlab.com/kastan/dot-files.git
-cd
-mv .zshrc .zshrc_old
-mv .bashrc .bashrc_old
-# move dotfiles
-mv <dotfiles>/.* ~
-```
-
-```bash
-# autoconda -- already included in zshrc.
-
-todo: write install process
-
-# Auto-conda https://github.com/Tarrasch/zsh-autoenv
-source ~/code/dot-files/lib/zsh-autoenv/autoenv.zsh
-# Usage: `condalocal <name_of_env>`
-condalocal() {
-    echo 'ACTIVATING '$1;
-    conda activate $1;
-    echo "echo ACTIVATING $1; conda activate $1" > .autoenv.zsh
-    echo "echo DEACTIVATING $1; conda deactivate" > .autoenv_leave.zsh
-}
-```
-
-todo: pyenv, miniconda3 install process
-
-Off to a great start.
 
 ### Details on utilities...
 
