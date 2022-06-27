@@ -1,0 +1,41 @@
+- defaults:
+    link:
+      relink: true
+
+- shell:
+  - [mv /home/kastan/.bashrc /home/kastan/.bashrc_OLD, delete old bashrc file]
+  - [mv /home/kastan/.zshrc  /home/kastan/.zshrc_OLD,  delete old zshrc file]
+  # - [mv /home/kastan/.config/karabiner/karabiner.json /home/kastan/.config/karabiner/karabiner.json_OLD, delete old karabiner file]
+  # - [mv /home/kastan/.config/karabiner/karabiner.json /home/kastan/.config/karabiner/karabiner.json_OLD, delete old karabiner file]
+
+- link:
+    /home/kastan/.zshrc: .zshrc
+    /home/kastan/.zshenv: .zshenv
+    /home/kastan/.zsh_history: .zsh_history
+    /home/kastan/.p10k.zsh: .p10k.zsh
+    /home/kastan/.bashrc: .bashrc
+    /home/kastan/.vim_runtime: .vim_runtime
+    /home/kastan/.vimrc: .vimrc
+
+- create:
+    - /home/kastan/.vim/undo-history
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+  - [sudo apt update, apt update]
+  - [sudo apt install -y zsh, zsh]
+  - [sudo apt install -y ncdu, ncdu - a better du]
+  - [sudo apt install -y fzf, fzf - a better grep (sorta different -- awk good too)]
+  - [sudo apt install -y glances, glances - a better top]
+  - [sudo apt install -y bat, bat - a better cat]
+  - [sudo apt install -y tldr, tldr - better man pages]
+  - [sudo apt install -y howdoi, howdoi - another better man pages]
+  - [sudo apt install -y rsync, rsync - a better sftp/scp]
+  - [sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev, pyenv dependencies]
+  - [sudo apt install -y fasd, fasd]
+  - [curl https://pyenv.run | bash, pyenv]
+  - [sudo apt install snapd, install snap]
+  - [sudo snap install lsd, lsd install via snap]
+  - [sudo apt install -y ncdu silversearcher-ag bat fzf, a bunch of key ones]
+
+  - [echo "README in MANUAL_TASKS for ACTUALLY IMPORTANT final things to do.", LAST STEPS...]

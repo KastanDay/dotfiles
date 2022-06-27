@@ -1,15 +1,18 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="robbyrussell" #this is the default one
-#ZSH_THEME="agnoster"
-ZSH_THEME="powerlevel9k/powerlevel9k"
+# p10k configure -- to configure key elements
+ZSH_THEME="powerlevel10k/powerlevel10k" 
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -41,7 +44,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git pip vi-mode web-search sudo wd zsh-autosuggestions virtualenv )
+plugins=(git pip vi-mode web-search sudo wd zsh-autosuggestions virtualenv fasd)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -68,10 +71,33 @@ alias p=python3
 
 alias file="nautilus" # open in file explorer. eg "file ."
 alias files="nautilus" # open in file explorer. eg "file ."
+alias cat=batcat # for ubuntu
+alias cat=bat # for non-ubuntu
+alias file="open" # for mac
 
+#####
+## Open github repos from CLI ##
+# https://gist.github.com/igrigorik/6666860?permalink_comment_id=2693081#gistcomment-2693081
+#####
+gh(){
+  open $(git config remote.origin.url | sed "s/git@\(.*\):\(.*\).git/https:\/\/\1\/\2/")/$1$2
+}
+
+# Open current branch
+alias ghb='gh tree/$(git symbolic-ref --quiet --short HEAD )'
+# Open current directory/file in current branch
+alias ghbf="gh tree/$(git symbolic-ref --quiet --short HEAD )/$(git rev-parse --show-prefix)"
+
+# Kastan's custom-made bash function to open a specfic directory in Github. ON CURRENT BRANCH :))
+ghf(){
+    url=`echo $(git config remote.origin.url)`
+    folder=`echo $(git rev-parse --show-prefix)`
+    branch=`echo $(git symbolic-ref --quiet --short HEAD )`
+    url=$(sed 's/.\{4\}$//' <<< "$url")
+    open $url'/tree/'$branch'/'$folder
+}
 
 LS_COLORS=$LS_COLORS:'di=1;34:' ; export LS_COLORS
-
 
 # Prompt elements
 # Look here for more ideas : https://github.com/tonylambiris/dotfiles/blob/master/dot.zshrc
@@ -150,8 +176,8 @@ POWERLEVEL9K_TIME_BACKGROUND='green'
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=1
 
 # ctrl + shift to auto-execute the current ZSH suggestion 
-bindkey '^ ' autosuggest-execute
-bindkey '^j' autosuggest-accept
+bindkey '^j' autosuggest-execute
+bindkey '^k' autosuggest-accept
 
 #if [ $PWD = '/home/kastan' ]
 #then
@@ -210,3 +236,26 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 # Load pyenv-virtualenv automatically by adding the following to ~/.bashrc:
 eval "$(pyenv virtualenv-init -)"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
