@@ -20,6 +20,9 @@
 
 # todo cargo: curl https://sh.rustup.rs -sSf | sh
 # todo tailscale: curl -fsSL https://tailscale.com/install.sh | sh
+# todo docker: https://docs.docker.com/engine/install/ubuntu/
+# sudo docker run hello-world
+
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
