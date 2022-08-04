@@ -9,11 +9,12 @@
 - link:
     /home/kastan/.zshrc: .zshrc
     /home/kastan/.zshenv: .zshenv
+    /home/kastan/.bashrc: .bashrc
     /home/kastan/.zsh_history: .zsh_history
     /home/kastan/.p10k.zsh: .p10k.zsh
-    /home/kastan/.bashrc: .bashrc
     /home/kastan/.vim_runtime: .vim_runtime
     /home/kastan/.vimrc: .vimrc
+    /home/kastan/.tmux.conf: tmux.conf 
 
 - create:
     - /home/kastan/.vim/undo-history
