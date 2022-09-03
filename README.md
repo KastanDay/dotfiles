@@ -96,6 +96,42 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
+Install Miniconda
+```bash
+# SCRIPT VERSION (just copy into terminal, or make part of automated install)
+# todo, add to zshrc.
+
+install_miniconda () {
+mkdir -p ~/utils/miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/utils/miniconda3/miniconda.sh
+bash ~/utils/miniconda3/miniconda.sh -b -u -p ~/utils/miniconda3
+rm -rf ~/utils/miniconda3/miniconda.sh
+~/utils/miniconda3/bin/conda init zsh
+}
+
+----------------
+### MANUAL STEPS
+mkdir -p ~/utils/miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/utils/miniconda3/miniconda.sh
+bash ~/utils/miniconda3/miniconda.sh -b -u -p ~/utils/miniconda3
+rm -rf ~/utils/miniconda3/miniconda.sh
+~/utils/miniconda3/bin/conda init zsh
+
+```
+
+Remove need to type sudo password (for user 'kastan'):
+```
+# UNREALIABLE RESULTS SO FAR, WTF
+sudo visudo /etc/sudoers
+
+# add to file
+kastan   ALL = NOPASSWD: ALL
+
+----------------
+# maybe this method is bettter, but also unreliable 
+sudo usermod -a -G sudo kastan
+```
+
 And you're done! Good luck, I'm still working out the tiny details between machines.
 
 # Setup a remote terminal (no root access)
