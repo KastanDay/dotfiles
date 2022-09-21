@@ -97,6 +97,163 @@ ghf(){
     open $url'/tree/'$branch'/'$folder
 }
 
+
+########################## FZF WITH GIT ##########################
+# USAGE
+# CTRL-GCTRL-F for files
+# CTRL-GCTRL-B for branches
+# CTRL-GCTRL-T for tags
+# CTRL-GCTRL-R for remotes
+# CTRL-GCTRL-H for commit hashes
+
+# alias ff="cd **"
+# alias pre="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+
+# GIT heart FZF
+
+# USAGE
+# option (alt) + C -- fuzzy cd (always from home dir)
+# ctrl + T         -- fancy file preview
+# ctrl + R         -- fancy command history search
+
+# t                -- for tree view (with preview)
+# z                -- for fzf with common dirs
+# os               -- (better ag) interative in-file search (bad: doesn’t highlight the line!!)
+
+# Usage
+# ALT-C - cd into the selected directory
+# Set FZF_ALT_C_COMMAND to override the default command
+# Set FZF_ALT_C_OPTS to pass additional options
+# -------------
+
+is_in_git_repo() {
+  git rev-parse HEAD > /dev/null 2>&1
+}
+
+fzf-down() {
+  fzf --height 65% --min-height 20 --border --color 'fg:#bbccdd,fg+:#ddeeff,bg:#334455,preview-bg:#223344,border:#778899' --bind ctrl-/:toggle-preview "$@" 
+}
+
+_gf() {
+  is_in_git_repo || return
+  git -c color.status=always status --short |
+  fzf-down -m --ansi --nth 2..,.. \
+    --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1})' |
+  cut -c4- | sed 's/.* -> //'
+}
+
+_gb() {
+  is_in_git_repo || return
+  git branch -a --color=always | grep -v '/HEAD\s' | sort |
+  fzf-down --ansi --multi --tac --preview-window right:50% \
+    --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1)' |
+  sed 's/^..//' | cut -d' ' -f1 |
+  sed 's#^remotes/##'
+}
+
+_gt() {
+  is_in_git_repo || return
+  git tag --sort -version:refname |
+  fzf-down --multi --preview-window right:70% \
+    --preview 'git show --color=always {}'
+}
+
+_gh() {
+  is_in_git_repo || return
+  git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
+  fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
+    --header 'Press CTRL-S to toggle sort' \
+    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always' |
+  grep -o "[a-f0-9]\{7,\}"
+}
+
+_gr() {
+  is_in_git_repo || return
+  git remote -v | awk '{print $1 "\t" $2}' | uniq |
+  fzf-down --tac \
+    --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1}' |
+  cut -d$'\t' -f1
+}
+
+_gs() {
+  is_in_git_repo || return
+  git stash list | fzf-down --reverse -d: --preview 'git show --color=always {1}' |
+  cut -d: -f1
+}
+
+join-lines() {
+  local item
+  while read item; do
+    echo -n "${(q)item} "
+  done
+}
+
+() {
+  local c
+  for c in $@; do
+    eval "fzf-g$c-widget() { local result=\$(_g$c | join-lines); zle reset-prompt; LBUFFER+=\$result }"
+    eval "zle -N fzf-g$c-widget"
+    eval "bindkey '^g^$c' fzf-g$c-widget"
+  done
+} f b t r h s
+
+# This requires ripgrep-all (rga) installed: https://github.com/phiresky/ripgrep-all
+# This implementation below makes use of "open" on macOS, which can be replaced by other commands if needed.
+# allows to search in PDFs, E-Books, Office documents, zip, tar.gz, etc. (see https://github.com/phiresky/ripgrep-all)
+# find-in-file - usage: fif <searchTerm> or fif "string with spaces" or fif "regex"
+fif() {
+    if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+    local file
+    file="$(rga --max-count=1 --ignore-case --files-with-matches --no-messages "$*" | fzf-tmux +m --preview="rga --ignore-case --pretty --context 10 '"$*"' {}")" && echo "opening $file" && open "$file" || return 1;
+}
+
+
+# fasd & fzf change directory - jump using `fasd` if given argument, filter output of `fasd` using `fzf` else
+unalias z
+z() {
+    [ $# -gt 0 ] && fasd_cd -d "$*" && return
+    local dir
+    dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" && echo "cd ${dir}" || return 1
+}
+
+# ctrl + T == fancy preview
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}'"
+export FZF_CTRL_T_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
+
+# ctrl + R == full command on preview window. '?' to toggle preview window
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window up:3:border-horizontal:wrap --bind '?:toggle-preview'"
+
+# option (alt) + C == cd command!! So good.
+# https://github.com/kitagry/gtree
+# export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --height 80%"
+# go install https://github.com/kitagry/gtree (and creat gopath AND add to path)
+export FZF_ALT_C_OPTS="--preview 'gtree --level 2 {} | head -200' --height 80%"
+# export FZF_ALT_C_COMMAND='rg --hidden --smart-case --glob "!.git/*"' #  ~/code
+export FZF_ALT_C_COMMAND='fd --type d . --search-path ~/code'  
+# Could maybe improve formatting this way.....  --base-directory ~/code --exec ~/code' #  --relative-path
+
+alias t="gtree | fzf --ansi"
+
+# --exclude '*.pyc'
+# --exclude node_modules
+
+# color examples: https://github.com/junegunn/fzf/wiki/Color-schemes
+# color builder: https://minsw.github.io/fzf-color-picker/
+export FZF_DEFAULT_OPTS="--height 90% --layout reverse --info inline --border --color 'fg:#bbccdd,fg+:#ddeeff,bg:#334455,preview-bg:#223344,border:#778899'"  \
+# Fzf color
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+--color=fg:#cbccc6,bg:#1f2430,hl:#f1ff5c 
+--color=fg+:#707a8c,bg+:#191e2a,hl+:#ffcc66
+--color=info:#73d0ff,prompt:#707a8c,pointer:#cbccc6
+--color=marker:#73d0ff,spinner:#73d0ff,header:#d4bfff'
+
+# brew install ripgrep
+export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*" ~/'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+##########################################
+
+
 LS_COLORS=$LS_COLORS:'di=1;34:' ; export LS_COLORS
 
 # Prompt elements
