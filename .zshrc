@@ -75,27 +75,21 @@ alias cat=batcat # for ubuntu
 alias cat=bat # for non-ubuntu
 alias file="open" # for mac
 
+# disable zsh warning cuz these functions are being called. 
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
 #####
 ## Open github repos from CLI ##
 # https://gist.github.com/igrigorik/6666860?permalink_comment_id=2693081#gistcomment-2693081
 #####
-gh(){
-  open $(git config remote.origin.url | sed "s/git@\(.*\):\(.*\).git/https:\/\/\1\/\2/")/$1$2
+ggh() {
+  open "$(git config remote.origin.url | sed "s/git@\(.*\):\(.*\).git/https:\/\/\1\/\2/")/$1$2"
 }
 
-# Open current branch
+# Open current branch -- must use single quotes!! http://mywiki.wooledge.org/Quotes 
 alias ghb='gh tree/$(git symbolic-ref --quiet --short HEAD )'
 # Open current directory/file in current branch
-alias ghbf="gh tree/$(git symbolic-ref --quiet --short HEAD )/$(git rev-parse --show-prefix)"
-
-# Kastan's custom-made bash function to open a specfic directory in Github. ON CURRENT BRANCH :))
-ghf(){
-    url=`echo $(git config remote.origin.url)`
-    folder=`echo $(git rev-parse --show-prefix)`
-    branch=`echo $(git symbolic-ref --quiet --short HEAD )`
-    url=$(sed 's/.\{4\}$//' <<< "$url")
-    open $url'/tree/'$branch'/'$folder
-}
+alias ghbf='gh tree/$(git symbolic-ref --quiet --short HEAD )/$(git rev-parse --show-prefix)'
 
 
 ########################## FZF WITH GIT ##########################
