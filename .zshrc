@@ -245,6 +245,11 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*" ~/'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# enable fzf keybindings for Zsh:
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+# enable fuzzy auto-completion for Zsh:
+source /usr/share/doc/fzf/examples/completion.zsh
 ##########################################
 
 
@@ -379,8 +384,6 @@ alias zz='fasd_cd -d -i' # cd with interactive selection
 # z foo           # cd into the most frecent directory matching foo
 # open `sf pdf`   # interactively select a file matching pdf and launch `open`
 
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
