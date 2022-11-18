@@ -1,0 +1,17 @@
+- defaults:
+    link:
+      relink: true
+
+# todo cargo: curl https://sh.rustup.rs -sSf | sh
+# todo docker: https://docs.docker.com/engine/install/ubuntu/
+# sudo docker run hello-world
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+  - [sudo apt update, apt update]
+  - [sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv, Expand LLVM partition size (1/2)]
+  - [sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv, Expand LLVM partition size (2/2)]
+  - [echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$USER, Make the currently logged in user a a sudoer]
+  - [curl -fsSL https://tailscale.com/install.sh | sh, install tailscale]
+
+  - [echo "README in MANUAL_TASKS for ACTUALLY IMPORTANT final things to do.", LAST STEPS...]
