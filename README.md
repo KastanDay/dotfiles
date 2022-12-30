@@ -163,13 +163,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 ```
 
 ```bash
-# fasd
-wget https://github.com/clvv/fasd/tarball/1.0.1
-todo
-
 # Rust & Cargo (for LSD)
 curl https://sh.rustup.rs -sSf | sh
-cargo install lsd
+cargo install lsd dirstat-rs
+
+# dirstat-rs is a better du. usage is `ds`. See github.
 ```
 
 Use my dot-files
