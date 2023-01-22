@@ -86,6 +86,20 @@ ggh() {
   open "$(git config remote.origin.url | sed "s/git@\(.*\):\(.*\).git/https:\/\/\1\/\2/")/$1$2"
 }
 
+#####
+## Auto install the mamba version of Conda (Mambaforge) ##
+# Usage: simply run on cmdline: install_miniconda 
+#####
+install_miniconda () {
+mkdir -p ~/utils/miniconda3
+wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh -O ~/utils/miniconda3/miniconda.sh
+bash ~/utils/miniconda3/miniconda.sh -b -u -p ~/utils/miniconda3
+rm -rf ~/utils/miniconda3/miniconda.sh
+~/utils/miniconda3/bin/mamba init zsh
+source ~/.zshrc
+}
+
+
 # Open current branch -- must use single quotes!! http://mywiki.wooledge.org/Quotes 
 alias ghb='gh tree/$(git symbolic-ref --quiet --short HEAD )'
 # Open current directory/file in current branch
@@ -342,17 +356,15 @@ bindkey '^k' autosuggest-accept
 #    POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='\uf197'
 #fi 
 
-# These actually work great, just make sure the version number is correct!!
-# Works for cuda 10.2
-export CUDA_HOME=/usr/local/cuda
-export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+# To use: Make sure the version number is correct!!
+# Below works for cuda 10.2
+# export CUDA_HOME=/usr/local/cuda
+# export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
 # export PATH=/usr/local/cuda-10.2/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda/lib64
+# export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda/lib64
 # export LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 # export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 # export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64"
-
-export PYTHONPATH=$PYTHONPATH:/usr/lib/python3.6/dist-packages
 
 # Add RVM to PATH for scripting. -- this was for colorLS I believe. 
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
