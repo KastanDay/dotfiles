@@ -17,7 +17,7 @@
     ~/.tmux.conf: tmux.conf 
 
 - create:
-    - /home/kastan/.vim/undo-history
+    - ~/.vim/undo-history
 
 # todo cargo: curl https://sh.rustup.rs -sSf | sh
 # todo tailscale: curl -fsSL https://tailscale.com/install.sh | sh
