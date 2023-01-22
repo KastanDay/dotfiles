@@ -3,18 +3,18 @@
       relink: true
 
 - shell:
-  - [mv /home/kastan/.bashrc /home/kastan/.bashrc_OLD, delete old bashrc file]
-  - [mv /home/kastan/.zshrc  /home/kastan/.zshrc_OLD,  delete old zshrc file]
+  - [mv ~/.bashrc ~/.bashrc_OLD, archive old bashrc file]
+  - [mv ~/.zshrc  ~/.zshrc_OLD,  archive old zshrc file]
 
 - link:
-    /home/kastan/.zshrc: .zshrc
-    /home/kastan/.zshenv: .zshenv
-    /home/kastan/.bashrc: .bashrc
-    /home/kastan/.zsh_history: .zsh_history
-    /home/kastan/.p10k.zsh: .p10k.zsh
-    /home/kastan/.vim_runtime: .vim_runtime
-    /home/kastan/.vimrc: .vimrc
-    /home/kastan/.tmux.conf: tmux.conf 
+    ~/.zshrc: .zshrc
+    ~/.zshenv: .zshenv
+    ~/.bashrc: .bashrc
+    ~/.zsh_history: .zsh_history
+    ~/.p10k.zsh: .p10k.zsh
+    ~/.vim_runtime: .vim_runtime
+    ~/.vimrc: .vimrc
+    ~/.tmux.conf: tmux.conf 
 
 - create:
     - /home/kastan/.vim/undo-history
@@ -39,10 +39,7 @@
   - [sudo apt install -y rsync, rsync - a better sftp/scp]
   - [sudo apt install -y make build-essential openssh-server libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev, pyenv & general dependencies]
   - [sudo apt install -y fasd, fasd]
-  - [curl https://pyenv.run | bash, pyenv]
-  - [sudo apt install snapd, install snap]
-  - [sudo snap install lsd, lsd install via snap]
   - [sudo apt install -y silversearcher-ag, a bunch of key ones]
-  - [wget -O Miniforge3.sh "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh", recommended mamba install]
-
+  - [install_miniconda, Run my custom mamba/conda install script]
+ 
   - [echo "README in MANUAL_TASKS for ACTUALLY IMPORTANT final things to do.", LAST STEPS...]
