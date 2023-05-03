@@ -1429,13 +1429,13 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "command + o = shift + end",
+                                "description": "command + o = Outlook",
                                 "from": {
                                     "key_code": "o",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_command",
                                             "right_command",
+                                            "left_command",
                                             "right_control",
                                             "right_shift",
                                             "right_option"
@@ -1444,10 +1444,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "end",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
+                                        "shell_command": "open -a 'Microsoft Outlook'"
                                     }
                                 ],
                                 "type": "basic"
@@ -1620,7 +1617,7 @@
                                 "type": "basic"
                             },
                             {
-                                "description": " o = end",
+                                "description": " o = Open Orion browser (for Notion only)",
                                 "from": {
                                     "key_code": "o",
                                     "modifiers": {
@@ -1634,7 +1631,27 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "end"
+                                        "shell_command": "open -a Orion"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": " a = Open Arc browser (new browser for Notion only)",
+                                "from": {
+                                    "key_code": "a",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_command",
+                                            "right_control",
+                                            "right_shift",
+                                            "right_option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "open -a Arc"
                                     }
                                 ],
                                 "type": "basic"
@@ -2758,7 +2775,7 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "m = delete a char ahead",
+                                "description": "m = messages (iMessage()",
                                 "from": {
                                     "key_code": "m",
                                     "modifiers": {
@@ -2772,7 +2789,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "delete_or_backspace"
+                                        "shell_command": "open -a 'Messages'"
                                     }
                                 ],
                                 "type": "basic"
@@ -4564,13 +4581,36 @@
                                 ],
                                 "type": "basic"
                             },
+                            // {
+                            //     "description": "command + w = close all tab of app",
+                            //     "from": {
+                            //         "key_code": "w",
+                            //         "modifiers": {
+                            //             "mandatory": [
+                            //                 "left_command",
+                            //                 "right_command",
+                            //                 "right_control",
+                            //                 "right_shift",
+                            //                 "right_option"
+                            //             ]
+                            //         }
+                            //     },
+                            //     "to": [
+                            //         {
+                            //             "key_code": "w",
+                            //             "modifiers": [
+                            //                 "left_command"
+                            //             ]
+                            //         }
+                            //     ],
+                            //     "type": "basic"
+                            // },
                             {
-                                "description": "command + w = close all tab of app",
+                                "description": "w = whatsapp",
                                 "from": {
                                     "key_code": "w",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_command",
                                             "right_command",
                                             "right_control",
                                             "right_shift",
@@ -4580,10 +4620,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "w",
-                                        "modifiers": [
-                                            "left_command"
-                                        ]
+                                        "shell_command": "open -a WhatsApp"
                                     }
                                 ],
                                 "type": "basic"
@@ -6560,7 +6597,7 @@
                         "description": "Hyper Application",
                         "manipulators": [
                             {
-                                "description": "command + e = path finder",
+                                "description": "command +  e = path finder",
                                 "from": {
                                     "key_code": "e",
                                     "modifiers": {
@@ -6581,7 +6618,7 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "option + e = mail",
+                                "description": "option + e = edge",
                                 "from": {
                                     "key_code": "e",
                                     "modifiers": {
@@ -6602,7 +6639,7 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "e = safari",
+                                "description": "e = edge",
                                 "from": {
                                     "key_code": "e",
                                     "modifiers": {
@@ -6616,7 +6653,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "open -a 'microsoft edge'"
+                                        "shell_command": "open -a 'microsoft edge canary'"
                                     }
                                 ],
                                 "type": "basic"
@@ -6684,7 +6721,7 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "command + t = typora",
+                                "description": "command + t = things",
                                 "from": {
                                     "key_code": "t",
                                     "modifiers": {
@@ -6699,7 +6736,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "open -a Typora"
+                                        "shell_command": "open -a Things3"
                                     }
                                 ],
                                 "type": "basic"
@@ -6744,42 +6781,64 @@
                                     }
                                 ],
                                 "type": "basic"
-                            },{
-                                "description" : "left shift once -> (",
-                                "manipulators" : [ {
-                                    "to_if_alone" : [ {
-                                        "key_code" : "9",
-                                        "modifiers" : [ "left_shift" ]
-                                    } ],
-                                    "from" : {
-                                        "key_code" : "left_shift",
-                                        "modifiers" : {
-                                        "optional" : [ "any" ]
+                            },
+                            {
+                                "description": "left shift once -> (",
+                                "manipulators": [
+                                    {
+                                        "from": {
+                                            "key_code": "left_shift",
+                                            "modifiers": {
+                                                "optional": [
+                                                    "any"
+                                                ]
+                                            }
+                                        },
+                                        "to": [
+                                            {
+                                                "key_code": "left_shift"
+                                            }
+                                        ],
+                                        "to_if_alone": [
+                                            {
+                                                "key_code": "9",
+                                                "modifiers": [
+                                                    "left_shift"
+                                                ]
+                                            }
+                                        ],
+                                        "type": "basic"
                                     }
-                                    },
-                                    "to" : [ {
-                                    "key_code" : "left_shift"
-                                    } ],
-                                    "type" : "basic"
-                                } ]
-                            }, {
-                            "description" : "right shift once -> )",
-                            "manipulators" : [ {
-                                    "to_if_alone" : [ {
-                                    "key_code" : "0",
-                                    "modifiers" : [ "left_shift" ]
-                                    } ],
-                                    "from" : {
-                                    "key_code" : "right_shift",
-                                    "modifiers" : {
-                                        "optional" : [ "any" ]
+                                ]
+                            },
+                            {
+                                "description": "right shift once -> )",
+                                "manipulators": [
+                                    {
+                                        "from": {
+                                            "key_code": "right_shift",
+                                            "modifiers": {
+                                                "optional": [
+                                                    "any"
+                                                ]
+                                            }
+                                        },
+                                        "to": [
+                                            {
+                                                "key_code": "right_shift"
+                                            }
+                                        ],
+                                        "to_if_alone": [
+                                            {
+                                                "key_code": "0",
+                                                "modifiers": [
+                                                    "left_shift"
+                                                ]
+                                            }
+                                        ],
+                                        "type": "basic"
                                     }
-                                    },
-                                    "to" : [ {
-                                    "key_code" : "right_shift"
-                                    } ],
-                                    "type" : "basic"
-                                } ]
+                                ]
                             },
                             {
                                 "description": "command + y = karabiner",
@@ -6844,7 +6903,7 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "command + f = Dash",
+                                "description": "command + f = Firefox",
                                 "from": {
                                     "key_code": "f",
                                     "modifiers": {
@@ -6859,7 +6918,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "open -a cron"
+                                        "shell_command": "open -a Firefox"
                                     }
                                 ],
                                 "type": "basic"
@@ -6886,7 +6945,7 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "f = Alfred 4",
+                                "description": "f = Fantastical",
                                 "from": {
                                     "key_code": "f",
                                     "modifiers": {
@@ -6900,7 +6959,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "open -a cron"
+                                        "shell_command": "open -a Fantastical"
                                     }
                                 ],
                                 "type": "basic"
@@ -6971,7 +7030,36 @@
                     }
                 ]
             },
-            "devices": [],
+            "devices": [
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 835,
+                        "vendor_id": 1452
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": true,
+                    "simple_modifications": [],
+                    "treat_as_built_in_keyboard": false
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": false,
+                        "is_pointing_device": true,
+                        "product_id": 835,
+                        "vendor_id": 1452
+                    },
+                    "ignore": true,
+                    "manipulate_caps_lock_led": false,
+                    "simple_modifications": [],
+                    "treat_as_built_in_keyboard": false
+                }
+            ],
             "fn_function_keys": [
                 {
                     "from": {
