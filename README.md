@@ -99,7 +99,6 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 Install Miniconda
 ```bash
 # SCRIPT VERSION (just copy into terminal, or make part of automated install)
-# todo, add to zshrc.
 
 install_miniconda () {
 mkdir -p ~/utils/miniconda3
@@ -110,6 +109,21 @@ rm -rf ~/utils/miniconda3/miniconda.sh
 source ~/.zshrc
 }
 
+# run it: `install_miniconda`
+
+----------------
+
+## FOR ARM on Linux (NOT FOR MAC, they have a separate one)
+install_miniconda_linux_arm () {
+mkdir -p ~/utils/miniconda3
+wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-23.1.0-3-Linux-aarch64.sh -O ~/utils/miniconda3/miniconda.sh
+bash ~/utils/miniconda3/miniconda.sh -b -u -p ~/utils/miniconda3
+rm -rf ~/utils/miniconda3/miniconda.sh
+~/utils/miniconda3/bin/conda init zsh
+source ~/.zshrc
+}
+
+
 
 ----------------
 ### MANUAL STEPS
@@ -118,7 +132,6 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/
 bash ~/utils/miniconda3/miniconda.sh -b -u -p ~/utils/miniconda3
 rm -rf ~/utils/miniconda3/miniconda.sh
 ~/utils/miniconda3/bin/conda init zsh
-
 ```
 
 Remove need to type sudo password (for user 'kastan'):
