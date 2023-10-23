@@ -98,8 +98,19 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 Install Miniconda
 ```bash
-# SCRIPT VERSION (just copy into terminal, or make part of automated install)
 
+```
+install_miniconda_m1_mac () {
+mkdir -p ~/utils/miniconda3
+wget https://github.com/conda-forge/miniforge/releases/download/23.3.1-1/Mambaforge-23.3.1-1-MacOSX-arm64.sh -O ~/utils/miniconda3/miniconda.sh
+sudo bash ~/utils/miniconda3/miniconda.sh -b -u -p ~/utils/miniconda3
+rm -rf ~/utils/miniconda3/miniconda.sh
+~/utils/miniconda3/bin/mamba init zsh
+source ~/.zshrc
+}
+
+
+# SCRIPT VERSION (just copy into terminal, or make part of automated install)
 install_miniconda () {
 mkdir -p ~/utils/miniconda3
 wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh -O ~/utils/miniconda3/miniconda.sh
