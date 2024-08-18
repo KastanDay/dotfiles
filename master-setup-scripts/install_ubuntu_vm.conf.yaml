@@ -8,13 +8,13 @@
 
 - link:
     ~/.zshrc: .zshrc_ubuntu
-    ~/.zshenv: .zshenv
-    ~/.bashrc: .bashrc
-    ~/.zsh_history: .zsh_history
-    ~/.p10k.zsh: .p10k.zsh
-    ~/.vim_runtime: .vim_runtime
-    ~/.vimrc: .vimrc
-    ~/.tmux.conf: tmux.conf 
+    ~/.zshenv: ../.zshenv
+    ~/.bashrc: ../.bashrc
+    ~/.zsh_history: ../.zsh_history
+    ~/.p10k.zsh: ../.p10k.zsh
+    ~/.vim_runtime: ../.vim_runtime
+    ~/.vimrc: ../.vimrc
+    ~/.tmux.conf: ../tmux.conf 
 
 - create:
     - ~/.vim/undo-history

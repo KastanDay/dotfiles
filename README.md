@@ -3,11 +3,12 @@
 I have install scripts for **macos** and **ubuntu**. They're close to perfect, but not quite only minor tweeks recommended.
 
 * [MacOS install (Intel & Apple Silicon M1)](https://gitlab.com/kastan/dot-files#macos-dotfiles)
-* [Ubuntu install](https://gitlab.com/kastan/dot-files#ubuntu-dotfiles)  
+* [Ubuntu install](https://gitlab.com/kastan/dot-files#ubuntu-install)  
+* [Proxmox install](https://gitlab.com/kastan/dot-files#proxmox-install)  
 * [Remote server install (**no** sudo required)](https://gitlab.com/kastan/dot-files#setup-a-remote-terminal-no-root-access)
 * [Manual Ubuntu install (Legacy, but solid)](https://gitlab.com/kastan/dot-files#manual-version-ubuntu-dotfiles)
 
-# MacOS dotfiles
+# MacOS main Install
 
 THIS IS FOR MAC ONLY! Tested on Intel and Apple Silicon.
 
@@ -19,20 +20,18 @@ Some things go first, others go last... Follow this document flow.
 
 You need to open this link in safari, accept all permissions including kernel extension
 
-```
-1. Install Karabiner
+```bash
+# 1. Install Karabiner
 
 brew install brew install --cask karabiner-elements
 
-2. OPEN THIS LINK IN SAFARI!!!!
+# 2. OPEN THIS LINK IN SAFARI!!!!
 
 karabiner://karabiner/assets/complex_modifications/import?url=https://raw.githubusercontent.com/Vonng/Capslock/master/mac_v3/capslock.json"]
 
-3. Make room for the symblink
+# 3. Make room for the symblink
 mv ~/.config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json_OLD
 ```
-
-# Main Install
 
 The install is nearly perfect. Check the `*.config.yaml` file to customize. 
 
@@ -41,83 +40,64 @@ The install is nearly perfect. Check the `*.config.yaml` file to customize.
 # YOU MUST DELETE/MOVE those files for the symblinks to work.
 
 # send it! This uses dotinstall
-./install
+./master-setup-scripts/install_mac_apple_silicon
 ```
 
-# Post-install
 
-## Manual ZSH settings
+### MacOS Manual steps (for now)
+1. Iterm2
+    1. Go to `profiles` -> `more actions` (bottom left) -> `import json`.
+
+1. Typintaor
+    1. Just drag and drop those config files. You can also highlight them in finder and do cmd + O.
+
+1. Better Touch tool (BTT)
+
+    1. Import via in `Presets` in top right, not settings. All of mine are for `TRACKPAD` (top dropdown menu).
+
+# Ubuntu install
 
 ```bash
-# Installing OhMyZsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-# Installing Powerlevel10k (wayy better than 9k)
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+export TAILSCALE_AUTHKEY=xxx # find auth key here: https://tailscale.com/kb/1085/auth-keys
+# main install script
+./master-setup-scripts/install_ubuntu_vm
 ```
 
-Nice to remember:
+# Proxmox install 
 
 ```bash
-# if you want want something new
-p10k configure
+export TAILSCALE_AUTHKEY=xxx # find auth key here: https://tailscale.com/kb/1085/auth-keys
+# main install script
+./master-setup-scripts/install_proxmox
 ```
 
-## Iterm2
-
-Go to profiles -> more actions (bottom left) -> import json.
-
-## Typintaor
-
-Just drag and drop those configs. You can also highlight them in finder and do cmd + O.
-
-## Better Touch tool (BTT)
-
-Import via in "Presets" in top right, not settings. All of mine are for TRACKPAD (top dropdown menu).
-
-# Ubuntu dotfiles
-
-```
-cd dot-fies
-# edit install_ubuntu.conf.yaml to your liking!
-chmod +x install_ubuntu
-sudo ./install_ubuntu
-```
-
-Then install git repos:
-
-```
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" --keep-zshrc
-
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-```
-
-Install Miniconda
+# Miniconda install scripts
+These are already included in the master-setup-scripts. They assume you're using `zsh`.
+### Miniconda Apple silicon `aarch64`
 ```bash
 install_miniconda_m1_mac () {
-mkdir -p ~/utils/miniconda3
-wget https://github.com/conda-forge/miniforge/releases/download/23.3.1-1/Mambaforge-23.3.1-1-MacOSX-arm64.sh -O ~/utils/miniconda3/miniconda.sh
-sudo bash ~/utils/miniconda3/miniconda.sh -b -u -p ~/utils/miniconda3
-rm -rf ~/utils/miniconda3/miniconda.sh
-~/utils/miniconda3/bin/mamba init zsh
-source ~/.zshrc
+  mkdir -p ~/utils/miniconda3
+  wget https://github.com/conda-forge/miniforge/releases/download/23.3.1-1/Mambaforge-23.3.1-1-MacOSX-arm64.sh -O ~/utils/miniconda3/miniconda.sh
+  sudo bash ~/utils/miniconda3/miniconda.sh -b -u -p ~/utils/miniconda3
+  rm -rf ~/utils/miniconda3/miniconda.sh
+  ~/utils/miniconda3/bin/mamba init zsh
+  source ~/.zshrc
 }
+
+# run it 
+install_miniconda_m1_mac
 ```
 
 
-# SCRIPT VERSION (just copy into terminal, or make part of automated install)
+### Miniconda `x86`
 ```bash
 install_miniconda_x86 () {
-mkdir -p ~/utils/miniconda3
-wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh -O ~/utils/miniconda3/miniconda.sh
-bash ~/utils/miniconda3/miniconda.sh -b -u -p ~/utils/miniconda3
-rm -rf ~/utils/miniconda3/miniconda.sh
-~/utils/miniconda3/bin/mamba init zsh
-source ~/.zshrc
+  mkdir -p ~/utils/miniconda3
+  wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh -O ~/utils/miniconda3/miniconda.sh
+  bash ~/utils/miniconda3/miniconda.sh -b -u -p ~/utils/miniconda3
+  rm -rf ~/utils/miniconda3/miniconda.sh
+  ~/utils/miniconda3/bin/mamba init zsh
+  source ~/.zshrc
 }
 
 # run it
@@ -126,47 +106,21 @@ install_miniconda_x86
 
 ----------------
 
-## FOR ARM on Linux (NOT FOR MAC, they have a separate one)
+## Miniconda for ARM on Linux `only amd64` (NOT FOR MAC Apple Silicon, they have a separate one)
 ```bash
+# NOT FOR MAC APPLE SILICON, only amd64
 install_miniconda_linux_arm () {
-mkdir -p ~/utils/miniconda3
-wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-23.1.0-3-Linux-aarch64.sh -O ~/utils/miniconda3/miniconda.sh
-bash ~/utils/miniconda3/miniconda.sh -b -u -p ~/utils/miniconda3
-rm -rf ~/utils/miniconda3/miniconda.sh
-~/utils/miniconda3/bin/conda init zsh
-source ~/.zshrc
+  mkdir -p ~/utils/miniconda3
+  wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-23.1.0-3-Linux-aarch64.sh -O ~/utils/miniconda3/miniconda.sh
+  bash ~/utils/miniconda3/miniconda.sh -b -u -p ~/utils/miniconda3
+  rm -rf ~/utils/miniconda3/miniconda.sh
+  ~/utils/miniconda3/bin/conda init zsh
+  source ~/.zshrc
 }
 
 # run it
 install_miniconda_linux_arm
 ```
-
-
-
-----------------
-### MANUAL STEPS
-```
-mkdir -p ~/utils/miniconda3
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/utils/miniconda3/miniconda.sh
-bash ~/utils/miniconda3/miniconda.sh -b -u -p ~/utils/miniconda3
-rm -rf ~/utils/miniconda3/miniconda.sh
-~/utils/miniconda3/bin/conda init zsh
-```
-
-Remove need to type sudo password (for user 'kastan'):
-```
-# UNREALIABLE RESULTS SO FAR, WTF
-sudo visudo /etc/sudoers
-
-# add to file
-kastan   ALL = NOPASSWD: ALL
-
-----------------
-# maybe this method is bettter, but also unreliable 
-sudo usermod -a -G sudo kastan
-```
-
-And you're done! Good luck, I'm still working out the tiny details between machines.
 
 # Setup a remote terminal (no root access)
 
@@ -198,7 +152,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 ```bash
 # Rust & Cargo (for LSD)
 curl https://sh.rustup.rs -sSf | sh
-cargo install lsd dirstat-rs
+cargo install dirstat-rs
 
 # dirstat-rs is a better du. usage is `ds`. See github.
 ```

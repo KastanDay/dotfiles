@@ -1,3 +1,4 @@
+POWERLEVEL9K_INSTANT_PROMPT=off # fixes the 'no cursor on fresh chat unless u run glances or fzf' problem
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -50,15 +51,19 @@ source $ZSH/oh-my-zsh.sh
 
 # LS REPLACEMENTS
 alias ls=lsd # lsd is better cuz icons
+# alias ls='/home/zion/.exa/exa' # Exa
+# alias ls=colorls
 
 # User configuration
-# export DEFAULT_USER="kastan"
+export DEFAULT_USER="kastan"
+
 
 function mygrep { grep -rni $1; }
+function kms { echo "It's going to be okay, today is only one day"}
 alias wut=google
 alias fg="find . | grep "
 alias fgg="find / | grep "
-alias code=code-insiders
+alias c=code-insiders
 alias o=xdg-open 
 alias e=exit
 alias size="ls -lh"
@@ -66,9 +71,8 @@ alias p=python3
 
 alias file="nautilus" # open in file explorer. eg "file ."
 alias files="nautilus" # open in file explorer. eg "file ."
-alias cat=batcat # for ubuntu
-# alias cat=bat # for non-ubuntu
-# alias file="open" # for mac
+alias cat=bat # for non-ubuntu
+alias file="open" # for mac
 
 # disable zsh warning cuz these functions are being called. 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
@@ -80,6 +84,21 @@ typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 ggh() {
   open "$(git config remote.origin.url | sed "s/git@\(.*\):\(.*\).git/https:\/\/\1\/\2/")/$1$2"
 }
+
+#####
+## Auto install the mamba version of Conda (Mambaforge) ##
+# Usage: simply run on cmdline: install_miniconda 
+#####
+install_miniconda () {
+mkdir -p ~/utils/miniconda3
+wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh -O ~/utils/miniconda3/miniconda.sh
+bash ~/utils/miniconda3/miniconda.sh -b -u -p ~/utils/miniconda3
+rm -rf ~/utils/miniconda3/miniconda.sh
+~/utils/miniconda3/bin/mamba init zsh
+source ~/.zshrc
+}
+
+
 # Open current branch -- must use single quotes!! http://mywiki.wooledge.org/Quotes 
 alias ghb='gh tree/$(git symbolic-ref --quiet --short HEAD )'
 # Open current directory/file in current branch

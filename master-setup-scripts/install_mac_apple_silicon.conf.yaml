@@ -4,55 +4,56 @@
 
 - shell:
   - [mv ~/.config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json_OLD, delete old karabiner file]
-  # - [mv ~/.config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json_OLD, delete old karabiner file]
 
 - clean: ['~', ~/.config/karabiner/karabiner.json]
 
 - link:
-    ~/.vim_runtime: .vim_runtime
-    ~/.vimrc: .vimrc
-    ~/.bashrc: .bashrc
-    ~/.zshrc: .zshrc
-    ~/.p10k.zsh: .p10k.zsh
-    ~/.config/karabiner/karabiner.json: /Users/kastanday/code/githubs/dot-files/karabiner.json
+    ~/.zshrc: .zshrc_mac
+    ~/.vim_runtime: ../.vim_runtime
+    ~/.vimrc: ../.vimrc
+    ~/.bashrc: ../.bashrc
+    ~/.p10k.zsh: ../.p10k.zsh
+    ~/.config/karabiner/karabiner.json: ../karabiner.json
 
 - create:
-    - ~/downloads
     - ~/.vim/undo-history
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
-  - [brew install ncdu, ncdu - a better du]
   - [brew install fzf, fzf - a better grep (sorta different -- awk good too)]
   - [brew install glances, glances - a better top]
   - [brew install the_silver_searcher, ag - a better find]
   - [brew install bat, bat - a better cat]
   - [brew install lsd, lsd - a better ls]
-  - [brew install tldr, tldr - better man pages]
-  - [brew install howdoi, howdoi - another better man pages]
   - [brew cask install iterm2, iterm2 - a better terminal]
-  - [brew install virtualenv, virtualenv required for pyenv]
-  - [brew install pyenv, pyenv - a better virtualenv]
   - [brew install rsync, rsync - a better sftp/scp]
-  - [brew install --cask miniconda, miniconda - an efficient Anaconda]
   - [brew install --cask visual-studio-code, vscode stable]
-  - [brew install --cask visual-studio-code-insiders, vscode insiders]
-  - [echo "use GITHUB ACCOUNT for VS Code settings sync", Github account for vscode settings]
+  # - [brew install --cask visual-studio-code-insiders, vscode insiders]
+  # - [echo "use GITHUB ACCOUNT for VS Code settings sync", Github account for vscode settings]
   - [brew install --cask typinator, typinator - a better text-expander. See README_FIRST for manual tasks.]
   - [brew install brew install --cask karabiner-elements, karabiner -- keyboard remapping. Details here https://github.com/Vonng/Capslock]
   - [echo "You need to open this link in safari, accept all permissions including kernel extension karabiner://karabiner/assets/complex_modifications/import?url=https://raw.githubusercontent.com/Vonng/Capslock/master/mac_v3/capslock.json", OPEN THIS LINK IN SAFARI!!!!]
   - [brew install -cask font-meslo-lg-nerd-font, install best nerdfont named MesloLGS NF]
 
-  - [brew install zsh, ---- START ZSH SECTION --]
-  - [brew install zsh-autosuggestions, Installing zsh auto-suggestions]
-  - [brew install zsh-completions, Installing zsh auto completions]
+  # have to fix zshrc before doing this install.
+  # - [brew install --cask miniconda, miniconda - an efficient Anaconda] # replaced by script version for reliability
+  - [bash ../install_miniconda_apple_silicon.sh, install Miniconda (Apple Silicon)]
 
-  - [brew install go, Installing Go (for gtree specifically)]
+  ## Zsh type configs
+  - [brew install zsh, ---- START ZSH SECTION --]
+  # - [brew install zsh-autosuggestions, Installing zsh auto-suggestions]
+  # - [brew install zsh-completions, Installing zsh auto completions]
+  - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc, OhMyZSH]
+  - ['git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k', PowerLevel10k]
+  - ['git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions', zsh-autosuggestions]
+  - ['git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting', zsh-syntax-highlighting]
+
 
   - [echo "README in MANUAL_TASKS for ACTUALLY IMPORTANT final things to do.", LAST STEPS...]
 
 
   # todo 
+  # - [brew install go, Installing Go (for gtree specifically)]
   # Software
   # echo Install basic apps
   # brew cask install --appdir="/Applications" calibre

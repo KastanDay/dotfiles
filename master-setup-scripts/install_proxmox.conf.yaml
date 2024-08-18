@@ -1,0 +1,52 @@
+- defaults:
+    link:
+      relink: true
+
+- shell:
+  - [mv ~/.bashrc ~/.bashrc_OLD, archive old bashrc file]
+  - [mv ~/.zshrc  ~/.zshrc_OLD,  archive old zshrc file]
+
+- link:
+    ~/.zshrc: .zshrc_ubuntu
+    ~/.zshenv: ../.zshenv
+    ~/.bashrc: ../.bashrc
+    ~/.zsh_history: ../.zsh_history
+    ~/.p10k.zsh: ../.p10k.zsh
+    ~/.vim_runtime: ../.vim_runtime
+    ~/.vimrc: ../.vimrc
+    ~/.tmux.conf: ../tmux.conf 
+
+- create:
+    - ~/.vim/undo-history
+
+# todo cargo: curl https://sh.rustup.rs -sSf | sh
+# todo tailscale: curl -fsSL https://tailscale.com/install.sh | sh
+# todo docker: https://docs.docker.com/engine/install/ubuntu/
+# sudo docker run hello-world
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+  - [apt update, apt update]
+  - [apt install -y zsh, zsh]
+  - [apt install -y fzf, fzf - a better grep (sorta different -- awk good too)]
+  - [apt install -y glances, glances - a better top]
+  - [apt install -y bat, bat - a better cat]
+  - [apt install -y lsd, lsd - a better ls]
+  - [apt install -y rsync, rsync - a better sftp/scp]
+  - [apt install -y make build-essential openssh-server libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev, pyenv & general dependencies]
+  - [apt install -y fasd, fasd]
+  - [apt install -y silversearcher-ag, a bunch of key ones]
+  - [sudo apt install -y ripgrep, ripgrep (rg)]
+  - [curl -fsSL https://tailscale.com/install.sh | sh, install Tailscale]
+  - [sudo tailscale up --authkey ${TAILSCALE_AUTHKEY}, start Tailscale w/ authkey (need to be in env var. See here: https://tailscale.com/kb/1085/auth-keys)]
+
+  ## Zsh type configs
+  - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc, OhMyZSH]
+  - ['git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k', PowerLevel10k]
+  - ['git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions', zsh-autosuggestions]
+  - ['git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting', zsh-syntax-highlighting]
+
+  # have to fix zshrc before doing this install.
+  - [bash ./install_miniconda_x86.sh, install Miniconda (x86)]
+
+ 
