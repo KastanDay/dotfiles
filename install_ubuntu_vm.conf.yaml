@@ -36,9 +36,11 @@
   - [sudo apt install -y rsync, rsync - a better sftp/scp]
   - [sudo apt install -y make build-essential openssh-server libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev, pyenv & general dependencies]
   - [sudo apt install -y fasd, fasd]
+  - [sudo apt install -y lsd, lsd - a better ls]
   - [sudo apt install -y silversearcher-ag, a bunch of key ones]
   - [sudo apt install -y ripgrep, ripgrep (rg)]
-  - [curl -fsSL https://tailscale.com/install.sh | sh && tailscale up, install and start Tailscale]
+  - [curl -fsSL https://tailscale.com/install.sh | sh, install Tailscale]
+  - [sudo tailscale up --authkey ${TAILSCALE_AUTHKEY}, start Tailscale w/ authkey (need to be in env var)] # https://tailscale.com/kb/1085/auth-keys
 
   ## Zsh type configs
   - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc, OhMyZSH]

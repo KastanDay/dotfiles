@@ -32,6 +32,7 @@
   - [sudo apt install -y fzf, fzf - a better grep (sorta different -- awk good too)]
   - [sudo apt install -y glances, glances - a better top]
   - [sudo apt install -y bat, bat - a better cat]
+  - [sudo apt install -y lsd, lsd - a better ls]
   - [sudo apt install -y rsync, rsync - a better sftp/scp]
   - [sudo apt install -y make build-essential openssh-server libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev, pyenv & general dependencies]
   - [sudo apt install -y fasd, fasd]
