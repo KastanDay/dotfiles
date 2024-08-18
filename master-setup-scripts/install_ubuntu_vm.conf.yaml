@@ -40,7 +40,7 @@
   - [sudo apt install -y silversearcher-ag, a bunch of key ones]
   - [sudo apt install -y ripgrep, ripgrep (rg)]
   - [curl -fsSL https://tailscale.com/install.sh | sh, install Tailscale]
-  - [sudo tailscale up --authkey ${TAILSCALE_AUTHKEY}, start Tailscale w/ authkey (need to be in env var)] # https://tailscale.com/kb/1085/auth-keys
+  - ['sudo tailscale up --authkey ${TAILSCALE_AUTHKEY}', start Tailscale w/ authkey (need to be in env var)] # https://tailscale.com/kb/1085/auth-keys
 
   ## Zsh type configs
   - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc, OhMyZSH]
