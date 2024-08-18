@@ -117,10 +117,6 @@ if ! shopt -oq posix; then
 fi
 
 
-function mygrep { grep -rni $1; }
-
 if [ -t 1 ]; then
     exec zsh
 fi
-
-# . "$HOME/.cargo/env"

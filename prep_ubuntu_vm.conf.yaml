@@ -2,16 +2,55 @@
     link:
       relink: true
 
-# todo cargo: curl https://sh.rustup.rs -sSf | sh
-# todo docker: https://docs.docker.com/engine/install/ubuntu/
-# sudo docker run hello-world
+- shell:
+  - [mv ~/.bashrc ~/.bashrc_OLD, archive old bashrc file]
+  - [mv ~/.zshrc  ~/.zshrc_OLD,  archive old zshrc file]
+
+- link:
+    ~/.zshrc: .zshrc_ubuntu
+    ~/.zshenv: .zshenv
+    ~/.bashrc: .bashrc
+    ~/.zsh_history: .zsh_history
+    ~/.p10k.zsh: .p10k.zsh
+    ~/.vim_runtime: .vim_runtime
+    ~/.vimrc: .vimrc
+    ~/.tmux.conf: tmux.conf 
+
+- create:
+    - ~/.vim/undo-history
+
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
-  - [sudo apt update, apt update]
+  # Setup VM
   - [sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv, Expand LLVM partition size (1/2)]
   - [sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv, Expand LLVM partition size (2/2)]
-  - [echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$USER, Make the currently logged in user a a sudoer]
-  - [curl -fsSL https://tailscale.com/install.sh | sh, install tailscale]
+  - [echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$USER, Make the currently logged in user a superuser]
 
-  - [echo "README in MANUAL_TASKS for ACTUALLY IMPORTANT final things to do.", LAST STEPS...]
+  # Install common utilities
+  - [sudo apt update, apt update]
+  - [sudo apt install -y zsh, zsh]
+  - [sudo apt install -y fzf, fzf - a better grep (sorta different -- awk good too)]
+  - [sudo apt install -y glances, glances - a better top]
+  - [sudo apt install -y bat, bat - a better cat]
+  - [sudo apt install -y rsync, rsync - a better sftp/scp]
+  - [sudo apt install -y make build-essential openssh-server libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev, pyenv & general dependencies]
+  - [sudo apt install -y fasd, fasd]
+  - [sudo apt install -y silversearcher-ag, a bunch of key ones]
+  - [sudo apt install -y ripgrep, ripgrep (rg)]
+  - [curl -fsSL https://tailscale.com/install.sh | sh && tailscale up, install and start Tailscale]
+
+  ## Zsh type configs
+  - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc, OhMyZSH]
+  - [git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k, PowerLevel10k]
+  - [git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions, zsh-autosuggestions]
+  - [git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting, zsh-syntax-highlighting]
+
+  # have to fix zshrc before doing this install.
+  - [bash ./install_miniconda_x86.sh, install Miniconda (x86)]
+
+
+
+# todo cargo: curl https://sh.rustup.rs -sSf | sh
+# todo docker: https://docs.docker.com/engine/install/ubuntu/
+# sudo docker run hello-world
