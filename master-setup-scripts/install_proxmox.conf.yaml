@@ -47,6 +47,6 @@
   - ['git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting', zsh-syntax-highlighting]
 
   # have to fix zshrc before doing this install.
-  - [bash ./install_miniconda_x86.sh, install Miniconda (x86)]
+  - [bash ../scripts/install_miniconda_x86.sh, install Miniconda (x86)]
 
  

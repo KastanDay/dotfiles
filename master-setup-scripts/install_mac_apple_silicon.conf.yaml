@@ -37,7 +37,7 @@
 
   # have to fix zshrc before doing this install.
   # - [brew install --cask miniconda, miniconda - an efficient Anaconda] # replaced by script version for reliability
-  - [bash ../install_miniconda_apple_silicon.sh, install Miniconda (Apple Silicon)]
+  - [bash ../scripts/install_miniconda_apple_silicon.sh, install Miniconda (Apple Silicon)]
 
   ## Zsh type configs
   - [brew install zsh, ---- START ZSH SECTION --]
