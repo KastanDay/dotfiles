@@ -2,13 +2,13 @@
 
 I have install scripts for **macos** and **ubuntu**. They're close to perfect, but not quite only minor tweeks recommended.
 
-* [MacOS install (Intel & Apple Silicon M1)](https://gitlab.com/kastan/dot-files#macos-dotfiles)
-* [Ubuntu install](https://gitlab.com/kastan/dot-files#ubuntu-install)  
-* [Proxmox install](https://gitlab.com/kastan/dot-files#proxmox-install)  
-* [Remote server install (**no** sudo required)](https://gitlab.com/kastan/dot-files#setup-a-remote-terminal-no-root-access)
-* [Manual Ubuntu install (Legacy, but solid)](https://gitlab.com/kastan/dot-files#manual-version-ubuntu-dotfiles)
+* [MacOS install (Intel & Apple Silicon M-series)](https://github.com/KastanDay/dotfiles?tab=readme-ov-file#macos)
+* [Ubuntu install](https://github.com/KastanDay/dotfiles?tab=readme-ov-file#ubuntu-install)  
+* [Proxmox install](https://github.com/KastanDay/dotfiles?tab=readme-ov-file#proxmox-install)  
+* [Remote server install (**no** sudo required)](https://github.com/KastanDay/dotfiles?tab=readme-ov-file#setup-a-remote-terminal-no-root-access)
+* [Manual Ubuntu install (Legacy, but solid)](https://github.com/KastanDay/dotfiles?tab=readme-ov-file#manual-version-ubuntu-dotfiles)
 
-# MacOS main Install
+# MacOS
 
 THIS IS FOR MAC ONLY! Tested on Intel and Apple Silicon.
 
@@ -33,8 +33,9 @@ karabiner://karabiner/assets/complex_modifications/import?url=https://raw.github
 mv ~/.config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json_OLD
 ```
 
-The install is nearly perfect. Check the `*.config.yaml` file to customize. 
+## MacOS Main Install
 
+The install is nearly perfect. Check the `*.config.yaml` file to customize. 
 ```bash
 # WATCH OUT FOR errors like: ~/.config/karabiner/karabiner.json already exists but is a regular file or directory
 # YOU MUST DELETE/MOVE those files for the symblinks to work.
@@ -43,8 +44,7 @@ The install is nearly perfect. Check the `*.config.yaml` file to customize.
 ./master-setup-scripts/install_mac_apple_silicon
 ```
 
-
-### MacOS Manual steps (for now)
+### MacOS Post-install Manual Steps
 1. Iterm2
     1. Go to `profiles` -> `more actions` (bottom left) -> `import json`.
 
@@ -56,7 +56,6 @@ The install is nearly perfect. Check the `*.config.yaml` file to customize.
     1. Import via in `Presets` in top right, not settings. All of mine are for `TRACKPAD` (top dropdown menu).
 
 # Ubuntu install
-
 ```bash
 export TAILSCALE_AUTHKEY=xxx # find auth key here: https://tailscale.com/kb/1085/auth-keys
 # main install script
