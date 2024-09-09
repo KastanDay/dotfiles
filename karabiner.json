@@ -4910,53 +4910,6 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "command + c = shift + F5 (vscode stop)",
-                                "from": {
-                                    "key_code": "c",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "left_command",
-                                            "right_command",
-                                            "right_control",
-                                            "right_shift",
-                                            "right_option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "f5",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "c = ctrl-c",
-                                "from": {
-                                    "key_code": "c",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_command",
-                                            "right_control",
-                                            "right_shift",
-                                            "right_option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "c",
-                                        "modifiers": [
-                                            "left_control"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
                                 "description": "v = ctrl-v",
                                 "from": {
                                     "key_code": "v",
@@ -6548,10 +6501,10 @@
                         ]
                     },
                     {
-                        "description": "Hyper Application",
+                        "description": "Open Finder",
                         "manipulators": [
                             {
-                                "description": "command +  e = path finder",
+                                "description": "Super + command +  e = finder",
                                 "from": {
                                     "key_code": "e",
                                     "modifiers": {
@@ -6566,7 +6519,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "open -a 'path finder'"
+                                        "shell_command": "open -a 'marta'"
                                     }
                                 ],
                                 "type": "basic"
@@ -6588,6 +6541,24 @@
                                 "to": [
                                     {
                                         "shell_command": "open -a mimestream"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "open chatGPT",
+                                "from": {
+                                    "key_code": "c",
+                                    "mandatory": [
+                                        "right_command",
+                                        "right_control",
+                                        "right_shift",
+                                        "right_option"
+                                    ]
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "open -a chatgpt"
                                     }
                                 ],
                                 "type": "basic"
@@ -6975,6 +6946,26 @@
                                 "to": [
                                     {
                                         "shell_command": "open -a 'Slack'"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "s = ChatGPT",
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_command",
+                                            "right_control",
+                                            "right_shift",
+                                            "right_option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "open -a 'chatgpt'"
                                     }
                                 ],
                                 "type": "basic"
