@@ -71,6 +71,9 @@ alias cat=batcat # for ubuntu
 # alias cat=bat # for non-ubuntu
 # alias file="open" # for mac
 
+alias lzd='lazydocker'
+export PATH="$HOME/.local/bin:$PATH" # For lazydocker
+
 # disable zsh warning cuz these functions are being called. 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 

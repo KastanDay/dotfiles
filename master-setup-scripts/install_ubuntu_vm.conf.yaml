@@ -22,13 +22,19 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+
+  # Tailscale 
+  - ['echo $TAILSCALE_AUTHKEY && sleep 5', ⚠️ SET YOUR $TAILSCALE_AUTHKEY. CURRENT VALUE SHOULD BE PRINTED] # https://tailscale.com/kb/1085/auth-keys
+  - [sudo apt update, apt update]
+  - [curl -fsSL https://tailscale.com/install.sh | sh, install Tailscale]
+  - ['sudo tailscale up --authkey ${TAILSCALE_AUTHKEY}', start Tailscale w/ authkey (need to be in env var)] # https://tailscale.com/kb/1085/auth-keys
+
   # Setup VM
   - [sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv, Expand LLVM partition size (1/2)]
   - [sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv, Expand LLVM partition size (2/2)]
   - [echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$USER, Make the currently logged in user a superuser]
 
   # Install common utilities
-  - [sudo apt update, apt update]
   - [sudo apt install -y zsh, zsh]
   - [sudo apt install -y fzf, fzf - a better grep (sorta different -- awk good too)]
   - [sudo apt install -y glances, glances - a better top]
@@ -36,11 +42,11 @@
   - [sudo apt install -y rsync, rsync - a better sftp/scp]
   - [sudo apt install -y make build-essential openssh-server libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev, pyenv & general dependencies]
   - [sudo apt install -y fasd, fasd]
-  - [sudo apt install -y lsd, lsd - a better ls]
+  # - [sudo apt install -y lsd, lsd - a better ls]
   - [sudo apt install -y silversearcher-ag, a bunch of key ones]
   - [sudo apt install -y ripgrep, ripgrep (rg)]
-  - [curl -fsSL https://tailscale.com/install.sh | sh, install Tailscale]
-  - ['sudo tailscale up --authkey ${TAILSCALE_AUTHKEY}', start Tailscale w/ authkey (need to be in env var)] # https://tailscale.com/kb/1085/auth-keys
+  - [curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash, Lazydocker]
+  - [export PATH="$HOME/.local/bin:$PATH", Lazydocker PATH]
 
   ## Zsh type configs
   - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc, OhMyZSH]
