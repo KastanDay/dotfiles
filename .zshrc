@@ -271,79 +271,8 @@ LS_COLORS=$LS_COLORS:'di=1;34:' ; export LS_COLORS
 
 # Prompt elements
 # Look here for more ideas : https://github.com/tonylambiris/dotfiles/blob/master/dot.zshrc
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir_writable dir vcs) #vcs -- adds git, but slow. # icons_test to see all icons
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time virtualenv time battery)
-
-POWERLEVEL9K_MODE='awesome-patched'
-
-# Advanced `vi_mode` color customization
-POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='teal'
-POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='red'
-
-#POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND="black"
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND="blue"
-POWERLEVEL9K_EXECUTION_TIME_ICON="s \uf253"  # nf-fa-hourglass_half = f253 .. stopwatch = 23F1
-
-# ICONS
-# Discovery ship = f197
-# dollar sign f155
-# folder = e5fe
-# home   = f015
-# sqrt   = fc82
-# heart  = f004
-# user   = f007
-# hex-zoid = F20E
-# snapchat = f2ac
-# slack  = f198
-#❗=  \u2757 
-# ⁉️ = \u2049
-
-# Prompt icons
-POWERLEVEL9K_HOME_ICON='\uf197'
-
-# Status // Fail indicator
-# elim checkmark, and exit codes 
-POWERLEVEL9K_STATUS_VERBOSE=false
-POWERLEVEL9K_FAIL_ICON='\u2718 \u2718 \u2718 \u2718 ⁉️ ⁉️' # ❗=  \u2757 ⁉️ = \u2049
-# change color on fail. Doesn't work.
-# POWERLEVEL9K_STATUS_ERROR_FOREGROUND='green' # yellow background on error 
-# POWERLEVEL9K_STATUS_ERROR_FOREGROUND='red'  # red x on error
-
-
-#POWERLEVEL9K_DIR_HOME_FOREGROUND="white" # home dir colors
-#POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="red" # root dir colors
-POWERLEVEL9K_FOLDER_ICON='\ufc82'   # root folder icon
-POWERLEVEL9K_HOME_SUB_ICON="\ue5fe" # folder icon
-# POWERLEVEL9K_ROOT_ICON=$'\uf004'  # unknown icon
-# POWERLEVEL9K_USER_ICON="\uf007"   # unknown icon
-# POWERLEVEL9K_SUB_ICON='\uf004'    # unknown icon
-
-# VCS (git) icons
-POWERLEVEL9K_VCS_GIT_ICON=$''
-POWERLEVEL9K_VCS_GIT_GITHUB_ICON=$''
-POWERLEVEL9K_VCS_STAGED_ICON=$'\uf055'
-POWERLEVEL9K_VCS_UNSTAGED_ICON=$'\uf421'
-POWERLEVEL9K_VCS_UNTRACKED_ICON=$'\uf00d'
-POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON=$'\uf0ab '
-POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON=$'\uf0aa '
-
-# Prompt settings
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true # two line prompt
-POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=false
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%K{white}%k" # add whatever to front of first line
-# $ dollar sign on bottom prompt
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%K{black}%F{green} \uf155%f%F{black} %k\ue0b0%f"
-
 # Command execution time stamp shown in the history command output.
 HIST_STAMPS="mm/dd/yyyy"
-
-# Time
-POWERLEVEL9K_TIME_FORMAT="%F{black}\uf017 %D{%I:%M}%f"  # %F{black}\uf017 had to take this out bc no font!!
-POWERLEVEL9K_TIME_BACKGROUND='green'
-
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=1
 
 # ctrl + shift to auto-execute the current ZSH suggestion 
 bindkey '^j' autosuggest-execute
