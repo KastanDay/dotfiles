@@ -24,7 +24,7 @@
   - [git submodule update --init --recursive, Installing submodules]
 
   # Tailscale 
-  - ['echo $TAILSCALE_AUTHKEY && sleep 5', ⚠️ SET YOUR $TAILSCALE_AUTHKEY. CURRENT VALUE SHOULD BE PRINTED] # https://tailscale.com/kb/1085/auth-keys
+  - ['echo $TAILSCALE_AUTHKEY && sleep 5', ⚠️ SET YOUR $TAILSCALE_AUTHKEY. Generate one https://login.tailscale.com/admin/settings/keys  ] # https://tailscale.com/kb/1085/auth-keys
   - [sudo apt update, apt update]
   - [curl -fsSL https://tailscale.com/install.sh | sh, install Tailscale]
   - ['sudo tailscale up --authkey ${TAILSCALE_AUTHKEY}', start Tailscale w/ authkey (need to be in env var)] # https://tailscale.com/kb/1085/auth-keys
