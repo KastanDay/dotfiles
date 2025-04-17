@@ -14,26 +14,33 @@
     ~/.bashrc: ../.bashrc
     ~/.p10k.zsh: ../.p10k.zsh
     ~/.config/karabiner/karabiner.json: ../karabiner.json
+    ~/.tmux.conf: ../tmux.conf
 
 - create:
     - ~/.vim/undo-history
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+  - [brew install tmux, tmux]
   - [brew install fzf, fzf - a better grep (sorta different -- awk good too)]
+  - [brew install fd, fd, a better find written in rust]
   - [brew install glances, glances - a better top]
   - [brew install the_silver_searcher, ag - a better find]
   - [brew install bat, bat - a better cat]
-  - [brew install lsd, lsd - a better ls]
   - [brew cask install iterm2, iterm2 - a better terminal]
   - [brew install rsync, rsync - a better sftp/scp]
-  - [brew install --cask visual-studio-code, vscode stable]
+  - [brew install ripgrep rga poppler ffmpeg pandoc, Install ripgrep and ripgrep-all for fzf, and for PDF search]
   # - [brew install --cask visual-studio-code-insiders, vscode insiders]
   # - [echo "use GITHUB ACCOUNT for VS Code settings sync", Github account for vscode settings]
   - [brew install --cask typinator, typinator - a better text-expander. See README_FIRST for manual tasks.]
   - [brew install brew install --cask karabiner-elements, karabiner -- keyboard remapping. Details here https://github.com/Vonng/Capslock]
-  - [echo "You need to open this link in safari, accept all permissions including kernel extension karabiner://karabiner/assets/complex_modifications/import?url=https://raw.githubusercontent.com/Vonng/Capslock/master/mac_v3/capslock.json", OPEN THIS LINK IN SAFARI!!!!]
+  - [echo "You need to open this link in safari, accept all permissions including kernel extension", OPEN THIS LINK IN SAFARI!!!!]
   - [brew install -cask font-meslo-lg-nerd-font, install best nerdfont named MesloLGS NF]
+  - [brew install go && go install github.com/kitagry/gtree@latest, install gtree for tree-like output of directory structure]
+  - [touch ~/.hushlogin, To disable the 'Last login' message in iTerm2]
+  
+  - [brew install --cask cursor, cursor - a better vscode]
+  - [brew install --cask visual-studio-code, vscode stable]
 
   # have to fix zshrc before doing this install.
   # - [brew install --cask miniconda, miniconda - an efficient Anaconda] # replaced by script version for reliability
@@ -47,7 +54,9 @@
   - ['git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k', PowerLevel10k]
   - ['git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions', zsh-autosuggestions]
   - ['git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting', zsh-syntax-highlighting]
-
+  
+  - [curl https://sh.rustup.rs -sSf | sh -s -- -y, Install Rust & Cargo]
+  - [cargo install lsd, lsd - a better ls]
 
   - [echo "README in MANUAL_TASKS for ACTUALLY IMPORTANT final things to do.", LAST STEPS...]
 
