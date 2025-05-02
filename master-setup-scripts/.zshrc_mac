@@ -47,6 +47,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(git pip vi-mode web-search sudo wd zsh-autosuggestions virtualenv fasd)
 
+alias gitlog="git log --all --graph --pretty=format:'%C(magenta)%h %C(white) %an %ar%C(auto) %D%n%s%n'"
 source $ZSH/oh-my-zsh.sh
 
 # LS REPLACEMENTS
@@ -223,7 +224,7 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window up:3:border-horizon
 # export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --height 80%"
 # go install https://github.com/kitagry/gtree (and creat gopath AND add to path)
 export FZF_ALT_C_OPTS='--preview "gtree \"$(realpath {})\" | head -200" --height 80%'
-export FZF_ALT_C_COMMAND='fd --type d . --search-path ~/code'
+export FZF_ALT_C_COMMAND='fd --type d . --search-path ~/rescale'
 # Could maybe improve formatting this way.....  --base-directory ~/code --exec ~/code' #  --relative-path
 
 alias t="gtree | fzf --ansi"
@@ -358,7 +359,7 @@ export MDV_THEME=884.0134
 export MDV_THEME_CODE=528.9419
 
 # fasd (terminal movement) - https://github.com/clvv/fasd
-# eval "$(fasd --init auto)" 
+# eval "$(fasd --init auto)"
 # alias a='fasd -a'        # any
 # alias s='fasd -si'       # show / search / select
 # alias d='fasd -d'        # directory
@@ -383,3 +384,26 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/kday/utils/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/kday/utils/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/kday/utils/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/kday/utils/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+. "$HOME/.local/bin/env"
+
+export PKR_VAR_rescale_env=dev-kday-rescale
+export HPC_TOOLING_VENV=~/rescale/platform/hpc-management-tooling/venv
+export PATH=$PATH:$HOME/rescale/platform/hpc-management-tooling  
+export METADATA_PATH=/Users/kday/rescale/platform/rescale-platform-metadata

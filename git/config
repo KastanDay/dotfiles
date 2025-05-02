@@ -1,0 +1,33 @@
+# ~/.config/git/config
+[diff]
+context = 3
+renames = copies
+interHunkContext = 10
+
+[pager]
+diff = diff-so-fancy | $PAGER
+
+[diff-so-fancy]
+markEmptyLines = false
+
+[interactive]
+diffFilter = diff-so-fancy --patch
+singlekey = true
+
+[push]
+autoSetupRemote = true
+default = current
+followTags = true
+
+[pull]
+default = current
+rebase = true
+
+[rebase]
+missingCommitsCheck = warn
+
+[branch]
+sort = -committerdate
+
+[tag]
+sort = -taggerdate
