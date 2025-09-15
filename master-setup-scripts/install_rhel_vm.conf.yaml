@@ -1,0 +1,67 @@
+- defaults:
+    link:
+      relink: true
+
+- shell:
+  - [mv ~/.bashrc ~/.bashrc_OLD, archive old bashrc file]
+  - [mv ~/.zshrc  ~/.zshrc_OLD,  archive old zshrc file]
+
+- link:
+    ~/.zshrc: .zshrc_ubuntu
+    ~/.zshenv: ../.zshenv
+    ~/.bashrc: ../.bashrc
+    ~/.zsh_history: ../.zsh_history
+    ~/.p10k.zsh: ../.p10k.zsh
+    ~/.vim_runtime: ../.vim_runtime
+    ~/.vimrc: ../.vimrc
+    ~/.tmux.conf: ../tmux.conf 
+
+- create:
+    - ~/.vim/undo-history
+
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+
+  # Tailscale 
+  - ['echo $TAILSCALE_AUTHKEY && sleep 5', ⚠️ SET YOUR $TAILSCALE_AUTHKEY. Generate one https://login.tailscale.com/admin/settings/keys  ] # https://tailscale.com/kb/1085/auth-keys
+  - [sudo yum update -y, yum update]
+  - [curl -fsSL https://tailscale.com/install.sh | sh, install Tailscale]
+  - ['sudo tailscale up --authkey ${TAILSCALE_AUTHKEY}', start Tailscale w/ authkey (need to be in env var)] # https://tailscale.com/kb/1085/auth-keys
+
+  # Setup VM
+  - [sudo lvextend -l +100%FREE /dev/rhel/root, Expand LVM partition size (1/2)]
+  - [sudo xfs_growfs /, Expand XFS filesystem size (2/2)]
+  - [echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$USER, Make the currently logged in user a superuser]
+
+  # Install EPEL repository for additional packages
+  - [sudo yum install -y epel-release, Install EPEL repository]
+
+  # Install common utilities
+  - [sudo yum install -y zsh, zsh]
+  - [sudo yum install -y fzf, fzf - a better grep (sorta different -- awk good too)]
+  - [sudo yum install -y glances, glances - a better top]
+  - [sudo yum install -y bat, bat - a better cat]
+  - [sudo yum install -y rsync, rsync - a better sftp/scp]
+  - [sudo yum install -y make gcc gcc-c++ openssh-server openssl-devel zlib-devel bzip2-devel readline-devel sqlite-devel wget curl llvm ncurses-devel xz tk-devel libffi-devel xz-devel, pyenv & general dependencies]
+  - [sudo yum install -y fasd, fasd]
+  # - [sudo yum install -y lsd, lsd - a better ls]
+  - [sudo yum install -y the_silver_searcher, the_silver_searcher (ag)]
+  - [sudo yum install -y ripgrep, ripgrep (rg)]
+  - [curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash, Lazydocker]
+  - [export PATH="$HOME/.local/bin:$PATH", Lazydocker PATH]
+
+  ## Zsh type configs
+  - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc, OhMyZSH]
+  - ['git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k', PowerLevel10k]
+  - ['git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions', zsh-autosuggestions]
+  - ['git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting', zsh-syntax-highlighting]
+
+  # have to fix zshrc before doing this install.
+  - [bash ../scripts/install_miniconda_x86.sh, install Miniconda (x86)]
+
+
+
+# todo cargo: curl https://sh.rustup.rs -sSf | sh
+# todo docker: https://docs.docker.com/engine/install/rhel/
+# sudo docker run hello-world
