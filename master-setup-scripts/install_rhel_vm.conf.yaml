@@ -23,8 +23,7 @@
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
 
-  # Tailscale 
-  - [sudo yum update -y, yum update]
+  - [sudo dnf update -y, dnf update]
   
   # Setup VM
   - [sudo lvextend -l +100%FREE /dev/rhel/root, Expand LVM partition size (1/2)]
@@ -32,18 +31,18 @@
   - [echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$USER, Make the currently logged in user a superuser]
 
   # Install EPEL repository for additional packages
-  - [sudo yum install -y epel-release, Install EPEL repository]
+  - [sudo dnf install -y epel-release, Install EPEL repository]
 
   # Install common utilities
-  - [sudo yum install -y zsh, zsh]
-  - [sudo yum install -y fzf, fzf - a better grep (sorta different -- awk good too)]
-  - [sudo yum install -y glances, glances - a better top]
-  - [sudo yum install -y bat, bat - a better cat]
-  - [sudo yum install -y rsync, rsync - a better sftp/scp]
-  - [sudo yum install -y make gcc gcc-c++ openssh-server openssl-devel zlib-devel bzip2-devel readline-devel sqlite-devel wget curl llvm ncurses-devel xz tk-devel libffi-devel xz-devel, pyenv & general dependencies]
-  # - [sudo yum install -y lsd, lsd - a better ls]
-  - [sudo yum install -y the_silver_searcher, the_silver_searcher (ag)]
-  - [sudo yum install -y ripgrep, ripgrep (rg)]
+  - [sudo dnf install -y zsh, zsh]
+  - [sudo dnf install -y fzf, fzf - a better grep (sorta different -- awk good too)]
+  - [sudo dnf install -y glances, glances - a better top]
+  - [sudo dnf install -y bat, bat - a better cat]
+  - [sudo dnf install -y rsync, rsync - a better sftp/scp]
+  - [sudo dnf install -y make gcc gcc-c++ openssh-server openssl-devel zlib-devel bzip2-devel readline-devel sqlite-devel wget curl llvm ncurses-devel xz tk-devel libffi-devel xz-devel, pyenv & general dependencies]
+  # - [sudo dnf install -y lsd, lsd - a better ls]
+  - [sudo dnf install -y the_silver_searcher, the_silver_searcher (ag)]
+  - [sudo dnf install -y ripgrep, ripgrep (rg)]
   - [curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash, Lazydocker]
   - [export PATH="$HOME/.local/bin:$PATH", Lazydocker PATH]
 
