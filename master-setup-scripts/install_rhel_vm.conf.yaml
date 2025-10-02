@@ -23,7 +23,7 @@
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
 
-  - [sudo dnf update -y, dnf update]
+  - [sudo dnf makecache --refresh, dnf update (like apt update, but not upgrade)]
   
   # Setup VM
   - [sudo lvextend -l +100%FREE /dev/rhel/root, Expand LVM partition size (1/2)]
