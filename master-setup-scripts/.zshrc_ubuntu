@@ -67,8 +67,8 @@ alias p=python3
 
 alias file="nautilus" # open in file explorer. eg "file ."
 alias files="nautilus" # open in file explorer. eg "file ."
-alias cat=batcat # for ubuntu
-# alias cat=bat # for non-ubuntu
+# alias cat=batcat # for ubuntu
+alias cat=bat # for non-ubuntu
 # alias file="open" # for mac
 
 alias lzd='lazydocker'
@@ -307,3 +307,7 @@ export MDV_THEME_CODE=528.9419
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
