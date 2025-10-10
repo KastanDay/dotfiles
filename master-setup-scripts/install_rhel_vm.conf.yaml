@@ -15,6 +15,8 @@
     ~/.vim_runtime: ../.vim_runtime
     ~/.vimrc: ../.vimrc
     ~/.tmux.conf: ../tmux.conf 
+    ~/.git/config: ../git/config
+    
 
 - create:
     - ~/.vim/undo-history
@@ -60,4 +62,5 @@
   # nvm
   - [curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash, Install nvm]
   - [nvm install 18, Install Node v18]
+  - [npm install -g diff-so-fancy, Install diff-so-fancy for git diffs]
   
