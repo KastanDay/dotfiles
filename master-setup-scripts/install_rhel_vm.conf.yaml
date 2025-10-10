@@ -15,7 +15,7 @@
     ~/.vim_runtime: ../.vim_runtime
     ~/.vimrc: ../.vimrc
     ~/.tmux.conf: ../tmux.conf 
-    ~/.git/config: ../git/config
+    ~/.config/git/config: ../git/config
     
 
 - create:
