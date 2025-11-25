@@ -45,7 +45,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git pip vi-mode web-search sudo wd zsh-autosuggestions virtualenv fasd)
+plugins=(git pip web-search sudo wd zsh-autosuggestions virtualenv fasd zsh-completions)
 
 alias gitlog="git log --all --graph --pretty=format:'%C(magenta)%h %C(white) %an %ar%C(auto) %D%n%s%n'"
 source $ZSH/oh-my-zsh.sh
@@ -68,10 +68,12 @@ alias e=exit
 alias size="ls -lh"
 alias p=python3
 
-alias file="nautilus" # open in file explorer. eg "file ."
-alias files="nautilus" # open in file explorer. eg "file ."
+# alias file="nautilus" # open in file explorer. eg "file ."
+# alias files="nautilus" # open in file explorer. eg "file ."
 alias cat=bat # for non-ubuntu
 alias file="open" # for mac
+
+alias cod='codex --dangerously-bypass-approvals-and-sandbox -c model_reasoning_summary_format=experimental --enable web_search_request'
 
 # disable zsh warning cuz these functions are being called. 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
@@ -213,7 +215,7 @@ z() {
 }
 
 # ctrl + T == fancy preview
-export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --colorr=always --line-range :500 {}'"
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}'"
 export FZF_CTRL_T_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
 
 # ctrl + R == full command on preview window. '?' to toggle preview window
@@ -224,7 +226,7 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window up:3:border-horizon
 # export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --height 80%"
 # go install https://github.com/kitagry/gtree (and creat gopath AND add to path)
 export FZF_ALT_C_OPTS='--preview "gtree \"$(realpath {})\" | head -200" --height 80%'
-export FZF_ALT_C_COMMAND='fd --type d . --search-path ~/code'
+export FZF_ALT_C_COMMAND='fd --type d . --search-path ~/rescale'
 # Could maybe improve formatting this way.....  --base-directory ~/code --exec ~/code' #  --relative-path
 
 alias t="gtree | fzf --ansi"
@@ -321,6 +323,16 @@ POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%K{black}%F{green} \uf155%f%F{black} 
 # Command execution time stamp shown in the history command output.
 HIST_STAMPS="mm/dd/yyyy"
 
+# History configuration
+HISTSIZE=50000
+SAVEHIST=50000
+HISTFILE=~/.zsh_history
+setopt HIST_IGNORE_ALL_DUPS  # Don't record duplicates
+setopt HIST_FIND_NO_DUPS     # Don't show duplicates in search
+setopt HIST_SAVE_NO_DUPS     # Don't write duplicates
+setopt SHARE_HISTORY         # Share history between sessions
+setopt INC_APPEND_HISTORY    # Write immediately, not on exit
+
 # Time
 POWERLEVEL9K_TIME_FORMAT="%F{black}\uf017 %D{%I:%M}%f"  # %F{black}\uf017 had to take this out bc no font!!
 POWERLEVEL9K_TIME_BACKGROUND='green'
@@ -381,7 +393,50 @@ export MDV_THEME_CODE=528.9419
 # Go binaries
 export PATH="$PATH:$(go env GOPATH)/bin"
 
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# >>> conda initialize (lazy-loaded for faster shell startup) >>>
+conda() {
+  unfunction conda
+  __conda_setup="$('/Users/kday/utils/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+  else
+    if [ -f "/Users/kday/utils/miniconda3/etc/profile.d/conda.sh" ]; then
+      . "/Users/kday/utils/miniconda3/etc/profile.d/conda.sh"
+    else
+      export PATH="/Users/kday/utils/miniconda3/bin:$PATH"
+    fi
+  fi
+  unset __conda_setup
+  conda "$@"
+}
+# <<< conda initialize <<<
+
+
 . "$HOME/.local/bin/env"
+
+export RESCALE_API_KEY=4b1a04d6dd0af3df333a8de576fd720234615f77
+export RESCALE_API_KEY_DEV=4b1a04d6dd0af3df333a8de576fd720234615f77
+export RESCALE_API_KEY_STAGING=eba14a0a18199744997fff737a957fb378def306
+export RESCALE_API_KEY_PROD=4b1a04d6dd0af3df333a8de576fd720234615f77
+export PKR_VAR_rescale_env=dev-kday-rescale
+# export HPC_TOOLING_VENV=/Users/kday/rescale/rescale-platform-metadata/.venv
+export HPC_TOOLING_VENV=/Users/kday/rescale/hpc-management-tooling/venv
+export PATH=$PATH:$HOME/rescale/hpc-management-tooling  
+export METADATA_PATH=/Users/kday/rescale/rescale-platform-metadata
+# >>> nvm initialize (lazy-loaded for faster shell startup) >>>
+export NVM_DIR="$HOME/.nvm"
+_load_nvm() {
+  unfunction nvm node npm npx 2>/dev/null
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+}
+nvm() { _load_nvm; nvm "$@"; }
+node() { _load_nvm; node "$@"; }
+npm() { _load_nvm; npm "$@"; }
+npx() { _load_nvm; npx "$@"; }
+# <<< nvm initialize <<<
+export PATH="$HOME/.local/bin:$PATH"
