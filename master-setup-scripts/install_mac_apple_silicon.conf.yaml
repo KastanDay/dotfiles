@@ -26,7 +26,6 @@
   - [brew install fzf, fzf - a better grep (sorta different -- awk good too)]
   - [brew install fd, fd, a better find written in rust]
   - [brew install glances, glances - a better top]
-  - [brew install the_silver_searcher, ag - a better find]
   - [brew install bat, bat - a better cat]
   - [brew cask install iterm2, iterm2 - a better terminal]
   - [brew install rsync, rsync - a better sftp/scp]
