@@ -796,12 +796,30 @@
                                 "type": "basic"
                             },
                             {
-                                "description": " a = Open Arc browser (new browser for Notion only)",
+                                "description": " a = Open Notion (Replacing Arc)",
                                 "from": {
                                     "key_code": "a",
                                     "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
                                 },
-                                "to": [{ "shell_command": "open -a Arc" }],
+                                "to": [{ "shell_command": "open -a Notion" }],
+                                "type": "basic"
+                            },
+                            {
+                                "description": " x = Open Codex app",
+                                "from": {
+                                    "key_code": "x",
+                                    "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
+                                },
+                                "to": [{ "shell_command": "open -a Codex" }],
+                                "type": "basic"
+                            },
+                            {
+                                "description": " 3 = Open T3 code",
+                                "from": {
+                                    "key_code": "3",
+                                    "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
+                                },
+                                "to": [{ "shell_command": "open -a 'T3 Code (Alpha)'" }],
                                 "type": "basic"
                             },
                             {
@@ -1176,6 +1194,20 @@
                         "description": "Hyper Deletion",
                         "manipulators": [
                             {
+                                "description": "option + n = delete whole line",
+                                "from": {
+                                    "key_code": "n",
+                                    "modifiers": { "mandatory": ["left_option", "right_command", "right_control", "right_shift", "right_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "delete_or_backspace",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
                                 "description": "option + m = move line down",
                                 "from": {
                                     "key_code": "m",
@@ -1214,6 +1246,21 @@
                                         "key_code": "delete_or_backspace",
                                         "modifiers": ["left_command"]
                                     }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "command + n = delete whole line",
+                                "from": {
+                                    "key_code": "n",
+                                    "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["left_shift", "left_command"]
+                                    },
+                                    { "key_code": "delete_or_backspace" }
                                 ],
                                 "type": "basic"
                             },
@@ -1257,6 +1304,20 @@
                                         "modifiers": ["left_shift", "left_command"]
                                     },
                                     { "key_code": "delete_or_backspace" }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "n = delete a word ahead",
+                                "from": {
+                                    "key_code": "n",
+                                    "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "delete_or_backspace",
+                                        "modifiers": ["left_option"]
+                                    }
                                 ],
                                 "type": "basic"
                             },
@@ -3291,7 +3352,7 @@
                                     "key_code": "e",
                                     "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
                                 },
-                                "to": [{ "shell_command": "open -a 'marta'" }],
+                                "to": [{ "shell_command": "open -a 'Finder'" }],
                                 "type": "basic"
                             },
                             {
@@ -3304,12 +3365,12 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "open chatGPT",
+                                "description": "open claude",
                                 "from": {
                                     "key_code": "c",
                                     "mandatory": ["right_command", "right_control", "right_shift", "right_option"]
                                 },
-                                "to": [{ "shell_command": "open -a chatgpt" }],
+                                "to": [{ "shell_command": "open -a claude" }],
                                 "type": "basic"
                             },
                             {
@@ -3432,15 +3493,6 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "y = Siri",
-                                "from": {
-                                    "key_code": "y",
-                                    "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
-                                },
-                                "to": [{ "shell_command": "open -a Siri" }],
-                                "type": "basic"
-                            },
-                            {
                                 "description": "command + f = Firefox",
                                 "from": {
                                     "key_code": "f",
@@ -3459,6 +3511,15 @@
                                 "type": "basic"
                             },
                             {
+                                "description": "y = YouTube Music",
+                                "from": {
+                                    "key_code": "y",
+                                    "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
+                                },
+                                "to": [{ "shell_command": "open -a 'YouTube Music'" }],
+                                "type": "basic"
+                            },
+                            {
                                 "description": "f = Calendar",
                                 "from": {
                                     "key_code": "f",
@@ -3473,7 +3534,7 @@
                                     "key_code": "n",
                                     "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
                                 },
-                                "to": [{ "shell_command": "open -a 'Notes'" }],
+                                "to": [{ "ommand": "open -a 'Notes'" }],
                                 "type": "basic"
                             },
                             {
@@ -3504,12 +3565,12 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "s = ChatGPT",
+                                "description": "c = claude",
                                 "from": {
                                     "key_code": "c",
                                     "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
                                 },
-                                "to": [{ "shell_command": "open -a 'chatgpt'" }],
+                                "to": [{ "shell_command": "open -a 'claude'" }],
                                 "type": "basic"
                             },
                             {
