@@ -30,6 +30,7 @@
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
   - [bash ../scripts/brew_bundle_mac_apple_silicon.sh, Install Homebrew packages and apps]
+  - [bash ../scripts/install_codex_desktop_mac.sh, Install Codex Desktop app]
   - [bash ../scripts/install_typinator_9_2.sh, Install pinned Typinator 9.2]
   - [bash ../scripts/import_macos_manual_tasks.sh, Import macOS app profiles and presets]
   # - [brew install --cask visual-studio-code-insiders, vscode insiders]

@@ -30,6 +30,7 @@ casks=(
   iterm2
   karabiner-elements
   bettertouchtool
+  whatsapp
   font-meslo-lg-nerd-font
   cursor
   visual-studio-code
