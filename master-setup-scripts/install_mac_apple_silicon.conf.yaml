@@ -36,7 +36,7 @@
   - [bash ../scripts/import_macos_manual_tasks.sh, Import macOS app profiles and presets]
   # - [brew install --cask visual-studio-code-insiders, vscode insiders]
   # - [echo "use GITHUB ACCOUNT for VS Code settings sync", Github account for vscode settings]
-  # karabiner-elements, BetterTouchTool, nerd fonts, editors, and CLI tools are installed by brew_bundle_mac_apple_silicon.sh.
+  # karabiner-elements, nerd fonts, editors, and CLI tools are installed by brew_bundle_mac_apple_silicon.sh.
   # Typinator is pinned to 9.2 in install_typinator_9_2.sh for license compatibility.
   # iTerm2, Typinator, and BetterTouchTool configs are imported by import_macos_manual_tasks.sh.
   - ['echo "You need to open this link in safari, accept all permissions including kernel extension"', OPEN THIS LINK IN SAFARI!!!!]

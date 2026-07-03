@@ -46,7 +46,7 @@ The Apple Silicon installer imports the old manual app configuration from `MANUA
 
 * iTerm2 profile JSON is installed as a Dynamic Profile.
 * Typinator is pinned to 9.2 for license compatibility, then the `.tyset` folders are copied into Typinator's Sets folder.
-* BetterTouchTool is installed and the `.bttpreset` file is imported when BTT scripting is available. If BTT still requires first-run approval, the preset file is opened for app-level import.
+* BetterTouchTool must be installed manually for licensing. If it is already installed, the `.bttpreset` file is imported when BTT scripting is available. If BTT still requires first-run approval, the preset file is opened for app-level import.
 * Karabiner-Elements, WhatsApp, and Codex Desktop are installed automatically.
 
 ## Python Tooling
