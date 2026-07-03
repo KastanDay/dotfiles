@@ -32,6 +32,7 @@ import_iterm_profile() {
   local source_profile="${manual_tasks_dir}/iterm2_profile.json"
   local dynamic_profiles_dir="$HOME/Library/Application Support/iTerm2/DynamicProfiles"
   local target_profile="${dynamic_profiles_dir}/kastan-dotfiles.json"
+  local profile_guid
 
   if [ ! -f "$source_profile" ]; then
     log "missing iTerm2 profile: $source_profile"
@@ -40,7 +41,8 @@ import_iterm_profile() {
 
   mkdir -p "$dynamic_profiles_dir"
 
-  /usr/bin/python3 - "$source_profile" "$target_profile" <<'PY'
+  profile_guid="$(
+    /usr/bin/python3 - "$source_profile" "$target_profile" <<'PY'
 import json
 import sys
 from pathlib import Path
@@ -49,9 +51,16 @@ source = Path(sys.argv[1])
 target = Path(sys.argv[2])
 
 profile = json.loads(source.read_text())
+profile["Default Bookmark"] = "Yes"
 dynamic_profile = profile if "Profiles" in profile else {"Profiles": [profile]}
 target.write_text(json.dumps(dynamic_profile, indent=2, sort_keys=True) + "\n")
+print(profile.get("Guid", ""))
 PY
+  )"
+
+  if [ -n "$profile_guid" ]; then
+    defaults write com.googlecode.iterm2 "Default Bookmark Guid" -string "$profile_guid"
+  fi
 
   log "installed iTerm2 dynamic profile: $target_profile"
 
