@@ -16,6 +16,7 @@
 
 - link:
     ~/.zshrc: .zshrc_mac
+    ~/.zshenv: ../.zshenv
     ~/.vim_runtime: ../.vim_runtime
     ~/.vimrc: ../.vimrc
     ~/.bashrc: ../.bashrc

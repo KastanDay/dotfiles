@@ -17,6 +17,7 @@ formulae=(
   bat
   rsync
   diff-so-fancy
+  gh
   ripgrep
   rga
   poppler
