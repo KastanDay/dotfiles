@@ -1,10 +1,15 @@
 - defaults:
     link:
       relink: true
+    shell:
+      stdout: true
+      stderr: true
+
+- create:
+    - ~/.config/git
 
 - shell:
-  - [mv ~/.bashrc ~/.bashrc_OLD, archive old bashrc file]
-  - [mv ~/.zshrc  ~/.zshrc_OLD,  archive old zshrc file]
+  - ['for f in ~/.zshrc ~/.bashrc; do if [ -e "$f" ] && [ ! -L "$f" ]; then mv "$f" "$f.OLD.$(date +%Y%m%d%H%M%S)"; fi; done', back up existing dotfiles before linking]
 
 - link:
     ~/.zshrc: .zshrc_ubuntu
@@ -15,6 +20,7 @@
     ~/.vim_runtime: ../.vim_runtime
     ~/.vimrc: ../.vimrc
     ~/.tmux.conf: ../tmux.conf 
+    ~/.config/git/config: ../git/config
 
 - create:
     - ~/.vim/undo-history
@@ -37,15 +43,15 @@
   - [apt install -y fasd, fasd]
   - [apt install -y silversearcher-ag, a bunch of key ones]
   - [apt install -y ripgrep, ripgrep (rg)]
+  - [bash ../scripts/install_uv.sh, Install uv Python tooling]
   - [curl -fsSL https://tailscale.com/install.sh | sh, install Tailscale]
   - ['tailscale up --authkey ${TAILSCALE_AUTHKEY}', start Tailscale w/ authkey (need to be in env var. See here: https://tailscale.com/kb/1085/auth-keys)]
 
   ## Zsh type configs
-  - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc, OhMyZSH]
-  - ['git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k', PowerLevel10k]
-  - ['git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions', zsh-autosuggestions]
-  - ['git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting', zsh-syntax-highlighting]
-
-  # have to fix zshrc before doing this install.
+  - ['[ -d "$HOME/.oh-my-zsh" ] || sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc', OhMyZSH]
+  - ['theme_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"; [ -d "$theme_dir" ] || git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$theme_dir"', PowerLevel10k]
+  - ['plugin_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"; [ -d "$plugin_dir" ] || git clone https://github.com/zsh-users/zsh-autosuggestions "$plugin_dir"', zsh-autosuggestions]
+  - ['plugin_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-completions"; [ -d "$plugin_dir" ] || git clone https://github.com/zsh-users/zsh-completions "$plugin_dir"', zsh-completions]
+  - ['plugin_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"; [ -d "$plugin_dir" ] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$plugin_dir"', zsh-syntax-highlighting]
 
  

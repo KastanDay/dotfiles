@@ -1,10 +1,15 @@
 - defaults:
     link:
       relink: true
+    shell:
+      stdout: true
+      stderr: true
+
+- create:
+    - ~/.config/git
 
 - shell:
-  - [mv ~/.bashrc ~/.bashrc_OLD, archive old bashrc file]
-  - [mv ~/.zshrc  ~/.zshrc_OLD,  archive old zshrc file]
+  - ['for f in ~/.zshrc ~/.bashrc; do if [ -e "$f" ] && [ ! -L "$f" ]; then mv "$f" "$f.OLD.$(date +%Y%m%d%H%M%S)"; fi; done', back up existing dotfiles before linking]
 
 - link:
     ~/.zshrc: .zshrc_ubuntu
@@ -47,19 +52,21 @@
   - [sudo dnf install -y ripgrep, ripgrep (rg)]
   - [curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash, Lazydocker]
   - [export PATH="$HOME/.local/bin:$PATH", Lazydocker PATH]
+  - [bash ../scripts/install_uv.sh, Install uv Python tooling]
 
   ## Zsh type configs
-  - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc, OhMyZSH]
-  - ['git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k', PowerLevel10k]
-  - ['git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions', zsh-autosuggestions]
-  - ['git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting', zsh-syntax-highlighting]
+  - ['[ -d "$HOME/.oh-my-zsh" ] || sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc', OhMyZSH]
+  - ['theme_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"; [ -d "$theme_dir" ] || git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$theme_dir"', PowerLevel10k]
+  - ['plugin_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"; [ -d "$plugin_dir" ] || git clone https://github.com/zsh-users/zsh-autosuggestions "$plugin_dir"', zsh-autosuggestions]
+  - ['plugin_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-completions"; [ -d "$plugin_dir" ] || git clone https://github.com/zsh-users/zsh-completions "$plugin_dir"', zsh-completions]
+  - ['plugin_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"; [ -d "$plugin_dir" ] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$plugin_dir"', zsh-syntax-highlighting]
 
   # Rust & cargo 
-  - [curl https://sh.rustup.rs -sSf | sh -s -- -y, Install Rust and Cargo]
-  - ['"$HOME/.cargo/bin/cargo" install lsd', Install lsd]
-  - ['"$HOME/.cargo/bin/cargo" install dirstat-rs', Install dirstat-rs]
+  - ['command -v cargo >/dev/null 2>&1 || curl https://sh.rustup.rs -sSf | sh -s -- -y', Install Rust and Cargo]
+  - ['command -v lsd >/dev/null 2>&1 || "$(command -v cargo || printf %s "$HOME/.cargo/bin/cargo")" install lsd', Install lsd]
+  - ['command -v ds >/dev/null 2>&1 || "$(command -v cargo || printf %s "$HOME/.cargo/bin/cargo")" install dirstat-rs', Install dirstat-rs]
 
   # nvm
-  - [curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash, Install nvm]
+  - ['[ -d "$HOME/.nvm" ] || curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash', Install nvm]
   - ['export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && nvm install 18 && nvm alias default 18', Install Node v18]
-  - ['export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && nvm use 18 && npm install -g diff-so-fancy', Install diff-so-fancy for git diffs]
+  - ['export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && nvm use 18 && { command -v diff-so-fancy >/dev/null 2>&1 || npm install -g diff-so-fancy; }', Install diff-so-fancy for git diffs]

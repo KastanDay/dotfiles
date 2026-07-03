@@ -52,6 +52,10 @@ The install is nearly perfect. Check the `*.config.yaml` file to customize.
 
     1. Import via in `Presets` in top right, not settings. All of mine are for `TRACKPAD` (top dropdown menu).
 
+## Python Tooling
+
+These setup scripts use `uv` for Python tooling. Conda/Mamba installers are intentionally not included.
+
 # Ubuntu install
 ```bash
 export TAILSCALE_AUTHKEY=xxx # find auth key here: https://tailscale.com/kb/1085/auth-keys
