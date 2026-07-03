@@ -2,8 +2,12 @@
     link:
       relink: true
 
+- create:
+    - ~/.config/karabiner
+    - ~/.config/git
+
 - shell:
-  - [mv ~/.config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json_OLD, delete old karabiner file]
+  - ['for f in ~/.zshrc ~/.bashrc ~/.config/karabiner/karabiner.json; do if [ -e "$f" ] && [ ! -L "$f" ]; then mv "$f" "$f.OLD.$(date +%Y%m%d%H%M%S)"; fi; done', back up existing dotfiles before linking]
 
 - clean: ['~', ~/.config/karabiner/karabiner.json]
 
