@@ -40,17 +40,13 @@ The install is nearly perfect. Check the `*.config.yaml` file to customize.
 ./master-setup-scripts/install_mac_apple_silicon
 ```
 
-### MacOS Post-install Manual Steps
-1. Iterm2
-    1. Go to `profiles` -> `more actions` (bottom left) -> `import json`.
+### MacOS App Config Imports
 
-1. Typintaor
-    1. The installer pins Typinator to 9.2 for license compatibility.
-    1. Just drag and drop those config files. You can also highlight them in finder and do cmd + O.
+The Apple Silicon installer imports the old manual app configuration from `MANUAL_TASKS`:
 
-1. Better Touch tool (BTT)
-
-    1. Import via in `Presets` in top right, not settings. All of mine are for `TRACKPAD` (top dropdown menu).
+* iTerm2 profile JSON is installed as a Dynamic Profile.
+* Typinator is pinned to 9.2 for license compatibility, then the `.tyset` folders are copied into Typinator's Sets folder.
+* BetterTouchTool is installed and the `.bttpreset` file is imported when BTT scripting is available. If BTT still requires first-run approval, the preset file is opened for app-level import.
 
 ## Python Tooling
 

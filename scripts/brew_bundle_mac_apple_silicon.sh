@@ -29,6 +29,7 @@ formulae=(
 casks=(
   iterm2
   karabiner-elements
+  bettertouchtool
   font-meslo-lg-nerd-font
   cursor
   visual-studio-code

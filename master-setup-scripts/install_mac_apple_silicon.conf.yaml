@@ -31,10 +31,12 @@
   - [git submodule update --init --recursive, Installing submodules]
   - [bash ../scripts/brew_bundle_mac_apple_silicon.sh, Install Homebrew packages and apps]
   - [bash ../scripts/install_typinator_9_2.sh, Install pinned Typinator 9.2]
+  - [bash ../scripts/import_macos_manual_tasks.sh, Import macOS app profiles and presets]
   # - [brew install --cask visual-studio-code-insiders, vscode insiders]
   # - [echo "use GITHUB ACCOUNT for VS Code settings sync", Github account for vscode settings]
-  # karabiner-elements, nerd fonts, editors, and CLI tools are installed by brew_bundle_mac_apple_silicon.sh.
+  # karabiner-elements, BetterTouchTool, nerd fonts, editors, and CLI tools are installed by brew_bundle_mac_apple_silicon.sh.
   # Typinator is pinned to 9.2 in install_typinator_9_2.sh for license compatibility.
+  # iTerm2, Typinator, and BetterTouchTool configs are imported by import_macos_manual_tasks.sh.
   - ['echo "You need to open this link in safari, accept all permissions including kernel extension"', OPEN THIS LINK IN SAFARI!!!!]
   - ['command -v gtree >/dev/null 2>&1 || go install github.com/kitagry/gtree@latest', install gtree for tree-like output of directory structure]
   - [touch ~/.hushlogin, To disable the 'Last login' message in iTerm2]
@@ -52,7 +54,7 @@
   - ['command -v cargo >/dev/null 2>&1 || curl https://sh.rustup.rs -sSf | sh -s -- -y', Install Rust & Cargo]
   - ['command -v lsd >/dev/null 2>&1 || "$(command -v cargo || printf %s "$HOME/.cargo/bin/cargo")" install lsd', lsd - a better ls]
 
-  - [echo "README in MANUAL_TASKS for ACTUALLY IMPORTANT final things to do.", LAST STEPS...]
+  - [echo "macOS app configs imported from MANUAL_TASKS.", LAST STEPS...]
 
 
   # todo 
