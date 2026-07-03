@@ -40,29 +40,55 @@ import_iterm_profile() {
   fi
 
   mkdir -p "$dynamic_profiles_dir"
+  rm -f "$target_profile"
 
   profile_guid="$(
-    /usr/bin/python3 - "$source_profile" "$target_profile" <<'PY'
+    /usr/bin/python3 - "$source_profile" <<'PY'
 import json
 import sys
 from pathlib import Path
 
 source = Path(sys.argv[1])
-target = Path(sys.argv[2])
 
 profile = json.loads(source.read_text())
 profile["Default Bookmark"] = "Yes"
-dynamic_profile = profile if "Profiles" in profile else {"Profiles": [profile]}
-target.write_text(json.dumps(dynamic_profile, indent=2, sort_keys=True) + "\n")
+if profile.get("Working Directory", "").startswith("$HOME/"):
+    profile["Working Directory"] = str(Path.home() / profile["Working Directory"][6:])
 print(profile.get("Guid", ""))
 PY
   )"
 
   if [ -n "$profile_guid" ]; then
     defaults write com.googlecode.iterm2 "Default Bookmark Guid" -string "$profile_guid"
+    /usr/bin/python3 - "$source_profile" "$profile_guid" <<'PY'
+import json
+import plistlib
+import sys
+from pathlib import Path
+
+source = Path(sys.argv[1])
+profile_guid = sys.argv[2]
+prefs = Path.home() / "Library/Preferences/com.googlecode.iterm2.plist"
+
+source_profile = json.loads(source.read_text())
+source_profile["Default Bookmark"] = "Yes"
+if source_profile.get("Working Directory", "").startswith("$HOME/"):
+    source_profile["Working Directory"] = str(Path.home() / source_profile["Working Directory"][6:])
+
+data = plistlib.loads(prefs.read_bytes()) if prefs.exists() else {}
+profiles = data.setdefault("New Bookmarks", [])
+for index, profile in enumerate(profiles):
+    if profile.get("Guid") == profile_guid:
+        profiles[index].update(source_profile)
+        break
+else:
+    profiles.append(source_profile)
+
+prefs.write_bytes(plistlib.dumps(data))
+PY
   fi
 
-  log "installed iTerm2 dynamic profile: $target_profile"
+  log "installed iTerm2 profile in preferences"
 
   if app_exists "iTerm"; then
     open_app -ga "iTerm"
