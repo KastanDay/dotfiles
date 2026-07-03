@@ -101,8 +101,8 @@ alias ghbf='gh tree/$(git symbolic-ref --quiet --short HEAD )/$(git rev-parse --
 # CTRL-GCTRL-H for commit hashes
 
 # Enable fzf key bindings and completion (compatible with Homebrew install)
-[ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ] && source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
-[ -f /opt/homebrew/opt/fzf/shell/completion.zsh ] && source /opt/homebrew/opt/fzf/shell/completion.zsh
+[[ -t 0 && -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]] && source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+[[ -t 0 && -f /opt/homebrew/opt/fzf/shell/completion.zsh ]] && source /opt/homebrew/opt/fzf/shell/completion.zsh
 
 # alias ff="cd **"
 # alias pre="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
@@ -391,32 +391,15 @@ export MDV_THEME_CODE=528.9419
 # open `sf pdf`   # interactively select a file matching pdf and launch `open`
 
 # Go binaries
-export PATH="$PATH:$(go env GOPATH)/bin"
+if command -v go >/dev/null 2>&1; then
+  export PATH="$PATH:$(go env GOPATH)/bin"
+fi
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# >>> conda initialize (lazy-loaded for faster shell startup) >>>
-conda() {
-  unfunction conda
-  __conda_setup="$('/Users/kday/utils/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-  if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-  else
-    if [ -f "/Users/kday/utils/miniconda3/etc/profile.d/conda.sh" ]; then
-      . "/Users/kday/utils/miniconda3/etc/profile.d/conda.sh"
-    else
-      export PATH="/Users/kday/utils/miniconda3/bin:$PATH"
-    fi
-  fi
-  unset __conda_setup
-  conda "$@"
-}
-# <<< conda initialize <<<
-
-
-. "$HOME/.local/bin/env"
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
 export RESCALE_API_KEY=4b1a04d6dd0af3df333a8de576fd720234615f77
 export RESCALE_API_KEY_DEV=4b1a04d6dd0af3df333a8de576fd720234615f77

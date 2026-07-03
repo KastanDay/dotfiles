@@ -22,21 +22,19 @@ You need to open this link in safari, accept all permissions including kernel ex
 
 ```bash
 # 1. Install Karabiner
-brew install brew install --cask karabiner-elements
+brew install --cask karabiner-elements
 
 # 2. Open this link IN SAFARI!! Must be Safair for deep links.
 karabiner://karabiner/assets/complex_modifications/import?url=https://raw.githubusercontent.com/Vonng/Capslock/master/mac_v3/capslock.json"]
 
-# 3. Make room for the symblink that will come from main install script below.
-mv ~/.config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json_OLD
+# 3. The main install script backs up an existing Karabiner config before symlinking.
 ```
 
 ## MacOS Main Install
 
 The install is nearly perfect. Check the `*.config.yaml` file to customize. 
 ```bash
-# WATCH OUT FOR errors like: ~/.config/karabiner/karabiner.json already exists but is a regular file or directory
-# YOU MUST DELETE/MOVE those files for the symblinks to work.
+# Existing regular dotfiles are backed up with an .OLD.<timestamp> suffix before symlinking.
 
 # send it! This uses dotinstall
 ./master-setup-scripts/install_mac_apple_silicon
@@ -47,6 +45,7 @@ The install is nearly perfect. Check the `*.config.yaml` file to customize.
     1. Go to `profiles` -> `more actions` (bottom left) -> `import json`.
 
 1. Typintaor
+    1. The installer pins Typinator to 9.2 for license compatibility.
     1. Just drag and drop those config files. You can also highlight them in finder and do cmd + O.
 
 1. Better Touch tool (BTT)
@@ -66,57 +65,6 @@ export TAILSCALE_AUTHKEY=xxx # find auth key here: https://tailscale.com/kb/1085
 export TAILSCALE_AUTHKEY=xxx # find auth key here: https://tailscale.com/kb/1085/auth-keys
 # main install script
 ./master-setup-scripts/install_proxmox
-```
-
-# Miniconda install scripts
-These are already included in the master-setup-scripts. They assume you're using `zsh`.
-### Miniconda Apple silicon `aarch64`
-```bash
-install_miniconda_m1_mac () {
-  mkdir -p ~/utils/miniconda3
-  wget https://github.com/conda-forge/miniforge/releases/download/23.3.1-1/Mambaforge-23.3.1-1-MacOSX-arm64.sh -O ~/utils/miniconda3/miniconda.sh
-  sudo bash ~/utils/miniconda3/miniconda.sh -b -u -p ~/utils/miniconda3
-  rm -rf ~/utils/miniconda3/miniconda.sh
-  ~/utils/miniconda3/bin/mamba init zsh
-  source ~/.zshrc
-}
-
-# run it 
-install_miniconda_m1_mac
-```
-
-
-### Miniconda `x86`
-```bash
-install_miniconda_x86 () {
-  mkdir -p ~/utils/miniconda3
-  wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh -O ~/utils/miniconda3/miniconda.sh
-  bash ~/utils/miniconda3/miniconda.sh -b -u -p ~/utils/miniconda3
-  rm -rf ~/utils/miniconda3/miniconda.sh
-  ~/utils/miniconda3/bin/mamba init zsh
-  source ~/.zshrc
-}
-
-# run it
-install_miniconda_x86
-```
-
-----------------
-
-## Miniconda for ARM on Linux `only arm64` (NOT FOR MAC Apple Silicon, they have a separate one)
-```bash
-# NOT FOR MAC APPLE SILICON, only amd64
-install_miniconda_linux_arm () {
-  mkdir -p ~/utils/miniconda3
-  wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-23.1.0-3-Linux-aarch64.sh -O ~/utils/miniconda3/miniconda.sh
-  bash ~/utils/miniconda3/miniconda.sh -b -u -p ~/utils/miniconda3
-  rm -rf ~/utils/miniconda3/miniconda.sh
-  ~/utils/miniconda3/bin/conda init zsh
-  source ~/.zshrc
-}
-
-# run it
-install_miniconda_linux_arm
 ```
 
 # Setup a remote terminal (no root access)
@@ -164,24 +112,6 @@ mv .bashrc .bashrc_old
 # move dotfiles
 mv <dotfiles>/.* ~
 ```
-
-```bash
-# autoconda -- already included in zshrc.
-
-todo: write install process
-
-# Auto-conda https://github.com/Tarrasch/zsh-autoenv
-source ~/code/dot-files/lib/zsh-autoenv/autoenv.zsh
-# Usage: `condalocal <name_of_env>`
-condalocal() {
-    echo 'ACTIVATING '$1;
-    conda activate $1;
-    echo "echo ACTIVATING $1; conda activate $1" > .autoenv.zsh
-    echo "echo DEACTIVATING $1; conda deactivate" > .autoenv_leave.zsh
-}
-```
-
-todo: pyenv, miniconda3 install process
 
 Off to a great start.
 

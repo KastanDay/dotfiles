@@ -97,7 +97,7 @@ alias sshd="ssh kastanday@dt-login02.delta.ncsa.illinois.edu"
 # Prompt elements
 # Look here for more ideas : https://github.com/tonylambiris/dotfiles/blob/master/dot.zshrc
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir_writable dir vcs) #vcs -- adds git, but slow. # icons_test to see all icons
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time virtualenv anaconda time battery)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time virtualenv time battery)
 
 POWERLEVEL9K_MODE='awesome-patched'
 
@@ -221,21 +221,6 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 # Load pyenv-virtualenv automatically by adding the following to ~/.bashrc:
 eval "$(pyenv virtualenv-init -)"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/kastanday/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/kastanday/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/Users/kastanday/miniforge3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/kastanday/miniforge3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
 # disable zsh warning cuz these functions are being called. 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
@@ -491,21 +476,8 @@ zmodload zsh/zprof
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Auto-conda https://github.com/Tarrasch/zsh-autoenv
-source ~/code/dot-files/lib/zsh-autoenv/autoenv.zsh
-# Usage: `condalocal <name_of_env>`
-condalocal() {
-    echo 'ACTIVATING '$1;
-    conda activate $1;
-    echo "echo ACTIVATING $1; conda activate $1" > .autoenv.zsh
-    echo "echo DEACTIVATING $1; conda deactivate" > .autoenv_leave.zsh
-}
-
 # disable that annoying thing where the prompt dissapears
 POWERLEVEL10K_TRANSIENT_PROMPT=never
-
-# start with nice packages
-conda activate nice_base
 
 # ZLIB (from brew)
 # For compilers to find zlib you may need to set:

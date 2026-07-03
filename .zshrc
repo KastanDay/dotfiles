@@ -86,20 +86,6 @@ ggh() {
   open "$(git config remote.origin.url | sed "s/git@\(.*\):\(.*\).git/https:\/\/\1\/\2/")/$1$2"
 }
 
-#####
-## Auto install the mamba version of Conda (Mambaforge) ##
-# Usage: simply run on cmdline: install_miniconda 
-#####
-install_miniconda () {
-mkdir -p ~/utils/miniconda3
-wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh -O ~/utils/miniconda3/miniconda.sh
-bash ~/utils/miniconda3/miniconda.sh -b -u -p ~/utils/miniconda3
-rm -rf ~/utils/miniconda3/miniconda.sh
-~/utils/miniconda3/bin/mamba init zsh
-source ~/.zshrc
-}
-
-
 # Open current branch -- must use single quotes!! http://mywiki.wooledge.org/Quotes 
 alias ghb='gh tree/$(git symbolic-ref --quiet --short HEAD )'
 # Open current directory/file in current branch
