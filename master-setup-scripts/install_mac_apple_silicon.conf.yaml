@@ -10,7 +10,7 @@
     - ~/.config/git
 
 - shell:
-  - ['for f in ~/.zshrc ~/.bashrc ~/.config/karabiner/karabiner.json; do if [ -e "$f" ] && [ ! -L "$f" ]; then mv "$f" "$f.OLD.$(date +%Y%m%d%H%M%S)"; fi; done', back up existing dotfiles before linking]
+  - ['for f in ~/.zshrc ~/.zshenv ~/.bashrc ~/.config/karabiner/karabiner.json; do if [ -e "$f" ] && [ ! -L "$f" ]; then mv "$f" "$f.OLD.$(date +%Y%m%d%H%M%S)"; fi; done', back up existing dotfiles before linking]
 
 - clean: ['~', ~/.config/karabiner/karabiner.json]
 

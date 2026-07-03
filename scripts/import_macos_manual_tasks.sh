@@ -73,6 +73,11 @@ copy_typinator_set() {
       return 0
     fi
 
+    if [ "${MACOS_IMPORTS_FORCE_TYPINATOR:-}" != "1" ]; then
+      log "Typinator set already exists and differs; keeping local copy: $(basename "$source_set")"
+      return 0
+    fi
+
     mv "$target_set" "${target_set}.OLD.$(timestamp)"
     log "backed up existing Typinator set: $target_set"
   fi
