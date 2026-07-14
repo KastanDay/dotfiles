@@ -116,8 +116,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
-if [ -t 1 ]; then
-    exec zsh
-fi
-. "$HOME/.cargo/env"
+[ -f "$HOME/.shellrc" ] && . "$HOME/.shellrc"

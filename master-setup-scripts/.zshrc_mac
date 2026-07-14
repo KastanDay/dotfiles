@@ -226,7 +226,7 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window up:3:border-horizon
 # export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --height 80%"
 # go install https://github.com/kitagry/gtree (and creat gopath AND add to path)
 export FZF_ALT_C_OPTS='--preview "gtree \"$(realpath {})\" | head -200" --height 80%'
-export FZF_ALT_C_COMMAND='fd --type d . --search-path ~/rescale'
+export FZF_ALT_C_COMMAND='fd --type d . --search-path ~'
 # Could maybe improve formatting this way.....  --base-directory ~/code --exec ~/code' #  --relative-path
 
 alias t="gtree | fzf --ansi"
@@ -401,15 +401,6 @@ fi
 
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
-export RESCALE_API_KEY=4b1a04d6dd0af3df333a8de576fd720234615f77
-export RESCALE_API_KEY_DEV=4b1a04d6dd0af3df333a8de576fd720234615f77
-export RESCALE_API_KEY_STAGING=eba14a0a18199744997fff737a957fb378def306
-export RESCALE_API_KEY_PROD=4b1a04d6dd0af3df333a8de576fd720234615f77
-export PKR_VAR_rescale_env=dev-kday-rescale
-# export HPC_TOOLING_VENV=/Users/kday/rescale/rescale-platform-metadata/.venv
-export HPC_TOOLING_VENV=/Users/kday/rescale/hpc-management-tooling/venv
-export PATH=$PATH:$HOME/rescale/hpc-management-tooling  
-export METADATA_PATH=/Users/kday/rescale/rescale-platform-metadata
 # >>> nvm initialize (lazy-loaded for faster shell startup) >>>
 export NVM_DIR="$HOME/.nvm"
 _load_nvm() {
@@ -423,3 +414,10 @@ npm() { _load_nvm; npm "$@"; }
 npx() { _load_nvm; npx "$@"; }
 # <<< nvm initialize <<<
 export PATH="$HOME/.local/bin:$PATH"
+[ -f "$HOME/.shellrc" ] && source "$HOME/.shellrc"
+
+# OpenCode alias - https://opencode.cloudflare.dev/
+alias oc="clear && opencode auth login https://opencode.cloudflare.dev && opencode mcp auth cf-portal && opencode"
+
+# Claude Code through the same Cloudflare Anthropic gateway used by opencode.
+alias claude="$HOME/.local/bin/claude-opencode"
