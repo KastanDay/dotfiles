@@ -1,0 +1,21 @@
+bin/codex-notify
+  s_186b4531335bb9::t_d7682b426e081c 1-147
+bin/codex-notify-pushover-setup
+  s_186b4531335bb9::t_6fa3bcb9ae8b71 1-116
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "ee13b16a808c936796a56b2c47c6a5b7362d5a9c",
+  "prompts": {},
+  "sessions": {
+    "s_186b4531335bb9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f71e4-a25b-7972-a4c0-ea641cbaea1a",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Kastan Day <kastanvday@gmail.com>"
+    }
+  }
+}
