@@ -1,0 +1,116 @@
+#!/bin/zsh
+set -euo pipefail
+
+if [[ ! -t 0 ]]; then
+  print -u2 "codex-notify-pushover-setup must be run in an interactive terminal"
+  exit 64
+fi
+
+script_dir=${0:A:h}
+keychain_account="$USER"
+token_service="com.openai.codex.pushover.api-token"
+user_service="com.openai.codex.pushover.user-key"
+
+keychain_value() {
+  /usr/bin/security find-generic-password \
+    -a "$keychain_account" -s "$1" -w 2>/dev/null || true
+}
+
+keychain_item_exists() {
+  /usr/bin/security find-generic-password \
+    -a "$keychain_account" -s "$1" >/dev/null 2>&1
+}
+
+is_valid_pushover_key() {
+  local value="$1"
+  [[ ${#value} -eq 30 && "$value" != *[^A-Za-z0-9]* ]]
+}
+
+delete_keychain_item() {
+  /usr/bin/security delete-generic-password \
+    -a "$keychain_account" -s "$1" >/dev/null 2>&1 || true
+}
+
+prompt_for_key() {
+  local service="$1"
+  local label="$2"
+  local comment="$3"
+  local prompt="$4"
+  local stored_value
+
+  while true; do
+    print
+    print "$prompt"
+    /usr/bin/security add-generic-password \
+      -U \
+      -a "$keychain_account" \
+      -s "$service" \
+      -l "$label" \
+      -j "$comment" \
+      -T /usr/bin/security \
+      -w
+
+    stored_value=$(keychain_value "$service")
+    if is_valid_pushover_key "$stored_value"; then
+      return 0
+    fi
+
+    print -u2 "The value must be exactly 30 letters or digits and cannot be empty. Please try again."
+    delete_keychain_item "$service"
+  done
+}
+
+cat <<'EOF'
+Before continuing:
+
+1. Install Pushover on the iPhone and sign in.
+2. Find the User Key on https://pushover.net/
+3. Create an application named "Codex" at https://pushover.net/apps/build
+4. Have that application's API Token/Key ready.
+
+The following prompts are hidden. The values are stored in your login
+Keychain and are not written to these scripts.
+EOF
+
+user_key=$(keychain_value "$user_service")
+if is_valid_pushover_key "$user_key"; then
+  print
+  print "Pushover User Key is already stored in Keychain."
+else
+  if keychain_item_exists "$user_service"; then
+    print
+    print "The stored Pushover User Key is empty or invalid; replacing it."
+    delete_keychain_item "$user_service"
+  fi
+  prompt_for_key \
+    "$user_service" \
+    "Codex Pushover User Key" \
+    "Pushover destination used by Codex notifications" \
+    "Store the Pushover User Key:"
+fi
+
+api_token=$(keychain_value "$token_service")
+if is_valid_pushover_key "$api_token"; then
+  print
+  print "Codex application API Token is already stored in Keychain."
+else
+  if keychain_item_exists "$token_service"; then
+    print
+    print "The stored Codex application API Token is empty or invalid; replacing it."
+    delete_keychain_item "$token_service"
+  fi
+  prompt_for_key \
+    "$token_service" \
+    "Codex Pushover API Token" \
+    "Pushover application token used by Codex notifications" \
+    "Store the Codex application API Token/Key:"
+fi
+
+print
+print "Sending a test notification..."
+"$script_dir/codex-notify" \
+  --title "Codex notifier" \
+  "Pushover setup succeeded. Future blockers and long-task completions can appear here."
+
+print
+print "Setup complete."

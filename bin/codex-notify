@@ -1,0 +1,147 @@
+#!/bin/zsh
+set -euo pipefail
+
+usage() {
+  cat >&2 <<'EOF'
+usage: codex-notify [OPTIONS] MESSAGE...
+
+Send a Pushover notification to Kastan.
+
+Options:
+  --title TITLE       Notification title (default: Codex)
+  --priority high     Accepted for compatibility; notifications are always high
+  --url URL           Optional link to include with the notification
+  -h, --help          Show this help
+EOF
+}
+
+title="Codex"
+notification_url=""
+
+while (( $# > 0 )); do
+  case "$1" in
+    --title)
+      (( $# >= 2 )) || { print -u2 "codex-notify: --title requires a value"; exit 64; }
+      title="$2"
+      shift 2
+      ;;
+    --priority)
+      (( $# >= 2 )) || { print -u2 "codex-notify: --priority requires a value"; exit 64; }
+      [[ "$2" == "high" ]] || { print -u2 "codex-notify: priority is fixed at high"; exit 64; }
+      shift 2
+      ;;
+    --url)
+      (( $# >= 2 )) || { print -u2 "codex-notify: --url requires a value"; exit 64; }
+      notification_url="$2"
+      shift 2
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    --)
+      shift
+      break
+      ;;
+    -*)
+      print -u2 "codex-notify: unknown option: $1"
+      usage
+      exit 64
+      ;;
+    *)
+      break
+      ;;
+  esac
+done
+
+(( $# > 0 )) || { usage; exit 64; }
+message="$*"
+
+priority=1
+
+keychain_account="$USER"
+token_service="com.openai.codex.pushover.api-token"
+user_service="com.openai.codex.pushover.user-key"
+
+is_valid_pushover_key() {
+  local value="$1"
+  [[ ${#value} -eq 30 && "$value" != *[^A-Za-z0-9]* ]]
+}
+
+api_token=$(/usr/bin/security find-generic-password \
+  -a "$keychain_account" -s "$token_service" -w 2>/dev/null || true)
+user_key=$(/usr/bin/security find-generic-password \
+  -a "$keychain_account" -s "$user_service" -w 2>/dev/null || true)
+
+configuration_errors=()
+is_valid_pushover_key "$user_key" || configuration_errors+=("User Key")
+is_valid_pushover_key "$api_token" || configuration_errors+=("application API Token")
+
+if (( ${#configuration_errors} > 0 )); then
+  print -u2 "codex-notify: Pushover is not configured"
+  print -u2 "missing or invalid: ${(j:, :)configuration_errors}"
+  print -u2 "run: codex-notify-pushover-setup"
+  exit 78
+fi
+
+# Construct JSON with the system JavaScript runtime so arbitrary titles and
+# messages are escaped correctly. Secrets remain in environment variables and
+# are passed to curl through stdin rather than command-line arguments.
+payload=$(
+  PUSHOVER_TOKEN="$api_token" \
+  PUSHOVER_USER="$user_key" \
+  PUSHOVER_TITLE="$title" \
+  PUSHOVER_MESSAGE="$message" \
+  PUSHOVER_PRIORITY="$priority" \
+  PUSHOVER_URL="$notification_url" \
+  /usr/bin/osascript -l JavaScript <<'JXA'
+ObjC.import('Foundation');
+
+const environment = $.NSProcessInfo.processInfo.environment;
+const get = (name) => ObjC.unwrap(environment.objectForKey(name));
+
+const payload = {
+  token: get('PUSHOVER_TOKEN'),
+  user: get('PUSHOVER_USER'),
+  title: get('PUSHOVER_TITLE'),
+  message: get('PUSHOVER_MESSAGE'),
+  priority: Number(get('PUSHOVER_PRIORITY')),
+};
+
+const url = get('PUSHOVER_URL');
+if (url.length > 0) payload.url = url;
+
+JSON.stringify(payload);
+JXA
+)
+
+response=$(
+  print -rn -- "$payload" | /usr/bin/curl \
+    --silent \
+    --show-error \
+    --fail-with-body \
+    --connect-timeout 10 \
+    --max-time 30 \
+    --retry 2 \
+    --retry-all-errors \
+    --header "Content-Type: application/json" \
+    --data-binary @- \
+    https://api.pushover.net/1/messages.json
+)
+
+response_status=$(print -rn -- "$response" | /usr/bin/plutil \
+  -extract status raw -o - - 2>/dev/null || true)
+
+if [[ "$response_status" != "1" ]]; then
+  print -u2 "codex-notify: Pushover rejected the notification"
+  exit 69
+fi
+
+request_id=$(print -rn -- "$response" | /usr/bin/plutil \
+  -extract request raw -o - - 2>/dev/null || true)
+
+if [[ -n "$request_id" ]]; then
+  print "Pushover notification accepted (request $request_id)"
+else
+  print "Pushover notification accepted"
+fi

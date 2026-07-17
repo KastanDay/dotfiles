@@ -8,6 +8,7 @@
 - create:
     - ~/.config/karabiner
     - ~/.config/git
+    - ~/.local/bin
 
 - shell:
   - ['for f in ~/.zshrc ~/.zshenv ~/.bashrc ~/.config/karabiner/karabiner.json; do if [ -e "$f" ] && [ ! -L "$f" ]; then mv "$f" "$f.OLD.$(date +%Y%m%d%H%M%S)"; fi; done', back up existing dotfiles before linking]
@@ -24,6 +25,8 @@
     ~/.config/karabiner/karabiner.json: ../karabiner.json
     ~/.tmux.conf: ../tmux.conf
     ~/.config/git/config: ../git/config
+    ~/.local/bin/codex-notify: ../bin/codex-notify
+    ~/.local/bin/codex-notify-pushover-setup: ../bin/codex-notify-pushover-setup
 
 - create:
     - ~/.vim/undo-history
