@@ -25,8 +25,8 @@
     ~/.config/karabiner/karabiner.json: ../karabiner.json
     ~/.tmux.conf: ../tmux.conf
     ~/.config/git/config: ../git/config
-    ~/.local/bin/codex-notify: ../bin/codex-notify
-    ~/.local/bin/codex-notify-pushover-setup: ../bin/codex-notify-pushover-setup
+    ~/.local/bin/notify-kastan: ../bin/notify-kastan
+    ~/.local/bin/notify-kastan-pushover-setup: ../bin/notify-kastan-pushover-setup
 
 - create:
     - ~/.vim/undo-history

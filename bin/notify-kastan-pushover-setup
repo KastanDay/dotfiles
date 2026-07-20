@@ -2,7 +2,7 @@
 set -euo pipefail
 
 if [[ ! -t 0 ]]; then
-  print -u2 "codex-notify-pushover-setup must be run in an interactive terminal"
+  print -u2 "notify-kastan-pushover-setup must be run in an interactive terminal"
   exit 64
 fi
 
@@ -108,7 +108,7 @@ fi
 
 print
 print "Sending a test notification..."
-"$script_dir/codex-notify" \
+"$script_dir/notify-kastan" \
   --title "Codex notifier" \
   "Pushover setup succeeded. Future blockers and long-task completions can appear here."
 

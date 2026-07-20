@@ -3,7 +3,7 @@ set -euo pipefail
 
 usage() {
   cat >&2 <<'EOF'
-usage: codex-notify [OPTIONS] MESSAGE...
+usage: notify-kastan [OPTIONS] MESSAGE...
 
 Send a Pushover notification to Kastan.
 
@@ -21,17 +21,17 @@ notification_url=""
 while (( $# > 0 )); do
   case "$1" in
     --title)
-      (( $# >= 2 )) || { print -u2 "codex-notify: --title requires a value"; exit 64; }
+      (( $# >= 2 )) || { print -u2 "notify-kastan: --title requires a value"; exit 64; }
       title="$2"
       shift 2
       ;;
     --priority)
-      (( $# >= 2 )) || { print -u2 "codex-notify: --priority requires a value"; exit 64; }
-      [[ "$2" == "high" ]] || { print -u2 "codex-notify: priority is fixed at high"; exit 64; }
+      (( $# >= 2 )) || { print -u2 "notify-kastan: --priority requires a value"; exit 64; }
+      [[ "$2" == "high" ]] || { print -u2 "notify-kastan: priority is fixed at high"; exit 64; }
       shift 2
       ;;
     --url)
-      (( $# >= 2 )) || { print -u2 "codex-notify: --url requires a value"; exit 64; }
+      (( $# >= 2 )) || { print -u2 "notify-kastan: --url requires a value"; exit 64; }
       notification_url="$2"
       shift 2
       ;;
@@ -44,7 +44,7 @@ while (( $# > 0 )); do
       break
       ;;
     -*)
-      print -u2 "codex-notify: unknown option: $1"
+      print -u2 "notify-kastan: unknown option: $1"
       usage
       exit 64
       ;;
@@ -78,9 +78,9 @@ is_valid_pushover_key "$user_key" || configuration_errors+=("User Key")
 is_valid_pushover_key "$api_token" || configuration_errors+=("application API Token")
 
 if (( ${#configuration_errors} > 0 )); then
-  print -u2 "codex-notify: Pushover is not configured"
+  print -u2 "notify-kastan: Pushover is not configured"
   print -u2 "missing or invalid: ${(j:, :)configuration_errors}"
-  print -u2 "run: codex-notify-pushover-setup"
+  print -u2 "run: notify-kastan-pushover-setup"
   exit 78
 fi
 
@@ -133,7 +133,7 @@ response_status=$(print -rn -- "$response" | /usr/bin/plutil \
   -extract status raw -o - - 2>/dev/null || true)
 
 if [[ "$response_status" != "1" ]]; then
-  print -u2 "codex-notify: Pushover rejected the notification"
+  print -u2 "notify-kastan: Pushover rejected the notification"
   exit 69
 fi
 

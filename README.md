@@ -40,8 +40,8 @@ The install is nearly perfect. Check the `*.config.yaml` file to customize.
 ./master-setup-scripts/install_mac_apple_silicon
 ```
 
-The installer links `codex-notify` and `codex-notify-pushover-setup` into
-`~/.local/bin`. On each Mac, run `codex-notify-pushover-setup` once to store the
+The installer links `notify-kastan` and `notify-kastan-pushover-setup` into
+`~/.local/bin`. On each Mac, run `notify-kastan-pushover-setup` once to store the
 Pushover User Key and application token in that machine's login Keychain.
 
 ### MacOS App Config Imports
