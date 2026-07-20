@@ -1,0 +1,21 @@
+bin/notify-kastan
+  s_2717596659eeb1::t_ab3e94bc7ff02c 6,24,29-30,34,47,81,83,136
+bin/notify-kastan-pushover-setup
+  s_2717596659eeb1::t_f0be0a2eb78854 5,111
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "702b8563c745f4a5e95ddc1f023b93ffeef97750",
+  "prompts": {},
+  "sessions": {
+    "s_2717596659eeb1": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_07f225e34ffektB6DwI6v9EDHC",
+        "model": "gpt-5.6"
+      },
+      "human_author": "Kastan Day <kastanvday@gmail.com>"
+    }
+  }
+}
