@@ -1,0 +1,19 @@
+git/config
+  s_526eceef40fc47::t_a8aacd0b02699c 34-47
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "1e00783c6de583eb8605910cb34e2d104e33cb38",
+  "prompts": {},
+  "sessions": {
+    "s_526eceef40fc47": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a06e87-b91f-7633-bb85-4e353e1586f2",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Kastan Day <kastanvday@gmail.com>"
+    }
+  }
+}
