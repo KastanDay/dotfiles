@@ -31,3 +31,17 @@ sort = -committerdate
 
 [tag]
 sort = -taggerdate
+[user]
+	email = kastanvday@gmail.com
+	name = Kastan Day
+[includeIf "hasconfig:remote.*.url:git@gitlab.cfdata.org:*/**"]
+	path = /Users/kastan/.config/git/cloudflare
+[includeIf "hasconfig:remote.*.url:https://gitlab.cfdata.org/**"]
+	path = /Users/kastan/.config/git/cloudflare
+[include]
+	path = /Users/kastan/.local/share/cloudflare-warp-certs/gitconfig
+[trace2]
+	eventTarget = af_unix:stream:/Users/kastan/.git-ai/internal/daemon/trace2.sock
+	eventNesting = 10
+[core]
+	excludesFile = /Users/kastan/.config/git/ignore

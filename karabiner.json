@@ -819,7 +819,7 @@
                                     "key_code": "3",
                                     "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
                                 },
-                                "to": [{ "shell_command": "open -a 'T3 Code (Alpha)'" }],
+                                "to": [{ "shell_command": "open -a 'T3 Code (Nightly)'" }],
                                 "type": "basic"
                             },
                             {
@@ -3383,6 +3383,15 @@
                                 "type": "basic"
                             },
                             {
+                                "description": "d = chrome",
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
+                                },
+                                "to": [{ "shell_command": "open -a 'Google Chrome'" }],
+                                "type": "basic"
+                            },
+                            {
                                 "description": "command + r = preview",
                                 "from": {
                                     "key_code": "r",
@@ -3535,24 +3544,6 @@
                                     "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
                                 },
                                 "to": [{ "ommand": "open -a 'Notes'" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "command + g = Chrome",
-                                "from": {
-                                    "key_code": "g",
-                                    "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
-                                },
-                                "to": [{ "shell_command": "open -a 'Google Chrome'" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "d = Discord",
-                                "from": {
-                                    "key_code": "d",
-                                    "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
-                                },
-                                "to": [{ "shell_command": "open -a 'Discord'" }],
                                 "type": "basic"
                             },
                             {
